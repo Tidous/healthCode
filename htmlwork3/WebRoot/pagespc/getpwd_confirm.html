@@ -1,0 +1,177 @@
+
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="yes" name="apple-touch-fullscreen" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<title>重置密码</title>
+	<link rel="stylesheet" href="../css/m_reset.css"/>
+	<link rel="stylesheet" href="../css/reset_login.css"/>
+	<style>
+.one{ width:600px; height:100px; margin:0 auto;}
+</style>
+  <script type="text/javascript" src="../js/jquery.js"></script>
+  <script type="text/javascript" src="../js/jquery-2.2.2.min.js"></script>
+  <script type="text/javascript" src="js/config.js"></script>
+  <script type="text/javascript" src="js/global.js"></script>
+  <script type="text/javascript">
+  
+    if(!window.sessionStorage){
+	  alert("该游览器不支持某些组件，请使用IE8以上的游览器，谢谢配合");
+	}
+    
+    $(function () {
+	    if (window.sessionStorage.getItem("user") && window.sessionStorage.getItem("user") != "") {
+	         $("#userInfo").text("您好 "+window.sessionStorage.getItem("user")+"先生/女士");
+	         $("#userInfo").show();
+	    }
+	    else {
+	         $("#userInfo").hide();
+	    }
+    });
+    
+    //验证码变化
+	function changeCaptcha(){
+		$('.reset-yzm-pic').attr('src', 'http://passport.xywy.com/getpwd.php?act=confirm_captcha&amp;' + Math.random());
+	}
+	//开始验证
+	$('input[type=text]').focus(function(){
+		$(this).closest('.bor-warn').removeClass('bor-warn');
+		$('.error').text('');
+	});
+    
+    function nameLine(){
+		$('[data-login=username]').parent().parent().removeClass('my-wb');
+		$('[data-login=username]').parent().parent().addClass('bor-warn');
+	}
+	function mobileLine(){
+		$('[data-login=mobile]').parent().parent().removeClass('my-wb');
+		$('[data-login=mobile]').parent().parent().addClass('bor-warn');
+	}
+	function lineRemove(){
+		$('[data-login=username]').parent().parent().addClass('my-wb');
+		$('[data-login=username]').parent().parent().removeClass('bor-warn');
+		$('[data-login=mobile]').parent().parent().addClass('my-wb');
+		$('[data-login=mobile]').parent().parent().removeClass('bor-warn');
+		$('[data-yzm=yzm]').parent().removeClass('bor-warn');
+	}
+	function hidden(objhidea){
+		objhidea.addClass('hidden');
+	}
+	function show(objhideb){
+		objhideb.removeClass('hidden');
+	}
+
+    function check() {
+
+      if (document.getElementById("username").value == "") {
+            lineRemove();
+            nameLine();
+			show($('[data-title=error]'));
+			$('[data-title=error]').html('请输入用户名!');
+            $('[data-login=update]').html('修改密码');
+            $('input').removeAttr('disabled');
+            return false;
+      }
+
+      if (document.getElementById("mobile").value == "") {
+            lineRemove();
+            mobileLine();
+			show($('[data-title=error]'));
+			$('[data-title=error]').html('请输入手机号!');
+            $('[data-login=update]').html('修改密码');
+            $('input').removeAttr('disabled');
+            return false;
+      }
+ 
+      alert ("信息提交成功"); 
+      return true; 
+    }
+    
+    function sumbit() {
+    	if (check()) {
+
+            var mobile = document.getElementById("mobile").value;
+            var username = document.getElementById("username").value;
+    
+            $.doAjaxPostCall("checkUser", "username="+username+"&mobile="+mobile, function(responseData){
+    
+              console.log(responseData);
+              var obj =responseData;
+        
+              var res = obj.result;
+              
+              if (res == "1") {
+                 window.location="update_pwd.html";
+                 if (!window.sessionStorage.getItem("user") || window.sessionStorage.getItem("user") == "" || window.sessionStorage.getItem("user") == null) {
+                     window.sessionStorage.setItem("user", username);
+                 }
+              }
+              else {
+                 lineRemove();
+		         nameLine();
+			     show($('[data-title=error]'));
+				 $('[data-title=error]').html('未找到该用户!');
+		         $('[data-login=update]').html('修改密码');
+		         $('input').removeAttr('disabled');
+              }
+            });
+         }
+    }
+  </script>
+</head>
+<body>
+<div class="one">
+	<div class="wrap">
+		<header class="header box borderBox">
+			<div class="header-logo boxFlex">
+            <a href="../index.html">健康计算器</a><span class="header-dot">·</span><a href="./login.html">个人中心</a>            
+            </div>
+			<div class="header-reg boxFlex"><a href="./register.html">注册</a></div>
+		</header>	
+		<section class="reset-con">
+			<div class="title">
+				<h2 class="title-name">重置密码</h2>
+				<a href="./login.html" class="lgoin-link">登录</a>
+			</div>
+			<form class="reset-form">
+				<div class="reset-list">
+					<input type="text" class="j-close-show username" name="userName" id="username" placeholder="请输入用户名">
+					<span class="closebtn"></span>
+				</div>
+				</br>
+				<div class="reset-list">
+					<input type="text" class="j-close-show username" name="mobile" id="mobile" placeholder="请输入注册时的手机号">
+					<span class="closebtn"></span>
+				</div>
+				<!-- <div class="reset-yzm box">
+					<div class="reset-yzm-input boxFlex borderBox">
+						<input type="text" class="yzm" name="keyword" placeholder="请输入验证码">
+					</div>
+					<img class="reset-yzm-pic" onclick="this.src='http://passport.xywy.com/getpwd.php?act=confirm_captcha&amp;'+Math.random()" src="http://passport.xywy.com/getpwd.php?act=confirm_captcha" alt=""/>
+					<span class="reset-yzm-change boxFlex borderBox" style="cursor:pointer;" onclick="changeCaptcha()">换一张</span>
+				</div>-->
+				<div style="margin-top:60px">
+				<input type="button" class="reset-submit" value="提交" onclick="sumbit()" style="cursor:pointer;"/>
+				</div>
+			</form>
+		</section>
+		<section class="mt20" id="ifooter">
+
+	<nav class="tc w navList f14 clearfix">
+    <a href="../index.html">健康计算器首页</a>
+    </nav>
+	<footer class="clearfix foot lh180 pt10">
+		<div class="w320 clearfix bc">
+ 		</div>
+	</footer>
+</section>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>用户中心_健康计算器</title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="有问必答，健康问答" />
+  <!--[if !IE]>-->
+  <link type="text/css" rel="stylesheet" href="../css/m_reset.css">
+  <link rel="stylesheet" href="../css/club_app.css" type="text/css" />
+  <link rel="stylesheet" href="../css/user_center.css?v=2016052809">
+  <link rel="stylesheet" href="../css/zt-jkgl.css">
+  <link rel="stylesheet" href="../css/my-base.css">
+  <link rel="stylesheet" href="../css/pc.css">
+  <link rel="stylesheet" href="../css/bnCustom.css">
+  <!--<![endif]--></head>
+  <script type="text/javascript" src="../lib/jquery.min.js"></script>
+  <script type="text/javascript" src="js/config.js"></script>
+  <script type="text/javascript" src="js/global.js"></script>
+  <script type="text/javascript">
+    var HABIT_MAP = {"1":"心慌或烦躁","2":"胃纳不佳","3":"呼吸短气或声音低微","4":"手脚经常冰凉","5":"便秘","6":"失眠或多梦","7":"头晕或胸闷","8":"皮肤干燥","9":"脸色或指甲淡白","10":"面色萎黄或无光泽","11":"胃脘饱胀","12":"忍饥挨饿或总爱吃撑",
+        "13":"熬夜","14":"思虑过度","15":"常吃冷饮或以水果、生蔬菜为主食","16":"常过量饮酒","17":"久坐（每天坐超过4小时）","18":"压力大","19":"经常洗冷水澡或冬泳",
+        "20":"经常使用空调","21":"经常使用电热毯等加热器","22":"每周体育运动时间:1小时以下","23":"每周体育运动时间:1-4小时","24":"每周体育运动时间:4-7小时","25":"每周体育运动时间:7小时以上"};
+    if (!window.sessionStorage) {
+      alert("该游览器不支持某些组件，请使用IE8以上的游览器，谢谢配合");
+    }
+
+    $(function() {
+      $("#username").text(window.sessionStorage.getItem("user"));
+      $.doAjaxPostCall("queryUserList", "userid=" + window.sessionStorage.getItem("userid"),
+      function(responseData) {
+        console.log(responseData);
+        var obj = responseData;
+
+        var samebody = "</span></div></td><td align='center' class='GeneralAnswer'><div style='padding: 4px'><span  class='Color1'>";
+
+        if (obj.retmsg == "success") {
+          $("#familycount").text("(" + obj.list.length + ")");
+          for (var i = 0; obj.list != null && i < obj.list.length; i++) {
+
+            var fundbody1 = "<tr class='EdgeTableLine' style='cursor:pointer; '><td align='center' class='GeneralAnswer'><div style='padding: 4px'><span class='Color1'>" + obj.list[i].username;
+            var fundbody2 = samebody + obj.list[i].relationship;
+            var fundbody3 = samebody + obj.list[i].phone;
+            var endbody = "</span></div></td><td align='center'><div style='padding:4px'><a title='编辑用户信息' onclick='detail(id)' id='row_" + obj.list[i].username + "_" + obj.list[i].idno + "' class='Detaillink' value='编辑用户信息' onmouseover='this.style.cursor=&#39;pointer&#39;'>编辑用户信息</a></div></td><td align='center'><div style='padding:4px'><a title='删除' onclick='del(id)' id='row_" + obj.list[i].username + "_" + obj.list[i].idno + "' class='Detaillink' value='删除' onmouseover='this.style.cursor=&#39;pointer&#39;'>删除</a></div></td></tr>";
+            listhtml = fundbody1 + fundbody2 + fundbody3 + endbody;
+            $("#peopeltable").append(listhtml);
+          }
+          $("#noneDoctor").hide();
+          $("#familytable").show();
+        } else {
+          $("#noneDoctor").show();
+          $("#familytable").hide();
+        }
+      });
+
+      $.doAjaxPostCall("queryHabit", "userid=" + window.sessionStorage.getItem("userid"),
+      function(responseData) {
+        console.log(responseData);
+        var obj = responseData;
+
+        var habit = responseData.habit;
+
+        if (habit != null) {
+          var arrStr = habit.split(",");
+          $("#habitcount").text("(" + arrStr.length + ")");
+          $("#nonehabit").text("您平时的生活习惯包括：");
+          for (var j = 0; j < arrStr.length; j++) {
+            $("#nonehabit").append(" " + HABIT_MAP[arrStr[j]] + " ");
+          }
+        }
+      });
+    });
+
+    function detail(id) {
+      var arrStr = id.split("_");
+      var name = arrStr[1];
+      var idno = arrStr[2];
+
+      var myurl = "userdoc.html?name=" + name + "&idno=" + idno;
+      window.location.assign(encodeURI(myurl));
+    }
+
+    function del(id) {
+      var arrStr = id.split("_");
+      var name = arrStr[1];
+      var idno = arrStr[2];
+
+      $.doAjaxPostCall("delUserinfo", "userid=" + window.sessionStorage.getItem("userid") + "&name=" + name + "&idno=" + idno,
+      function(responseData) {
+
+        console.log(responseData);
+        var obj = responseData;
+
+        if (obj.retmsg == "success") {
+          alert("删除成功！");
+          window.location = "../index.html";
+        } else if (obj.retmsg == "fail") {
+          alert("删除失败，请联系管理员");
+        }
+      });
+    }
+
+    function check() {
+
+      if (document.getElementById("orginpsd").value == "") {
+        alert("请输入原密码!");
+        return false;
+      }
+
+      if (document.getElementById("newpsd").value == "") {
+        alert("请输入新密码!");
+        return false;
+      }
+
+      if (document.getElementById("confirmpsd").value == "") {
+        alert("请再次确认密码!");
+        return false;
+      }
+
+      if (document.getElementById("confirmpsd").value != document.getElementById("newpsd").value) {
+        alert("两次密码输入不一致!");
+        return false;
+      }
+
+      alert("信息提交成功");
+      return true;
+    }
+
+    function update() {
+      if (check()) {
+
+        var oldpsd = document.getElementById("orginpsd").value;
+        var newpsd = document.getElementById("confirmpsd").value;
+
+        $.doAjaxPostCall("updateUserPsd", "username=" + window.sessionStorage.getItem("user") + "&newpsd=" + newpsd + "&oldpsd=" + oldpsd,
+        function(responseData) {
+
+          console.log(responseData);
+          var obj = responseData;
+
+          var res = obj.result;
+
+          if (res == "0") {
+            alert("未找到该用户！请重新验证用户信息");
+            window.location = "getpwd_confirm.html";
+          } else if (res == "3") {
+            alert("密码修改失败！请重新验证用户信息");
+            window.location = "getpwd_confirm.html";
+          } else if (res == "1") {
+            alert("密码修改成功，请重新登录");
+            window.sessionStorage.clear();
+            window.location = "login.html";
+          }
+        });
+      }
+    }
+    
+    function logout() {
+        var r = confirm("您确认要退出吗？");
+		if (r==false) {
+		    return
+		}
+		
+		window.sessionStorage.clear();
+        window.location.href="../index.html";
+    }
+  </script>
+  
+  <body>
+    <div class="w">
+      <style>.wrap{overflow:hidden;} .one{ width:600px; height:100px; margin:0 auto;} .comments { width:100%; overflow:auto; word-break:break-all; } .clubmenu{ background:url(../images/mebtn.png) no-repeat center 4px;-webkit-background-size:19px auto; background-size:19px auto; border:1px solid #fff;-webkit-border-radius:0px 3px 3px 0px;border-radius:0px 3px 3px 0px; width:48px; height:29px;} .col04a{ color:#04aabd;}</style>
+      <header id="iheader">
+        <div class="header_new fWei pr">
+          <span class="col04a f16 pl10 " style="line-height:47px;">
+            <a onmousedown="clicktest(this)" clicktype="3g_xywy_user" clicken="3g_i_xywy_com_xywy" href="../indexmobile.html" class="col04a">健康计算器</a>·
+            <a onmousedown="clicktest(this)" clicktype="3g_xywy_user" clicken="3g_i_xywy_com_user" href="./user.html" class="col04a">个人中心</a></span>
+          <div class="fr dib headfr">
+            <a href="./user.html" class="dib t9999 clubmenu" style="border-radius:3px;">个人中心</a></div>
+        </div>
+        <script type="text/javascript" src="../js/check_app_qing.js"></script>
+      </header>
+      <section class="user_top ml10 mt10 mr10 pl10 f16 btn-a">
+        <span class="user_name_text" id="username"></span>
+        <a href="#" class="ml10" onclick="logout()">退出</a></section>
+      <section class="user_con mt10 ml10 mr10 fWei" id="userlist">
+        <!-- 本次添加地方start-->
+        <div onmouseover="this.style.cursor=&#39;pointer&#39;">
+          <h2>
+            <div class="dib fl hk-center">我关注的医生
+              <i class="ml10 fn coliyel count_doc " count_doc="0">(0)</i></div>
+            <span class="dib fr userbg"></span>
+          </h2>
+          <div class="botom none">
+            <div id="datalist_myattendoc">
+              <div class="tc f14 pt20 pb20">暂未开放，敬请期待</div></div>
+          </div>
+        </div>
+        <div class="myFamilyDoctor" onmouseover="this.style.cursor=&#39;pointer&#39;">
+          <h2>
+            <a name="myphonedoctor"></a>
+            <div class="dib fl my_userjrglbg" clicken="3g_health_wdjkgl" onmousedown="clicktest(this);" clicktype="3g_health">我的家人管理
+              <i class="ml10 fn coliyel" id="familycount">(0)</i></div>
+            <span class="dib fr userbg"></span>
+          </h2>
+          <div class="myphonedoctor" style="display:none;">
+            <div id="datalist_myhealthmanager">
+              <div class="familyDoctor nonefamilyDoctor ">
+                <div>
+                  <div class="F-cont noneDoctorCont">
+                    <div class="noneDoctor">
+                      <p class="f14" id="noneDoctor">暂无相关家人资料</p>
+                      <p>
+                        <a href="userdoc.html">去关联家人</a></p>
+                    </div>
+                    <div id="familytable">
+                      <table summary="Record" cellpadding="0" cellspacing="0" style="width: 100%;" title="Record" border="1">
+                        <thead>
+                          <tr>
+                            <th scope="col" abbr="2" class="GeneralQuestion  tetris_tableHeader GeneralQuestionBorder" align="center">
+                              <div style="padding: 4px">成员名字
+                                <span></span></div>
+                            </th>
+                            <th scope="col" abbr="3" class="GeneralQuestion  tetris_tableHeader GeneralQuestionBorder" align="center">
+                              <div style="padding: 4px">家庭关系
+                                <span></span></div>
+                            </th>
+                            <th scope="col" abbr="7" class="GeneralQuestion  tetris_tableHeader GeneralQuestionBorder" align="center">
+                              <div style="padding: 4px">手机号
+                                <span></span></div>
+                            </th>
+                            <th scope="col" abbr="8" class="GeneralQuestion  tetris_tableHeader GeneralQuestionBorder" align="center">
+                              <div style="padding: 4px">操作
+                                <span></span></div>
+                            </th>
+                            <th scope="col" abbr="9" class="GeneralQuestion  tetris_tableHeader GeneralQuestionBorder" align="center">
+                              <div style="padding: 4px">操作
+                                <span></span></div>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody id="peopeltable"></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--健康管理 2015-02-02 start-->
+        <div class="myFamilyDoctor" onmouseover="this.style.cursor=&#39;pointer&#39;">
+          <h2>
+            <a name="myphonedoctor"></a>
+            <div class="dib fl my_userglbg" clicken="3g_health_wdjkgl" onmousedown="clicktest(this);" clicktype="3g_health">我的健康管理
+              <i class="ml10 fn coliyel" id="habitcount">(0)</i></div>
+            <span class="dib fr userbg"></span>
+          </h2>
+          <div class="myphonedoctor" style="display:none;">
+            <div id="datalist_myhealthmanager">
+              <div class="familyDoctor nonefamilyDoctor ">
+                <div>
+                  <div class="F-cont noneDoctorCont">
+                    <div class="noneDoctor">
+                      <p class="f14" id="nonehabit">暂无相关健康管理服务订单</p>
+                      <p>
+                        <a href="symptoms.html">进入日常生活管理</a>
+                        <!-- <a href="http://3g.club.xywy.com/familyDoctor/health/">进入健康管理</a>--></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="passWord" onmouseover="this.style.cursor=&#39;pointer&#39;">
+          <h2>
+            <a name="updpwd"></a>
+            <div class="dib fl userbg user06 my_userxgmmbg" onclick="window.scrollTo(0, 400);">修改密码</div>
+            <span class="dib fr userbg"></span>
+          </h2>
+          <div class="pl10 pr10 botom pb15 none">
+            <form name="frmpasswd" method="post" action="" onsubmit="return false;">
+              <div class="PasTs pt10 red none"></div>
+              <div class="Pass f14 mt10">
+                <div class="w IputDiv">
+                  <span class="dib mr10 ml10 fl">当 前 密 码</span>
+                  <input name="orginpsd" id="orginpsd" type="password" onKeyUp="$(this).parent().removeClass('bgf4')" class="iputClass dib fl" value="" onfocus="this.style.color = '#666';" /></div>
+                <div class="w IputDiv">
+                  <span class="dib mr10 ml10 fl">新&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+                  <input id="newpsd" name="newpsd" class="iputClass dib fl" type="password" value="" onKeyUp="$(this).parent().removeClass('bgf4')" onfocus="this.style.color = '#666';" /></div>
+                <div class="w IputDiv" style="border-bottom:0px;">
+                  <span class="dib mr10 ml10 fl">确认新密码</span>
+                  <input name="confirmpsd" id="confirmpsd" class="iputClass dib fl" type="password" onKeyUp="$(this).parent().removeClass('bgf4')" value="" onfocus="this.style.color = '#666';" /></div>
+              </div>
+              <div class="clearfix">
+                <div class="f14 col99 lh200">
+                  <span>密码由6-16位字母、数字及下划线组成</span>
+                  <span class="PaBtn fr" onClick="PassTxt('frmpasswd')"></span>
+                </div>
+              </div>
+              <button onClick="update()" class="PassBtn f14 w db mt5">确定</button></form>
+          </div>
+        </div>
+      </section>
+      <span class="none" id="page_myattendoc">2</span>
+      <span class="none" id="page_myquestion">2</span>
+      <span class="none" id="page_myask">2</span>
+      <span class="none" id="page_myappointment">2</span>
+      <span class="none" id="page_myfocus">2</span>
+      <span class="none" id="page_myfamilydoctor">2</span>
+      <span class="none" id="page_myhealthmanager">2</span>
+      <span class="none" id="page_myphonedoctor">2</span>
+      <footer id="footers">
+        <div class="line"></div>
+        <p>
+          <a href="login.html">登录</a>
+          <span>|</span>
+          <a href="register.html">注册</a></p>
+        <p>
+          <a href="javascript:;">触屏版</a>
+          <span>|</span>
+          <a class="col" href="../index.html">电脑版</a></p>
+        <p>参考信息不作为诊断医疗数据</p>
+        <p>版权所有:健康计算器(2002-2016)</p>
+      </footer>
+    </div>
+  </body>
+
+</html>
+<script type="text/javascript">//显示密码
+  function PassTxt(objfrm) {
+    var frm = document.forms[objfrm];
+    var orginpsd = frm.orginpsd;
+    var newpsd = frm.newpsd;
+    var confirmpsd = frm.confirmpsd;
+    if (orginpsd.type != "text") {
+      orginpsd.type = "text";
+      newpsd.type = "text";
+      confirmpsd.type = "text";
+    } else {
+      orginpsd.type = "password";
+      newpsd.type = "password";
+      confirmpsd.type = "password";
+    }
+  } 
+  (function() {
+    var container = document.getElementById('userlist'),
+    oChild = container.children,
+    length = oChild.length,
+    oSpan = container.getElementsByTagName('h2');
+    for (var i = 0; i < length; i++) {
+      oSpan[i].onclick = function(d) {
+        return function() {
+          for (var i = 0; i < length; i++) {
+            if (i === d) {
+              if (oSpan[d].parentNode.children[1].style.display == 'block') {
+                oSpan[d].parentNode.children[1].style.display = 'none';
+                oSpan[d].className = '';
+              } else {
+                oSpan[d].className = 'current';
+                oSpan[d].parentNode.children[1].style.display = 'block';
+              }
+            } else {
+              oSpan[i].className = '';
+              oSpan[i].parentNode.children[1].style.display = 'none';
+            }
+          }
+        }
+      } (i);
+    }
+  })();</script>

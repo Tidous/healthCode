@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>健康计算器查疾病_疾病大全_疾病查询</title>
+        <meta name="keywords" content="疾病信息，疾病大全，疾病症状" />
+        <meta name="description" content="健康计算器食物信息库为您解惑" />
+        <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <meta content="telephone=no" name="format-detection" />
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+		<link href="../css/m_reset.css" rel="stylesheet"/>
+		<link href="../css/ques.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="../css/my-base.css">
+        <link rel="stylesheet" href="../css/zt-Cdisease.css?v=20160521">
+		<style>
+		.one{ width:600px; height:100px; margin:0 auto;}
+		</style>
+		<script src="../lib/jquery.min.js"></script>
+		<script type="text/javascript" src="js/config.js"></script>
+        <script type="text/javascript" src="js/global.js"></script>
+        <script type="text/javascript">
+        function change(id) {
+
+	        $.doAjaxPostCall("queryfoodinfo", "id="+id, function(responseData){
+	            console.log(responseData);
+	            var obj =responseData;
+	            
+	            if (obj.retmsg == "success") {
+	                $("#resultfield").text(obj.fooddesc);
+	            }
+	            else {
+	                alert("数据获取失败");
+	            }
+	        });
+        }
+        </script>
+		</head>
+		<body> 
+	    <div class="one">
+		<header class="header header-link" style="">
+	        <div class="header-wrap">
+	            <a href="../index.html" onmousedown="clicktest(this);" clicktype="3g_xywy_club" clicken="3g_club_xywy_com_xywy">返回首页</a>
+	        </div>
+	    </header>
+
+        <section class="main mt15 box-flex  pl10 pr10">
+		
+        <!--div>
+                <form class="dis-box" onsubmit="return false;">
+                        <input style="height:50px;line-height: 20px;" class="dis-box z-text box-flex" id="TkeyWord" type="text" placeholder="请输入食物种类，如寒性食物">
+                    <div class="z-btn">
+                        <button type="submit" class="f20 fyahei" id="searchKeyword">搜索</button>
+                    </div>
+                </form>
+            </div-->
+            <div class="zt-sy-info mt20 fyahei pb20">
+                <h4>食物大类</h4>
+                <ul>				
+                    <li class="ui-display-box cl666">
+                        <a class="ui-box-flex" clicken="index_common_ill_1635" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="8" onclick="change(id)">辛热的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_2364" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="9" onclick="change(id)">辛平的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_2411" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="10" onclick="change(id)">辛凉的食物</a>
+                    </li>
+									
+                    <li class="ui-display-box cl666">
+                        <a class="ui-box-flex" clicken="index_common_ill_3745" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="5" onclick="change(id)">甘热的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_3106" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="6" onclick="change(id)">甘平的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_3307" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="7" onclick="change(id)">甘寒的食物</a>
+                    </li>
+					
+					<li class="ui-display-box cl666">
+                        <a class="ui-box-flex" clicken="index_common_ill_3745" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="13" onclick="change(id)">淡味的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_3106" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="11" onclick="change(id)">咸温的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_3307" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="12" onclick="change(id)">咸凉的食物</a>
+                    </li>
+					
+					<li class="ui-display-box cl666">
+                        <a class="ui-box-flex" clicken="index_common_ill_3745" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="1" onclick="change(id)">酸温的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_3106" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="2" onclick="change(id)">酸寒的食物</a>
+						<a class="ui-box-flex"></a>
+                    </li>
+					
+					<li class="ui-display-box cl666">
+                        <a class="ui-box-flex" clicken="index_common_ill_3745" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="3" onclick="change(id)">苦热的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_3106" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="4" onclick="change(id)">苦寒的食物</a>
+						<a class="ui-box-flex"></a>
+                    </li>
+                </ul>
+			</div>
+			<div class="j-navico bgf8"><span></span></div>
+            <div class="well well-lg" id="resultfield">辛热的食物：姜、白酒、黄酒、葡萄酒、红茶、花椒、芥末、葱、大蒜、洋葱、胡椒、桂皮。姜，可以生吃、煮姜枣茶、煮水泡脚、也可以用市售“黑糖老姜”泡茶。体寒时食用神仙粥：糯米与姜末同煮沸，后入葱白段，煮熟时，调入醋。鼓励天天泡脚，泡脚时可加入姜或10毫升50度的酒。</div>
+
+
+
+            <div class="j-navico bgf8"><span><b><i class="ui-icoc"></i></b></span></div>
+            </div>
+        </section>
+    
+ <div style="display: none;">
+<script type="text/javascript" src="../js/a.js"></script>
+<script type="text/javascript" src="../js/click.js"></script>
+</div>
+</div>
+</body>
+</html>

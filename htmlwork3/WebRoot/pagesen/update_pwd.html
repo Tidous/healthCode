@@ -1,0 +1,210 @@
+
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="yes" name="apple-touch-fullscreen" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<title>修改个人密码</title>
+	<link rel="stylesheet" href="../css/m_reset.css"/>
+	<link rel="stylesheet" href="../css/reset_login.css"/>
+</head>
+<body>
+	<div class="wrap">
+		<header class="header box borderBox">
+			<div class="header-logo boxFlex">
+            <a href="../indexmobile.html">健康计算器</a><span class="header-dot">·</span><a href="./login.html">个人中心</a>            
+            </div>
+			<div class="header-reg boxFlex">您好，xxx先生/女士</div>
+		</header>	
+		<section class="reset-con">
+			<div class="title">
+				<h2 class="title-name">修改密码</h2>
+				<a href="./login.html" class="lgoin-link">登录</a>
+			</div>
+			<form class="reset-form">
+				<div class="reset-list">
+					<input type="text" class="j-close-show username" name="userName" placeholder="请输入原密码">
+					<span class="closebtn"></span>
+				</div>
+				</br>
+				<div class="reset-list">
+					<input type="text" class="j-close-show username" name="pwd" placeholder="请输入新密码">
+					<span class="closebtn"></span>
+				</div>
+				</br>
+				<div class="reset-list">
+					<input type="text" class="j-close-show username" name="pwdconfirm" placeholder="请再次输入新密码">
+					<span class="closebtn"></span>
+				</div>
+				</br>
+				<input type="button" class="reset-submit" value="修改密码"/>
+			</form>
+	</div>
+				
+		</section>
+		<section class="mt20" id="ifooter">
+    	 <script type="text/javascript">
+		if(document.cookie.indexOf("cookie_user_3g")>-1 || document.cookie.indexOf("cookie_user")>-1){
+			document.getElementById('a_login').style.display="none";
+		}
+	</script>
+
+	<nav class="tc w navList f14 clearfix">
+    <a href="../indexmobile.html">健康计算器首页</a>
+    </nav>
+	<footer class="clearfix foot lh180 pt10">
+		<div class="w320 clearfix bc">
+ 		</div>
+	</footer>
+</section>
+
+<script type="text/javascript"> 
+
+    if(/alipay/i.test(navigator.userAgent)){
+        //$("#iheader").css({"visibility":"hidden"});
+        //$("#ifooter").css({"visibility":"hidden"});
+        document.getElementById("iheader").style.display="none"; 
+        document.getElementById("ifooter").style.display="none"; 
+    } 
+
+</script>
+<script type="text/javascript" src="../js/odm.js"></script>
+	</div>
+<script type="text/javascript" src="../lib/jquery.min.js"></script>
+<script>
+$(function(){
+	//清空删除文本框
+	$('.j-close-show').on('input', function(){
+		var userVal = $.trim($(this).val());
+		if(!userVal == ''){
+			$(this).siblings('.closebtn').show();
+		}else{
+			$(this).siblings('.closebtn').hide();
+		}
+	});
+	$('.closebtn').on('click', function(){
+		$(this).siblings('.j-close-show').val('');
+		$(this).hide();
+	});
+	//验证码变化
+	function changeCaptcha(){
+		$('.reset-yzm-pic').attr('src', 'http://passport.xywy.com/getpwd.php?act=confirm_captcha&amp;' + Math.random());
+	}
+	$('.reset-yzm-change').click(function(){
+		changeCaptcha();
+	});
+	//开始验证
+	$('input[type=text]').focus(function(){
+		$(this).closest('.bor-warn').removeClass('bor-warn');
+		$('.error').text('');
+	});
+	function showError(XMLHttpRequest, textStatus, errorThrown) {
+	    var pattern = /timeout|error|notmodified|parsererror/i;
+	    if (pattern.test(textStatus)) {
+	    	$('[data-title=error]').html('加载失败');
+	    	$('[data-login=loginUp]').html('登录');
+            $('input').removeAttr('disabled');
+	    }
+	}
+	$('.reset-submit').on({
+		click: function(){			
+			$(this).val('提交中...');
+			var self = $(this),
+				username = $.trim($('.username').val()),
+				yzm =  $.trim($('.yzm').val()),
+				json_data = {
+					account : username,
+					usertype : 1,
+					captcha : yzm
+				};
+			var from_url = '';
+			var link_url = '';
+			if(from_url){
+				link_url='&'+from_url;
+			}
+			self.closest('.reset-form').find('input').prop('disabled', 'disabled');
+			if(username === '' && yzm === ""){
+				self.val('提交，进入安全验证');
+				self.closest('.reset-form').find('input').removeAttr('disabled');
+				$('.reset-list,.reset-yzm-input').addClass('bor-warn');
+				changeCaptcha();
+				$('.error').text('请输入用户名和验证码');
+			}else if(username === ''){
+				self.val('提交，进入安全验证');
+				self.closest('.reset-form').find('input').removeAttr('disabled');
+				$('.reset-list').addClass('bor-warn');
+				changeCaptcha();
+				$('.error').text('请输入用户名');
+			}else if(yzm === ''){
+				self.val('提交，进入安全验证');
+				self.closest('.reset-form').find('input').removeAttr('disabled');
+				$('.reset-yzm-input').addClass('bor-warn');
+				changeCaptcha();
+				$('.error').text('请输入验证码');
+			}else{
+				$.ajax({
+					url: 'http://passport.xywy.com/getpwd.php?act=confirm_submit',
+					type: 'get',
+					dataType: 'jsonp',
+					jsonpCallback: 'uN3nOu4w',
+					data: json_data,
+					error: showError,
+					success: function(data){
+						if(data.result == '10000'){
+							window.location.href = '/sec/getpwd_verify/?v=' + data.content+link_url;
+							self.closest('.reset-form').find('input').removeAttr('disabled');
+							$('.reset-list,.reset-yzm-input').removeClass('bor-warn');
+							self.val('提交，进入安全验证');
+						}else{
+							if(data.result == '-20002'){
+								self.val('提交，进入安全验证');
+								self.closest('.reset-form').find('input').removeAttr('disabled');
+								$('.reset-list').addClass('bor-warn');
+								changeCaptcha();
+								$('.error').text('请输入用户名');
+							}else if(data.result == '-20001'){
+								self.val('提交，进入安全验证');
+								self.closest('.reset-form').find('input').removeAttr('disabled');
+								$('.reset-yzm-input').addClass('bor-warn');
+								changeCaptcha();
+								$('.error').text('请输入验证码');
+							}else if(data.result == '-20007'){
+								self.val('提交，进入安全验证');
+								self.closest('.reset-form').find('input').removeAttr('disabled');
+								$('.reset-list').addClass('bor-warn');
+								changeCaptcha();
+								$('.error').text('用户不存在');
+							}else if(data.result == '-20006'){
+								self.val('提交，进入安全验证');
+								self.closest('.reset-form').find('input').removeAttr('disabled');
+								$('.reset-yzm-input').addClass('bor-warn');
+								changeCaptcha();
+								$('.error').text('图形验证码错误');
+							}else if(data.result == '-20005'){
+								self.val('提交，进入安全验证');
+								self.closest('.reset-form').find('input').removeAttr('disabled');
+								$('.reset-yzm-input').addClass('bor-warn');
+								changeCaptcha();
+								$('.error').text('图形验证码校验错误次数达到限定,请稍后再试');
+							}else{
+								self.val('提交，进入安全验证');
+								self.closest('.reset-form').find('input').removeAttr('disabled');
+								changeCaptcha();
+								alert(data.content);
+							}
+						}
+					}
+				});
+			}
+		}
+	});
+	
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+
+<html>
+<head>
+<meta charset="utf-8" /> 
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<title>新用户注册中心_健康计算器</title>
+	<meta name="description" content="手机健康计算器3g版"/> 
+	<meta name="keywords" content="手机健康计算器,健康计算器首页,手机健康计算器3g"/>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+    	<link rel="stylesheet" href="../css/3gbx.css" />
+	<link rel="stylesheet" type="text/css" href="../css/zt_reg_style.css">
+<style>
+.one{ width:600px; height:100px; margin:0 auto;}
+</style>
+  <script type="text/javascript" src="../js/jquery.js"></script>
+  <script type="text/javascript" src="../js/jquery-2.2.2.min.js"></script>
+  <script type="text/javascript" src="js/config.js"></script>
+  <script type="text/javascript" src="js/global.js"></script>
+  <script type="text/javascript">
+
+    if(!window.sessionStorage){
+	  alert("该游览器不支持某些组件，请使用IE8以上的游览器，谢谢配合");
+	}
+	
+	function userLine(){
+		$('[data-login=user]').parent().parent().removeClass('my-wb');
+		$('[data-login=user]').parent().parent().addClass('bor-warn');
+	}
+	function passLine(){
+		$('[data-login=password]').parent().parent().removeClass('my-wb');
+		$('[data-login=password]').parent().parent().addClass('bor-warn');
+	}
+	function phoneLine(){
+		$('[data-login=mobile]').parent().parent().removeClass('my-wb');
+		$('[data-login=mobile]').parent().parent().addClass('bor-warn');
+	}
+	function lineRemove(){
+		$('[data-login=user]').parent().parent().addClass('my-wb');
+		$('[data-login=user]').parent().parent().removeClass('bor-warn');
+		$('[data-login=password]').parent().parent().addClass('my-wb');
+		$('[data-login=password]').parent().parent().removeClass('bor-warn');
+		$('[data-yzm=yzm]').parent().removeClass('bor-warn');
+	}
+	function hidden(objhidea){
+		objhidea.addClass('hidden');
+	}
+	function show(objhideb){
+		objhideb.removeClass('hidden');
+	}
+
+    function check() {
+
+      if (document.getElementById("username").value == "") {
+            lineRemove();
+			userLine();
+			show($('[data-title=error]'));
+			$('[data-title=error]').html('请输入用户名!');
+            $('[data-login=loginUp]').html('登录');
+            $('input').removeAttr('disabled');
+            return false;
+      }
+
+      if (document.getElementById("mobile").value == "") {
+            lineRemove();
+			phoneLine();
+			show($('[data-title=error]'));
+			$('[data-title=error]').html('请输入手机号!');
+            $('[data-login=loginUp]').html('登录');
+            $('input').removeAttr('disabled');
+            return false;
+      }
+      
+      if (document.getElementById("password").value == "") {
+            lineRemove();
+			passLine();
+			show($('[data-title=error]'));
+			$('[data-title=error]').html('请输入密码!');
+            $('[data-login=loginUp]').html('登录');
+            $('input').removeAttr('disabled');
+            return false;
+      }
+ 
+      return true; 
+    }
+    
+    function submit() {
+        if (check()) {
+
+          var username = document.getElementById("username").value;
+          var mobile = document.getElementById("mobile").value;
+          var password = document.getElementById("password").value;
+  
+          $.doAjaxPostCall("insertUserInfo", "username="+username+"&mobile="+mobile+"&password="+password, function(responseData){
+  
+            console.log(responseData);
+            var obj =responseData;
+
+            var res = obj.result;
+            var user = obj.username;
+            if (res == "1") {
+                sessionStorage.setItem("user",user);
+                window.location="../index.html";
+            }
+            else if(res == "0") {
+                alert ("注册失败，请联系管理员");
+            }
+            else if (res == "2") {
+            	alert ("该用户已经存在");
+            }
+          });
+        }
+    }
+  </script>
+</head>
+<body class="fYaHei bcfff">
+<div class="one">
+<div class="wrap dis-box f16">
+		<div class="box-flex-1 ml10 mr10 ">
+        <a href="../index.html">健康计算器</a> <a href="./login.html">· 个人中心</a> 
+        
+        <a href="./login.html
+		" class="fr" clicken="3g_register_dl" onmousedown="clicktest(this);__sendClickOdm('3g_ucenter', this, 'zhuce:3g_register_dl+')" clicktype="3g_ucenter_click">登录</a></div>
+	</div>
+	<h1 class="f18 fwno tc mt20 pt10 mb20">注册健康计算器账号</h1>
+
+	<div class="my_reg">
+		<section class="my-form">
+			<div class="m_wrom mb10 f14 cef5 none"></div>
+			
+			<div class="my-wb my_bor mb15 bcfff dis-box">
+	            <div class="box-flex-1 pl10">
+	            	<input type="text" class="m_username f15" id="username" placeholder="请输入用户名" maxlength="15">
+	            </div>
+            </div>
+
+            <div class="my-wb my_bor mb15 bcfff dis-box">
+	            <div class="box-flex-1 pl10">
+	            	<input type="text" class="m_username f15" id="mobile" placeholder="请输入手机号">
+	            </div>
+            </div>
+
+			<div class="my-wb my_bor mb15 bcfff dis-box">
+	           
+	            <div class="box-flex-1">
+	            	<input type="password" class="m_password f15 pl10" id="password" placeholder="请输入密码：6-15个字符（只支持数字或字母）">
+	            </div>
+            </div>
+
+            <!--  <div class="mb15 zt-yam">
+		        <form action="" class="zt-yzm-form" name="">
+		            <div class="zt-forminput my_bor pl10">
+		                <input type="text" class="m_yzm f15" placeholder="激活码">
+		            </div>
+		            <div class="formSub">
+                                <a href="javascript:void(0);" clicken="3g_register_fsyzm" onmousedown="clicktest(this);__sendClickOdm('3g_ucenter', this, 'zhuce:3g_register_fsyzm+')" clicktype="3g_ucenter_click"><input data="m_pvHaveYzm" class="m_yzm_btn" type="button" value="免费发送激活码" /></a>
+		            </div>
+		        </form>
+		    </div> -->
+
+			<div class="mb15 my-yam hidden">
+		        <form class="yzm-form" name="">
+		            <div class="forminput">  <!--获取验证码时加class名 bor-warn  -->
+                                <input data-yzm="yzm" autocomplete="off" type="text" name="keyword" placeholder="请输入验证码" class="w ztyzmno" style="font-size:12px;">
+		            </div>
+		            <div class="yzpic bfff">
+		                <img data-pictilt="picLitt" class="box-flex-1 fl" onclick="this.src='http://passport.xywy.com/reg.php?act=mobile_reg_vcode_send_captcha&amp;'+Math.random()" src="http://passport.xywy.com/reg.php?act=mobile_reg_vcode_send_captcha" alt="">
+		                <p class="fr">看不清楚</p><p></p>
+		                <p><a data-littlepic="picLittle" class="c39" href="javascript:">换一张</a></p>
+		            </div>
+		        </form>
+		    </div>
+
+            <div class="sign mt15 mb30">
+                    <button type="button" data-login="loginUp" class="bc39" onclick="submit()">注册</button>
+            </div>
+
+            <div class="m_zcxy f14">
+                <b class="gx-bg on"></b>
+            	<label for="m_check" class="fl">同意健康计算器<a href="./agreement.html" clicken="3g_register_zcxy" onmousedown="clicktest(this);__sendClickOdm('3g_ucenter', this, 'zhuce:3g_register_zcxy+')" clicktype="3g_ucenter_click">注册协议</a></label>
+            </div>
+			
+            <!--  <div class="other-way dis-box">
+                 <a class="box-flex-1 " onmousedown="__sendClickOdm('3g_ucenter', this, 'zhuce:weibo+')" href="/oauth/sinaLogin"><img  src="../images/wb.png"></a>
+                 <a class="box-flex-1 " onmousedown="__sendClickOdm('3g_ucenter', this, 'zhuce:zhifubao+')" href="/alipay/login"><img  src="../images/zfb.png"></a>
+            </div> -->
+		</section>
+	</div>
+	<input type="hidden" value="3g_web_reg" id="3g_web_reg">
+    <input type="hidden" value="../index.html" name="backurl" id="backurl">
+  </div>
+</body>
+</html>

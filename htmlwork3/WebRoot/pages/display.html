@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <title>提问页_有问必答_健康计算器</title>
+    <meta name="description" content="手机健康计算器3g版 - xywy.com" />
+    <meta name="keywords" content="手机健康计算器,健康计算器首页,手机健康计算器3g版" />
+    <div style="display:none;"></div>
+    <script type="text/javascript" src="../js/t.js"></script>
+    <link rel="stylesheet" href="../css/my-base.css">
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/m_reset.css" rel="stylesheet" />
+    <link href="../css/ques.css" rel="stylesheet" />
+    <style>.wrap{overflow:hidden;}</style>
+    <script src="../js/a.js" language="JavaScript"></script>
+    <script src="../js/odm.js" language="JavaScript"></script>
+    <script src="../lib/jquery.min.js"></script>
+    <script src="../js/iscroll.js"></script>
+    <script src="../js/ques.js"></script>
+    <style>.one{ width:600px; height:100px; margin:0 auto;}</style>
+    <script type="text/javascript" src="js/config.js"></script>
+    <script type="text/javascript" src="js/global.js"></script>
+    <script type="text/javascript">
+    var newdate = null;
+    var newtime = null;
+    $(function () {
+        var url = decodeURI(location.href);
+        var arrStr = url.substring(url.indexOf("?")+1).split("&");
+        var res1 = arrStr[0].split("=");
+        var res2 = arrStr[1].split("=");
+        
+        if (res1[0] == "newdate") {
+            newdate = res1[1];
+        }
+        if (res2[0] == "newtime") {
+            newtime = res2[1];
+        }
+        
+        $.doAjaxPostCall("getPeopleInfo", "birthday="+newdate+"&time="+newtime, function(responseData){
+    
+               console.log(responseData);
+               var obj =responseData;
+    
+               if (obj.descriptionFront != null && obj.descriptionFront != "") {
+                   var text1 = "根据您的出生日期，专家给的建议是："+obj.descriptionFront;
+               }
+               else {
+                   var text1 = "根据您的出生日期，专家没有特别的建议";
+               }
+    
+               if (obj.dietFront != null && obj.dietFront != "") {
+                   var text2 = "食疗建议是："+obj.dietFront;
+               }
+               else {
+                   var text2 = "没有特别的食疗建议";
+               }
+    
+               if (obj.descriptionBehind != null && obj.descriptionBehind != "") {
+                   var text3 = "根据系统日期，专家给的建议是："+obj.descriptionBehind;
+               }
+               else {
+                   var text3 = "根据系统日期，专家没有特别的建议";
+               }
+    
+               if (obj.dietBehind != null && obj.dietBehind != "") {
+                   var text4 = "食疗建议是："+obj.dietBehind;
+               }
+               else {
+                   var text4 = "没有特别的食疗建议";
+               }
+    
+               $("#displayarea").text(text1+"\n"+text2+"\n"+text3+"\n"+text4);
+         });
+    });
+    </script>
+  </head>
+  
+  <body>
+      <script type="text/javascript" src="../js/pos.js?n=201510271045"></script>
+      <script>(function() {
+          getPos(function(x, y) {
+            //x--经度, y--纬度
+            //定位成功的统计
+            im = new Image;
+            im.src = "http://stat-z.xywy.com/test.png?t_c=2&tt" + Math.random();
+            Quan_X = x;
+            Quan_Y = y;
+          });
+        })();</script>
+      <div class="wrap wrapBg">
+        <header class="header header-link" style="">
+          <div class="wrap dis-box f16">
+            <div class="box-flex-1 pl15">
+              <a href="../index.html">健康计算器</a>
+              <a href="./login.html">· 个人中心</a></div>
+          </div>
+        </header>
+        <section class="pb20">
+          <div class="page-header" align="center">
+            <h1>专家建议</h1>
+          </div>
+          <p id="displayarea"></p>
+      </div>
+      <div class="sec-items">
+        <div class="sec-btn">
+           <input onclick="javascript:history.go(-1);" type="button" class="sec-submit" value="关闭"/>
+        </div>
+      </div>
+    <script type="text/javascript" src="../js/odm.js"></script>
+    <script>var uploadTop = $('.sec-below').position().top;
+      $('.sec-upload-form').css('top', uploadTop);
+      $('.alertCen').css('marginLeft', '-' + ($('.alertCen').width()) / 2 + 'px');
+      dateQues.init();</script>
+    </section>
+    <script id="pagevisitscript" type="text/javascript" src="http://a.xywy.com/p.js" data="pv3g_club_xywy_ask_form"></script>
+    <div style="display:none;">
+      <script src='http://w.cnzz.com/c.php?id=30098111&l=3' language='JavaScript'></script>
+      <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://": " http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1000239016'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000239016' type='text/javascript'%3E%3C/script%3E"));</script>
+    </div>
+    <footer id="footers">
+      <div class="line"></div>
+      <p>
+        <a href="login.html">登录</a>
+        <span>|</span>
+        <a href="register.html">注册</a></p>
+      <p>
+        <a href="javascript:;">触屏版</a>
+        <span>|</span>
+        <a class="col" href="http://www.xywy.com?vt=1">电脑版</a></p>
+      <p>参考信息不作为诊断医疗数据</p>
+      <p>版权所有:健康计算器(2002-2016)</p>
+    </footer>
+    </div>
+  </body>
+
+</html>

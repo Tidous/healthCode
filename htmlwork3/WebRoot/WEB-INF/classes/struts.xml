@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+
+	<constant name="struts.devMode" value="true" />
+
+	<constant name="struts.serve.static.browserCache" value="false" />
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+
+	<package name="s2sh" namespace="/" extends="struts-default, json-default">
+
+		<action name="insertUserInfo" class="action.update.UpdateUserInfo"
+			method="execute">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="getPeopleInfo" class="action.GetPersonToEatAction"
+			method="execute">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="getWeahterInfo" class="action.GetWeatherToEatAction"
+			method="execute">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="getUserLogin" class="action.LoginAction"
+			method="execute">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="getUserByName" class="action.GetUserInfoAction"
+			method="execute">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="updateUserPsd" class="action.update.UpdateUserPsd"
+			method="updatepsd">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="saveUserAdv" class="action.update.SaveUserAdv"
+			method="save">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="checkUser" class="action.GetUserInfoAction"
+			method="check">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="getUserAdv" class="action.GetUserAdvAction"
+			method="execute">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="updUserFile" class="action.update.UpdateUserFile"
+			method="execute">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="userHabit" class="action.update.SaveUserHabit"
+			method="execute">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="queryHabit" class="action.query.QueryUserHabitAction"
+			method="query">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="queryUserList" class="action.query.QueryUserFileAction"
+			method="queryList">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="queryUserinfo" class="action.query.QueryUserFileAction"
+			method="query">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="delUserinfo" class="action.update.UpdateUserFile"
+			method="delete">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="queryfoodinfo" class="action.query.QueryFoodInfoAction"
+			method="query">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="dbadminquery" class="action.query.QueryDBAdminAction"
+			method="query">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+
+	</package>
+
+</struts>   

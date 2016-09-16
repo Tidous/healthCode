@@ -1,0 +1,214 @@
+
+ <!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <title>提问页_有问必答_健康计算器</title>
+    <meta name="description" content="手机健康计算器3g版 - xywy.com"/>
+    <meta name="keywords" content="手机健康计算器,健康计算器首页,手机健康计算器3g版"/>
+    <div style="display:none;"></div>
+    <script type="text/javascript" src="../js/t.js"></script>
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/m_reset.css" rel="stylesheet"/>
+    <link href="../css/ques.css" rel="stylesheet"/>
+    <link href="../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <style>
+    .wrap{overflow:hidden;}
+.one{ width:600px; height:100px; margin:0 auto;}
+.comments {  width:100%;
+ overflow:auto;  
+ word-break:break-all; }
+</style>
+    <script src="../js/a.js" language="JavaScript"></script>
+    <script src="../js/odm.js" language="JavaScript"></script>
+    <script src="../lib/jquery.min.js"></script>
+    <script src="../js/iscroll.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="js/config.js"></script>
+  <script type="text/javascript" src="js/global.js"></script>
+  <script type="text/javascript">
+    var DATE_MAP = {"一月":"01","二月":"02","三月":"03","四月":"04","五月":"05","六月":"06","七月":"07","八月":"08","九月":"09","十月":"10","十一月":"11","十二月":"12"};
+    function check() {
+
+      if (document.getElementById("day").value == "") {
+        alert("请选择出生日期");
+        return false;
+      }
+      
+      alert ("信息提交成功"); 
+      return true; 
+    }
+    
+    function submit() {
+        if (check()) {
+
+            var arg = document.getElementById("day").value.split(" ");
+            var newdate = arg[2]+"-"+DATE_MAP[arg[1]]+"-"+arg[0];
+            var newtime = document.getElementById("time").value;
+          
+            var myurl="display.html?newdate="+newdate+"&newtime="+newtime;
+            window.location.assign(encodeURI(myurl));
+        }
+    }
+  </script>
+</head>
+<body>
+<div>
+<script type="text/javascript" src="../js/pos.js?n=201510271045"></script>
+<script>
+    (function(){
+        getPos(function(x, y){
+            //x--经度, y--纬度
+            //定位成功的统计
+            im=new Image; im.src="http://stat-z.xywy.com/test.png?t_c=2&tt"+Math.random();
+            Quan_X=x;
+            Quan_Y=y;
+        });
+    })();
+</script>
+<div class="wrap wrapBg">
+    <header class="header header-link" style="">
+        <div class="header-wrap">
+            <a href="../index.html" onmousedown="clicktest(this);__sendClickOdm('3g_club_ask_question', this, 'dcpage:xywy+');" clicktype="3g_xywy_club" clicken="3g_club_xywy_com_xywy">返回首页</a>
+        </div>
+    </header>
+    <section class="pb20">
+
+        <div class="banner">
+        <div class="ban-wrap flex w">
+        <div class="ban-photoDiv"><img src="../images/photo_kk.png" class="ban-photo" alt=""/></div>
+        <div class="ban-para flexRate">
+        <div class="ban-title"><span class="ban-name f12">邈邈</span><span class="ban-job">专家助理</span></div>
+                  <p class="ban-des">您好，您想咨询什么问题呢？我们有百万医生将为您解答。</p>
+                </div>
+        </div>
+        </div>
+        <div class="container">
+        <fieldset>
+            <legend>出生日期</legend>
+            <div class="form-group" style="width:80%">
+                <label for="dtp_input2" class="col-md-2 control-label">选择日期</label>
+                <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" size="16" type="text" value="" id="day" disabled="disabled">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input2" value="" /><br/>
+            </div>
+            <div class="form-group" style="width:80%">
+                <label for="dtp_input3" class="col-md-2 control-label">选择时间</label>
+                <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+                    <input class="form-control" size="16" type="text" value="" id="time" disabled="disabled">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input3" value="" /><br/>
+            </div>
+            <div>
+            <!--<a id="displayUI" onclick="displayUI()">自定义后天时间</a>-->
+            </div>
+            <legend id="furtherdate" style="display: none;">后天时间</legend>
+            <div class="form-group" id="pickdate" style="display: none;">
+                <label for="dtp_input2" class="col-md-2 control-label">选择日期</label>
+                <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input2" value="" /><br/>
+            </div>
+            <div class="form-group" id="picktime" style="display: none;">
+                <label for="dtp_input3" class="col-md-2 control-label">选择时间</label>
+                <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input3" value="" /><br/>
+            </div>
+            
+        </fieldset>
+
+</div>
+
+<!//选择时间>
+<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../bootstrap/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
+    $('.form_date').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    $('.form_time').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        forceParse: 0
+    });
+    </script>
+    <script type="text/javascript">
+    function displayUI()
+{
+var displayfurther =document.getElementById("furtherdate");
+displayfurther.style.display="";
+var pickdate =document.getElementById("pickdate");
+pickdate.style.display="";
+var picktime =document.getElementById("picktime");
+picktime.style.display="";
+var displayui = document.getElementById("displayUI");
+displayui.style.display="none"
+}
+</script>
+<div class="sec-items">
+        
+
+    <div class="sec-btn">
+       <input onclick="submit()" type="button" class="sec-submit" value="看人吃饭"/>
+    </div>
+
+    <!-- <div>
+        <label>以下是专家给出的建议：</label>
+    </div>
+    <div>
+        <textarea class="comments" id="displayarea" disabled="disabled" rows="20" cols="30"></textarea>
+    </div> -->
+</div>
+</div>
+
+<script type="text/javascript" src="../js/odm.js"></script>
+</section>
+<div style="display:none;">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000239016'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000239016' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</div>
+</body>
+</html>

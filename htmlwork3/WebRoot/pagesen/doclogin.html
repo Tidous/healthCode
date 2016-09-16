@@ -1,0 +1,130 @@
+ <!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0 "/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>专家登录_有问必答_健康计算器</title>
+<meta name="description" content="手机健康计算器3g版"/> 
+<meta name="keywords" content="手机健康计算器,健康计算器首页,手机健康计算器3g版"/>
+<!--[if !IE]>-->
+<link type="text/css" rel="stylesheet" href="../css/m_reset.css">
+<link rel="stylesheet" href="../css/club_app.css" type="text/css" />
+<!--<![endif]-->
+<script src="../lib/jquery.min.js"></script>
+<style type="text/css">
+.col29{color: #0293a8;}
+.titbox{ height:20px; line-height:20px; margin:10px 0px;}
+.check-code{padding-left:40px;margin-top:10px;width:100px;height:35px;line-height:35px;border:1px solid #d7d7d7;border-radius:5px;}
+.check-img{display:inline-block;vertical-align:middle;}
+.check-code-change{color:#96cecf;}
+</style>
+</head>
+
+<body>
+<div class="w">
+    <section id="tabs">
+     <div class="titbox f15 tc fYaHei">专家登录</div>
+    <form class="ml20 mr20 bc fWei" method="post" action="../indexmobile.php?req=login" onsubmit="return checksubmit()">		
+        <div class="regwrong f15 red"></div>
+		<section class="bc reg_new">
+			<div class="pr">
+            <label class="ml10 fl dib t9999" for="userName">用户名</label>
+            <input type="text" name="username" id="userName"   value="" onKeyUp="$(this).parent().removeClass('bgf4');" placeholder="用户名">
+            
+            </div>
+			<div class="pr">
+                <label class="ml10 fl dib t9999" for="userPw">密码</label>
+                <input type="password" name="password" value="" id="userPw" onKeyUp="$(this).parent().removeClass('bgf4');" placeholder="请输入密码">
+            </div>
+		</section>	
+        <div class="pr none" id="captcha">
+			<input type="text" placeholder="请输入验证码" id="code" name="check_code" class="check-code">
+			<img width="90" height="35" alt="" src="http://club.xywy.com/getpwd.php?type=code&from=login" class="check-img">
+			<a href="javascript:;" onclick="changeCode()" class="check-code-change ml5">换一换</a>
+		</div>	
+		<div class="mt40 MyAskBtn tc"><button class="db fWei AskSub f15 w" type="submit" name="login" value="login" >登录</button></div>
+	</form>
+    <div class="mt20 ml20 bc fWei">
+        <!--
+        <a class="f14 col29" href="http://xianxia.club.xywy.com"> 我是医生，马上注册 &gt;&gt;</a><br/><br/>
+        -->
+        <a class="f14 col29" href="./login.html">我是用户，登录个人中心>></a>
+    </div>
+    </section>
+</div>
+<script type="text/javascript" src="../js/common.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        ClearText('userName');
+        ClearText('userPw');
+    })
+    $('#userName').focus(function(){
+       	window.scrollTo(0, 80)  
+    })
+    function changeCode(){
+        $('.check-img').attr('src','http://club.xywy.com/getpwd.php?type=code&from=login&time='+new Date().getTime());
+    }
+    function checksubmit(){
+        var username=$('#userName').val();   
+        var passwd=$('#userPw').val();
+        var arr;
+		if(username.isEmpty()){
+			$('.regwrong').html('请输入用户名！');
+			$('#userName').parent('div').addClass('bgf4');
+            $('#userName').focus();
+			return false;
+		}else{
+			$('.regwrong').html('');
+		}
+		if(passwd.isEmpty()){
+			$('.regwrong').html('请输入密码！');
+			$('#userPw').parent('div').addClass('bgf4');
+            $('#userPw').focus();
+			return false;
+		}
+        
+        var code =$('#code').val();
+        
+        
+        $.ajax({
+           type: "POST",
+           url: '/index.php?req=login',
+           data:{'type':'ajax','username':username,'password':passwd,'code':code},
+           cache: false,
+           async: false,
+           success: function(result){
+               arr=result.split('#');
+           }
+        });
+        if(arr[0]==0){
+           $('.regwrong').html(arr[1]);
+           
+           if(arr[1]=='验证码错误！'){
+                $('#captcha').show();
+                $('#code').val('').focus();
+                //return false;
+           }else if(arr[1]=='密码错误'){
+		        if(arr[2]==1){
+		          $('#captcha').show();
+		        }
+                $('#userPw').parent('div').addClass('bgf4');
+		   }else{
+			   $('#userName').parent('div').addClass('bgf4');
+	       }
+           $('.check-img').attr('src','http://club.xywy.com/getpwd.php?type=code&from=login&time='+new Date().getTime()); 
+           $('#code').val('');
+           return false;
+        }
+        return true;
+    }
+   	window.onload=function(){
+		setTimeout(function() {  
+			window.scrollTo(0, 1)  
+		}, 0);	
+	}; 
+</script>
+</body>
+</html>

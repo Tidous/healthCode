@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>ST_ChineseMedicine</title>
+        <meta name="keywords" content="疾病信息，疾病大全，疾病症状" />
+        <meta name="description" content="健康计算器食物信息库为您解惑" />
+        <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <meta content="telephone=no" name="format-detection" />
+		<link rel="stylesheet" href="../css/user_center.css?v=2016052809">
+		<link rel="stylesheet" href="../css/club_app.css" type="text/css" />
+        <link rel="stylesheet" href="../css/my-base.css">
+        <link rel="stylesheet" href="../css/zt-Cdisease.css?v=20160521">
+		<link href="../css/m_reset.css" rel="stylesheet"/>
+		<link href="../css/ques.css" rel="stylesheet"/>
+		<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<script type="text/javascript" src="../js/t.js"></script>
+        <script type="text/javascript" src="../js/head.js"></script>
+		<script type="text/javascript" src="../js/odm.js"></script>
+		<script type="text/javascript" src="../js/a.js"></script>
+		<script type="text/javascript" src="../js/click.js"></script>
+        <script type="text/javascript" src="../js/pos.js?n=201510271045"></script>
+		<script src="../lib/jquery-1.9.1.js"></script>
+		<script src="../bootstrap/js/bootstrap.min.js"></script>
+		<style>
+	.wrap{overflow:hidden;}
+.comments {  width:100%;
+ overflow:auto;  
+ word-break:break-all; }
+ .checkbox{width:5%;border:1px solid;border-color:black;}
+ .radio{width:5%;border:1px solid;border-color:black;}
+</style>
+    </head>
+    <body> 
+        <script type="text/javascript" src="../js/odm.js"></script>
+<script type="text/javascript" src="../js/word.js"></script>
+<header class="header header-link" style="">
+        <div class="header-wrap">
+            <a href="../indexenmobile.html" onmousedown="clicktest(this);__sendClickOdm('3g_club_ask_question', this, 'dcpage:xywy+');" clicktype="3g_xywy_club" clicken="3g_club_xywy_com_xywy">Back</a>
+        </div>
+<script type="text/javascript">
+    var domain = "http://3g.jib.xywy.com"
+    startTime  = new Date().getMilliseconds();
+    function getCookieIndex(c_name)
+        {
+            if (document.cookie.length>0)
+            {
+                    c_start=document.cookie.indexOf(c_name + "=");
+                    if (c_start!=-1)
+                    {
+                            c_start=c_start + c_name.length+1;
+                            c_end=document.cookie.indexOf(";",c_start);
+                            if (c_end==-1) c_end=document.cookie.length
+                            return unescape(document.cookie.substring(c_start,c_end));
+                    } 
+            }
+            return null;
+        }
+        function SetCookieIndex(c_name,value,expiredays)
+        {
+                var exdate = new Date();
+                exdate.setDate(exdate.getDate() + expiredays);
+                document.cookie = c_name + "=" +escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()); //使设置的有效时间正确。增加toGMTString()
+        }
+
+             
+        var islogin = false;
+        var username = '';
+        username = getCookieIndex('cookie_username');
+        if(username != '' && username != null)
+        {
+                islogin = true;
+        }
+        //提示判断
+        var isShowInfo = false;
+        var showInfoName = getCookieIndex('cookie_showinfoname');
+        if(showInfoName != '' && showInfoName != null)
+        {
+                isShowInfo = true;
+        }
+        function hiddenInfo(obj)
+        {
+                obj.style.display = "none";
+                SetCookieIndex('cookie_showinfoname','true','300');
+        }
+        document.addEventListener("touchstart", function() {
+                return false;
+       }, true);
+</script>
+</header>
+<script type="text/javascript" src="../lib/zepto.min.js"></script>	
+			
+<div class="container">
+    <form action="./symptoms.html?" class="form-horizontal"  role="form">
+    <div>
+		<label for="name">Daily complaints  on health</label>
+<div>
+   <label class="checkbox-inline" style="width:350px;">
+   <span>
+   <input type="checkbox" class="checkbox" id="inlineCheckbox1" value="1" onclick="checkSelected(id)">Palpitation or restlessness</span>
+
+   </label>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox2" value="2" onclick="checkSelected(id)">Poor appetite</span>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox3" value="3" onclick="checkSelected(id)">Shortness of breath or indolence of speaking</span>
+   </label>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox4" value="4" onclick="checkSelected(id)">Frequent cold limbs</span>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox5" value="5" onclick="checkSelected(id)">Constipation</span>
+   </label>
+   <label class="checkbox-inline" style="width:350px;">
+   <span>
+      <input type="checkbox" class="checkbox" id="inlineCheckbox6" value="6" onclick="checkSelected(id)">Insomnia or dream-disturbed sleeping
+	</span>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox7" value="7" onclick="checkSelected(id)">Vertigo or chest oppression</span>
+   </label>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox8" value="8" onclick="checkSelected(id)">Dryness in skin</span>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox9" value="9" onclick="checkSelected(id)">Pale complexion or pale nail</span>
+   </label>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox10" value="10" onclick="checkSelected(id)">Sallow and lusterless complexion</span>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox11" value="11" onclick="checkSelected(id)">Abdominal flatulence</span>
+   </label>
+   </div>
+</div>
+<div class="j-navico bgf8"><span></span></div>
+<div>
+		<label for="name">Habits and customs</label>
+   <div>
+   <label class="checkbox-inline" style="width:350px;">
+   <span>
+      <input type="checkbox" class="checkbox" id="inlineCheckbox12" value="12" onclick="checkSelected(id)">Endure the torment of hunger or overeat
+	  </span>
+   </label>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox13" value="13" onclick="checkSelected(id)">Stay up late</span>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox14" value="14" onclick="checkSelected(id)">Overstrain in life or work</span>
+   </label>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox15" value="15" onclick="checkSelected(id)">Often have icy drinks or raw and cold  fruits and vegetables</span>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox16" value="16" onclick="checkSelected(id)">Excessive alcoholic drinking</span>
+   </label>
+   <label class="checkbox-inline" style="width:350px;">
+   <span>
+      <input type="checkbox" class="checkbox" id="inlineCheckbox17" value="17" onclick="checkSelected(id)">a sedentary lifestyle(over 4 hr/day)
+	  </span>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox18" value="18" onclick="checkSelected(id)">Stressful</span>
+   </label>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox19" value="19" onclick="checkSelected(id)">Often have cold bath or winter swimming</span>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox20" value="20" onclick="checkSelected(id)">Often stay in air-conditioned place</span>
+   </label>
+   <label class="checkbox-inline" style="width:350px;">
+      <span><input type="checkbox" class="checkbox" id="inlineCheckbox21" value="21" onclick="checkSelected(id)">Often use electric blanket heater etc.</span>
+   </label>
+   </div>
+<!--体育锻炼-->
+<div class="j-navico bgf8"><span></span></div>
+   <div>
+   <label class="checkbox-inline" style="width:350px;">
+   <span><input type="checkbox" class="checkbox" name="identity" id="identity1" value="22" onClick="radioSelected1()"/>Weekly physical exercise time:under 1hr</span>
+   </label>
+   <label class="checkbox-inline" style="width:350px;">
+   <span><input type="checkbox" class="checkbox" name="identity" id="identity2" value="23" onClick="radioSelected2()"/>Weekly physical exercise time:1-4 hr</span>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline" style="width:350px;">
+   <span><input type="checkbox" class="checkbox" name="identity" id="identity3" value="24" onClick="radioSelected3()"/>Weekly physical exercise time:4-7 hr</span>
+   </label>
+   <label class="checkbox-inline" style="width:350px;">
+   <span><input type="checkbox" class="checkbox" name="identity" id="identity4" value="25" onClick="radioSelected4()"/>Weekly physical exercise time:above 7 hr</span>
+   </label>
+   </div>
+   
+<div class="j-navico bgf8"><span></span></div>
+
+
+   <div>
+<label>Other symptoms：</label>
+</div>
+<div>
+			<textarea class="comments" id="displayarea" rows="10" cols="30"></textarea>
+			</div>
+        <script type="text/javascript">
+            __sendVisitOdm("3g_club_ask_question", "askquestion:Submit_questions+");
+        </script>
+	</div>
+	</div>
+</div>
+<div class="j-navico bgf8"><span></span></div>
+</div>
+
+    </form>
+</div>
+
+	<div class="sec-items">
+            			<div class="sec-btn">
+				<input  onmousedown="__sendClickOdm('3g_club_ask_question', this, 'askquestion:Submit_questions+');" type="submit" class="sec-submit" value="Submit"/>
+			</div>
+			<script src="http://xianxia.club.xywy.com/detip.php"></script>
+		</form>
+        <script type="text/javascript">
+            __sendVisitOdm("3g_club_ask_question", "askquestion:Submit_questions+");
+        </script>
+	</div>                
+
+<section class="user_con mt10 ml10 mr10 fWei" id="userlist" >
+<div class="myFamilyDoctor">
+                <h2  >
+                    <a name="myphonedoctor"></a>
+                    <div class="dib fl my_userglbg" clicken="3g_health_wdjkgl" onmousedown="clicktest(this);
+                            __sendClickOdm('3g_ucenter', this, 'shouye:3g_health_wdjkgl+')" clicktype="3g_health">
+                        History symptoms<i class="ml10 fn coliyel">(0)</i>
+                    </div>
+                    <span class="dib fr userbg">
+                    </span>
+                </h2>
+
+                <div class="myphonedoctor" style="display:none;">
+                    <div  id="datalist_myhealthmanager">
+
+                            <div class="familyDoctor nonefamilyDoctor " >
+                                <div>
+                                    <div class="F-cont noneDoctorCont">
+                                        <div class="noneDoctor">
+                                            <p class="f14">No history_count, please fullfill the questionary.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                            </div>
+                                    </div>
+</div>
+</section>
+    
+ <div style="display: none;">
+<script type="text/javascript" src="../js/a.js"></script>
+<script type="text/javascript" src="../js/click.js"></script>
+</div>
+<footer id="footers">
+    <div class="line"></div>
+    <p>
+        <script type="text/javascript">
+              if(islogin === true)  {
+                  document.writeln('<a href="./user.html">User Center</a>') ;
+             } else {
+                  document.writeln('<a href="./login.html">Login</a><span>|</span><a href="./register.html">Register</a>') ;
+              }
+       </script> 
+    </p>
+    <p><a href="javascript:;">Mobile</a><span>|</span><a class="col" href="../indexenmobile.html">PC</a>
+</footer>
+<script>
+if(/AlipayClient/i.test(navigator.userAgent)){
+    $('.jib3g_ad').hide() ;
+    $('.applink').hide() ;
+    $('#head').hide() ;
+    $('#footers').hide() ;
+    $('#BAIDU_DUP_wrapper_u1349317_0').hide() ;
+    $('#bddiv').hide() ;
+}
+</script>
+
+    </body>
+    <script type="text/javascript">
+	function checkSelected(id){
+		if(document.getElementById(id).checked)
+		{
+			document.getElementById(id).style.backgroundColor = "#888";
+		}else
+		{
+			document.getElementById(id).style.backgroundColor = "white";
+		}
+	}
+	
+	function radioSelected1(){
+		document.getElementById("identity1").checked = "false";
+		document.getElementById("identity2").checked = "false";
+		document.getElementById("identity3").checked = "false";
+		document.getElementById("identity4").checked = "false";
+		document.getElementById("identity1").style.backgroundColor = "white";
+		document.getElementById("identity2").style.backgroundColor = "white";
+		document.getElementById("identity3").style.backgroundColor = "white";
+		document.getElementById("identity4").style.backgroundColor = "white";
+		document.getElementById("identity1").checked = "true";
+		document.getElementById("identity1").style.backgroundColor = "#888";
+		document.getElementById("identity2").style.backgroundColor = "white";
+		document.getElementById("identity3").style.backgroundColor = "white";
+		document.getElementById("identity4").style.backgroundColor = "white";
+		document.getElementById("identity2").checked = "false";
+		document.getElementById("identity3").checked = "false";
+		document.getElementById("identity4").checked = "false";
+	}
+	
+	function radioSelected2(){
+		document.getElementById("identity1").checked = "false";
+		document.getElementById("identity2").checked = "false";
+		document.getElementById("identity3").checked = "false";
+		document.getElementById("identity4").checked = "false";
+		document.getElementById("identity1").style.backgroundColor = "white";
+		document.getElementById("identity2").style.backgroundColor = "white";
+		document.getElementById("identity3").style.backgroundColor = "white";
+		document.getElementById("identity4").style.backgroundColor = "white";
+		document.getElementById("identity2").checked = "true";
+		document.getElementById("identity1").style.backgroundColor = "white";
+		document.getElementById("identity2").style.backgroundColor = "#888";
+		document.getElementById("identity3").style.backgroundColor = "white";
+		document.getElementById("identity4").style.backgroundColor = "white";
+		document.getElementById("identity1").checked = "false";
+		document.getElementById("identity3").checked = "false";
+		document.getElementById("identity4").checked = "false";
+	}
+	
+	function radioSelected3(){
+		document.getElementById("identity1").checked = "false";
+		document.getElementById("identity2").checked = "false";
+		document.getElementById("identity3").checked = "false";
+		document.getElementById("identity4").checked = "false";
+		document.getElementById("identity1").style.backgroundColor = "white";
+		document.getElementById("identity2").style.backgroundColor = "white";
+		document.getElementById("identity3").style.backgroundColor = "white";
+		document.getElementById("identity4").style.backgroundColor = "white";
+		document.getElementById("identity3").checked = "true";
+		document.getElementById("identity1").style.backgroundColor = "white";
+		document.getElementById("identity2").style.backgroundColor = "white";
+		document.getElementById("identity3").style.backgroundColor = "#888";
+		document.getElementById("identity4").style.backgroundColor = "white";
+		document.getElementById("identity1").checked = "false";
+		document.getElementById("identity2").checked = "false";
+		document.getElementById("identity4").checked = "false";
+	}
+	
+	function radioSelected4(){
+		document.getElementById("identity1").checked = "false";
+		document.getElementById("identity2").checked = "false";
+		document.getElementById("identity3").checked = "false";
+		document.getElementById("identity4").checked = "false";
+		document.getElementById("identity1").style.backgroundColor = "white";
+		document.getElementById("identity2").style.backgroundColor = "white";
+		document.getElementById("identity3").style.backgroundColor = "white";
+		document.getElementById("identity4").style.backgroundColor = "white";
+		document.getElementById("identity3").checked = "true";
+		document.getElementById("identity1").style.backgroundColor = "white";
+		document.getElementById("identity2").style.backgroundColor = "white";
+		document.getElementById("identity3").style.backgroundColor = "white";
+		document.getElementById("identity4").style.backgroundColor = "#888";
+		document.getElementById("identity1").checked = "false";
+		document.getElementById("identity2").checked = "false";
+		document.getElementById("identity3").checked = "false";
+	}
+	
+        $(".zt-jbfl").on("click" , function () {
+          var accesskey =  $(this).attr("accesskey") ;
+          $(this).toggleClass('borb');
+          $(this).find(".xllb").toggleClass("on") ;
+          $("#" + accesskey).toggle();
+        }) ;
+    </script>
+	 <script>
+//优惠码
+$(function(){
+	$('.dis-box > li').click(function(){
+		var panel = $('.yhq-box'),
+			index = $(this).attr('data-index');
+
+		$(this).addClass('cur').siblings().removeClass('cur');
+		panel.eq(index).removeClass('none').siblings().addClass('none');
+	});
+	$('.rule').click(function(e){
+		$('#yhq-intro').show();
+		$('.w').hide();
+		e.stopPro
+	});
+	$('.close-rule').click(function(){
+		$('#yhq-intro').hide();
+		$('.w').show();
+		$('.botom').eq(0).show().prev().addClass('current');
+	});
+	$('.yhq-poster a').click(function(){
+		$(this).parent().hide();
+	});
+
+	//展开更多的优惠券
+	var cardMore = $('.yhq-more'),
+		cardA = $('#cardA'),
+		cardU = $('#cardU'),
+		page ={
+			page1: 1,
+			page2: 1
+		},
+		pageNow = 0,
+		tplA = '<div class="clearfix pt10 pb10 yhq-list">\
+					<div class="fl mt5 ml10 mr10 pr yhq-ico tc">\
+						<span class="db pt5 price">{price}</span>\
+						<span class="db">优惠券</span>\
+						<span class="pa money-ico">￥</span>\
+					</div>\
+					<dl class="pr">\
+						<dt>评价返优惠券，签约家庭医生专用</dt>\
+						<dd class="f12 gray">优惠码：{code}</dd>\
+						<dd class="f12 gray">有效期至：{endtime}</dd>\
+					</dl>\
+				</div>',
+		tplU = '<div class="clearfix pt10 pb10 yhq-list">\
+					<div class="fl mt5 ml10 mr10 pr yhq-ico yhq-ico-nouse tc">\
+						<span class="db pt5 price">{price}</span>\
+						<span class="db">优惠券</span>\
+						<span class="pa money-ico">￥</span>\
+					</div>\
+					<dl class="pr">\
+						<dt>评价返优惠券，签约家庭医生专用</dt>\
+						<dd class="f12 gray">优惠码：{code}</dd>\
+						<dd class="f12 gray">有效期至：{endtime}</dd>\
+						<dd class="pa f12 tc status">{orderid}</dd>\
+					</dl>\
+				</div>';
+	cardMore.click(function(){
+		var self = $(this),
+			types = self.attr('type');   
+		switch(types){
+			case '2':
+				page.page2++;
+				pageNow = page.page2;
+				break;
+			case '1':
+				page.page1++;
+				pageNow = page.page1;
+				break;
+		}                   
+		$.ajax({
+			url: 'http://3g.i.xywy.com/user/getMyCouponsListMordData',
+			type: 'get',
+			data: {
+				page: pageNow,
+				types: types
+			},
+			dataType: 'jsonp',
+			success: function(data){
+				var temp = '';
+				if(data.result == '10000'){
+					$.each(data.content, function(i,v){
+						$.each(v, function(k,val){                                                              
+							if(types === '1'){
+								if(k === 'code'){
+									temp += tplA.replace(/{code}/, val);
+								}else if(k === 'price'){
+									temp = temp.replace(/{price}/, val);
+								}else if(k === 'endtime'){
+									temp = temp.replace(/{endtime}/, formatDate(val));
+								}
+							}
+							if(types === '2'){
+								if(k === 'code'){
+									temp += tplU.replace(/{code}/, val);
+								}else if(k === 'price'){
+									temp = temp.replace(/{price}/, val);
+								}else if(k === 'endtime'){
+									temp = temp.replace(/{endtime}/, formatDate(val));
+								}else if(k === 'orderid'){
+									if(!val){
+										temp = temp.replace(/{orderid}/, '已使用');
+									}else{
+										temp = temp.replace(/{orderid}/, '已过期');
+									}                                                    
+								}
+							}
+						});
+					});
+					if(types === '1'){
+						cardA.find('.yhq-list-box').append(temp);
+                        var lenA = cardA.find('.yhq-list').length;
+                        if(lenA >= coupons_count){
+                            cardA.find('.yhq-more').hide();
+                        }
+					}else{
+						cardU.find('.yhq-list-box').append(temp);
+                        var lenU = cardU.find('.yhq-list').length;
+                        if(lenU >= history_count){
+                            cardU.find('.yhq-more').hide();
+                        }
+					}
+				}else{
+					self.html('无更多数据');
+				}
+			}
+
+		});
+	});
+    //判断显示的个数
+
+
+	//时间戳转换成日期
+	var formatDate = function(nS){
+		var time = new Date(parseInt(nS) * 1000).toLocaleString().replace(/\/\d+/g, function(match){
+			var temp = parseInt(match.slice(1));
+			if(temp < 10){
+				return '-0' + temp;
+			}else{
+				return '-' + temp;
+			}
+		});                          
+		var date = time.substr(0,10);
+		return date;
+	}
+});
+</script>
+</html>
+<script type="text/javascript">
+    __sendVisitOdm('3g_ucenter', 'shouye:3g_health_wdjkgl+@3g_wdyy_ckxq+');
+    //我的问题
+    function myquestion(obj, type, result) {
+        if (result && result != '[]') {
+            var dataObj = eval("(" + result + ")");//转换为json对象 
+            $.each(dataObj, function(imdex, item) {
+                var status;
+                if (item.status == 0) {
+                    status = '未回复';
+                } else if (item.status == 1) {
+                    status = '已回复';
+                } else if (item.status == 3) {
+                    status = '已解决';
+                } else {
+                    status = '已过期';
+                }
+                var child = '<li><a href="http://3g.club.xywy.com' + item.qdir + '' + item.id + '.htm?fromurl=user&time=' + new Date().getTime() + '">' + item.title + '</a><span class="fr">' + status + '</span></li>';
+                $('#datalist_' + type).append(child);
+
+                $(obj).removeClass('loading');
+            });
+            if (dataObj.length < 5) {
+                $(obj).html('已加载全部');
+            }
+        } else {
+            $(obj).html('已加载全部');
+            $(obj).removeClass('loading');
+        }
+    }
+
+    //我的预约
+    function myappointment(obj, type, result) {
+       
+		if (result && result != '[]' && result!='') {
+            var dataObj = eval("(" + result + ")");//转换为json对象 
+            $.each(dataObj, function(imdex, item) {
+                var child = '<div class="YuList btn-a f14 pt5 pb5" >';
+				if((item.type == '1' && item.order_type =='1') || item.type == '3' ){
+				
+					child += '<p>预约医生：' + item.expert_name + '医生（' + item.depart + '）<span class="fr">' + item.state + '</span></p>';
+					if(item.type == '3')
+					{
+						child += '<p>预约医院：' + item.hospital + item.depart +'</p>';
+					}
+					child += '<p>就诊时间：' + item.todate + ' (' + item.weekday + ')</p>';
+					child += '<p class="pb5"><span class="col99">预约订单：' + item.plus_id + '</span>';
+					if(item.type == '1')
+					{
+						child += '<a href="/expert/appointment/' + item.plus_id + '?type='+item.type+'" class="fr dib f12 tc">查看详情</a></p>';
+					}
+				}else if(item.type == '2' || (item.type == '1' && item.order_type =='2')){
+					if(item.order_type){
+						var detail_type = 1;
+						var orderid = item.plus_id;
+					}else{
+						var detail_type = 2;
+						var orderid = item.nplus_id;
+					}
+					child += '<p>就诊人：'+item.uname+'<span class="fr">'+item.state_name+'</span></p><p>就诊时间：'+item.visit_time+'</p><p class="pb5"><span class="col99">预约订单：'+orderid+'</span><a href="/expert/appointment/' + orderid + '?type='+detail_type+'" class="fr dib f12 tc" >查看详情</a></p>';
+				}
+                child += '</div>';
+                $('#datalist_' + type).append(child);
+                $(obj).removeClass('loading');
+            });
+			if (dataObj.length < 5) {
+                $(obj).html('已加载全部');
+            }
+        } else {
+            $(obj).html('已加载全部');
+            $(obj).removeClass('loading');
+        }
+    }
+
+    //我的专家咨询
+    function myask(obj, type, result) {
+        if (result && result != '[]') {
+            var dataObj = eval("(" + result + ")");//转换为json对象 
+            $.each(dataObj, function(imdex, item) {
+                var child = '<li><a href="' + item.url + '">' + item.title + '</a><span class="fr">' + item.state + '</span></li>';
+                $('#datalist_' + type).append(child);
+                $(obj).removeClass('loading');
+            });
+        } else {
+            $(obj).html('已加载全部');
+            $(obj).removeClass('loading');
+        }
+    }
+
+    //我的关注
+    function myfocus(obj, type, result) {
+        if (result && result != '[]') {
+            var dataObj = eval("(" + result + ")");//转换为json对象 
+            $.each(dataObj, function(imdex, item) {
+                var links;
+                if (item.count > 0) {
+                    links = 'http://3g.club.xywy.com/health/tag/' + item.tagid + '.html';
+                } else {
+                    links = 'http://3g.club.xywy.com/tag/' + item.tagid + '.htm';
+                }
+                var child = '<li class="fl w" id=\'li_' + item.id + '\'><span class="fr dib oh GuDel mt5 mr5 userbg" onClick="delfocus(' + item.id + ')"></span><div class="fl">您关注的话题：<a href="' + links + '">' + item.name + '</a></div></li>';
+                $('#datalist_' + type).append(child);
+                $(obj).removeClass('loading');
+            });
+        } else {
+            $(obj).html('已加载全部');
+            $(obj).removeClass('loading');
+        }
+    }
+
+
+    //我的家庭医生
+    function myfamilydoctor(obj, type, result) {
+        if (result != "") {
+            $('#datalist_' + type).append(result);
+            $(obj).removeClass('loading');
+        } else {
+            $(obj).html('已加载全部');
+            $(obj).removeClass('loading');
+        }
+    }
+    //我的健康档案
+    function myhealthmanager(obj, type, result) {
+        if (result != "") {
+            $('#datalist_' + type).append(result);
+            $(obj).removeClass('loading');
+        } else {
+            $(obj).html('已加载全部');
+            $(obj).removeClass('loading');
+        }
+    }
+
+    //我的电话医生
+    function myphonedoctor(obj, type, result) {
+        if (result != "") {
+            $('#datalist_' + type).append(result);
+            $(obj).removeClass('loading');
+        } else {
+            $(obj).html('已加载全部');
+            $(obj).removeClass('loading');
+        }
+    }
+	
+	
+	//我关注的医生
+	function myattendoc(obj, type, result){
+	  if (result && result != '[]') {
+            var dataObj = eval("(" + result + ")");//转换为json对象 
+            $.each(dataObj, function(imdex, item) {
+                var child = ' <p class="pl10 pr10 botom hk-gz" onclick="javascript:window.location.href=\''+item.url+'\'"  ><span class="hk-name"><img class="mr10" src="'+item.photo+'">'+item.realname+'</span><span class="hk-js ml5">'+item.job+'</span></p> ';			
+				
+                $('#datalist_' + type).append(child);
+				
+                $(obj).removeClass('loading');
+            });
+		  var  count_doc = $('.count_doc' ).attr('count_doc');
+		  var  mod_count = parseInt(count_doc) %  parseInt(5);
+		  var  count_page = parseInt(count_doc) /  parseInt(5);
+		  
+		  var  page = $('#page_myattendoc' ).html();
+		   if (dataObj.length < 5 || (mod_count==0 && count_page+1==page) ) {
+                $(obj).html('已加载全部');
+            }
+        } else {
+            $(obj).html('已加载全部');
+            $(obj).removeClass('loading');
+        }
+	}
+	
+	
+    function loadnew(obj, type, callback) {
+        var page = $('#page_' + type).html();
+        var options = {};
+        if (type == 'myquestion') {
+            options = {'type': 'myquestion', 'page': page};
+        } else if (type == 'myask') {
+            options = {'type': 'myask', 'page': page};
+        } else if (type == 'myappointment') {
+            options = {'type': 'myappointment', 'page': page};
+        } else if (type == 'myfocus') {
+            options = {'type': 'myfocus', 'page': page};
+        } else if (type == 'myfamilydoctor') {
+            options = {'type': 'myfamilydoctor', 'page': page};
+        } else if (type == 'myhealthmanager') {
+            options = {'type': 'myhealthmanager', 'page': page};
+        } else if (type == 'myphonedoctor') {
+            options = {'type': 'myphonedoctor', 'page': page};
+        }else if (type == 'myattendoc') {
+            options = {'type': 'myattendoc', 'page': page};
+        }
+
+        $(obj).addClass('loading');
+        $.ajax({
+            type: "GET",
+            url: '/user/ajaxDataMore',
+            data: options,
+            datatype: 'json',
+            cache: false,
+            async: true,
+            success: function(result) {
+                callback(obj, type, result);
+            }
+        });
+        var newpage = parseInt(page) + 1;
+        $('#page_' + type).html(newpage);
+    }
+
+
+    function toggle(id, spid)
+    {
+        $('#' + id).toggle();
+        if ($('#' + id).css('display') == 'block') {
+            $('#' + spid).addClass("uUp");
+            $('#' + spid).parent('div').css('border-bottom', '1px solid #DDDDDD');
+        } else {
+            $('#' + spid).removeClass("uUp");
+            $('#' + spid).parent('div').css('border-bottom', '0px');
+        }
+    }
+
+</script>
+
+<script type="text/javascript" >
+    (function() {
+        var container = document.getElementById('userlist'),
+                oChild = container.children,
+                length = oChild.length,
+                oSpan = container.getElementsByTagName('h2');
+        for (var i = 0; i < length; i++) {
+            oSpan[i].onclick = function(d) {
+                return function() {
+                    for (var i = 0; i < length; i++) {
+                        if (i === d) {
+                            if (oSpan[d].parentNode.children[1].style.display == 'block') {
+                                oSpan[d].parentNode.children[1].style.display = 'none';
+                                oSpan[d].className = '';
+                            }
+                            else {
+                                oSpan[d].className = 'current';
+                                oSpan[d].parentNode.children[1].style.display = 'block';
+                            }
+                        }
+                        else {
+                            oSpan[i].className = '';
+                            oSpan[i].parentNode.children[1].style.display = 'none';
+                        }
+                    }
+                }
+            }(i);
+        }
+    })();
+    //显示密码
+    function PassTxt(objfrm) {
+        var frm = document.forms[objfrm];
+        var oldpasswd = frm.oldpasswd;
+        var passwd = frm.passwd;
+        var confirmpasswd = frm.confirmpasswd;
+        if (oldpasswd.type != "text") {
+            oldpasswd.type = "text";
+            passwd.type = "text";
+            confirmpasswd.type = "text";
+        } else {
+            oldpasswd.type = "password";
+            passwd.type = "password";
+            confirmpasswd.type = "password";
+        }
+    }
+
+    function changepwd(objfrm)
+    {
+        var frm = document.forms[objfrm];
+        var oldpasswd = frm.oldpasswd;
+        var passwd = frm.passwd;
+        var confirmpasswd = frm.confirmpasswd;
+
+        if (oldpasswd.value.isEmpty())
+        {
+            $('.PasTs').show();
+            $('.PasTs').html('请输入原始密码');
+            $('input[name="oldpasswd"]').parent().addClass('bgf4');
+            oldpasswd.focus();
+            return;
+        }
+        if (passwd.value.isEmpty())
+        {
+            $('.PasTs').show();
+            $('.PasTs').html('请输入新密码');
+            $('input[name="passwd"]').parent().addClass('bgf4');
+            passwd.focus();
+            return;
+        }
+        if (!passwd.value.trim().lengthRange(6, 16)) {
+            $('.PasTs').show();
+            $('.PasTs').html('密码由6-16个字符组成');
+            $('input[name="passwd"]').parent().addClass('bgf4');
+            passwd.focus();
+            return;
+        }
+        if (!passwd.value.validatePassword(6, 16)) {
+            ;
+            $('.PasTs').show();
+            $('.PasTs').html('密码只支持数字、字母及下划线，区分大小写');
+            $('input[name="passwd"]').parent().addClass('bgf4');
+            passwd.focus();
+            return;
+        }
+        if (passwd.value == oldpasswd.value) 
+        {
+            $('.PasTs').show();
+            $('.PasTs').html('新旧密码输入一致');
+            $('input[name="passwd"]').parent().addClass('bgf4');
+            passwd.focus();
+            return;
+        }
+        if (passwd.value != confirmpasswd.value)
+        {
+            $('.PasTs').show();
+            $('.PasTs').html('两次输入的密码不一致');
+            $('input[name="confirmpasswd"]').parent().addClass('bgf4');
+            confirmpasswd.focus();
+            return;
+        }
+        $('.PasTs').hide();
+        $.post('/user/changepwd', {oldpasswd: oldpasswd.value, passwd: passwd.value}, function(data) {
+			
+            if (data.length > 0)
+            {
+                var result = data.split('#');
+                $('.PasTs').show();
+                $('.PasTs').html(result[1]);
+                if (result[0] > 0)
+                {
+                    $('#divpasswd').hide();
+                    oldpasswd.value = "";
+                    passwd.value = "";
+                    confirmpasswd.value = "";
+                    $('.PasTs').html("");
+                    $('.updata-psw-tip').hide();
+                    alert("修改密码成功");
+                } else {
+                    if (result[0] == '-4') {
+                        $('input[name="oldpasswd"]').parent().addClass('bgf4');
+                        oldpasswd.focus();
+                    }
+                }
+            }
+            else
+            {
+                $('#divpasswd').hide();
+            }
+        });
+    }
+    //取消标签关注
+    function delfocus(id)
+    {
+        if (isNaN(id))
+        {
+            alert("参数出错！");
+            return false;
+        }
+        if (window.confirm('确定要删除吗？'))
+        {
+            $.post('/user/focus', {'id': id, 'type': 'del'}, function(data) {
+                var resutl = data.split('#');
+                if (resutl[0] == 1)
+                {
+                    $('#li_' + id).remove();
+                }
+                alert(resutl[1]);
+            })
+        }
+    }
+    //如果已经绑定过手机
+	function addError(obj,str){
+		obj.focus();
+		obj.parent().addClass('bgf4');
+		$('.TelTs').html(str).show();
+	}
+
+    //绑定手机相关操作
+    var getcodebtn;
+    var time = 60;
+    var tt = '';
+    var istimeout = true;
+
+    //获取验证码
+    function getcode(obj, type) {
+        if (typeof compareOldphone == 'function') {
+            if (!compareOldphone()) {
+                return false;
+            }
+        }
+        getcodebtn = obj;
+        var phonenum;
+        if (!istimeout)
+            return false;
+        if (type == 'unbind')
+        {
+            phonenum = $.trim($('#bindphone').val());
+        }
+        else if (type == 'bind')
+        {
+            phonenum = $.trim($('#phonenum').val());
+        }
+
+		if(phonenum == ''){
+			addError($('#phonenum'),'请输入新手机号');
+			return false;
+		}else if (!phonenum.validateMobile()){
+			addError($('#phonenum'),'请输入正确的手机号');
+			return false;
+		}
+        //如果已经绑定过手机
+        if ($.trim($('#oldphonenum').val()) && ($.trim($('#oldphonenum').val()) == phonenum)) {
+			addError($('#phonenum'),'新手机号与原手机号相同');
+            return false;
+        }
+		sendMsg(phonenum);//发送短信
+       
+        
+	
+    }
+
+    function stopgetcode() {
+        if (time <= 1)
+        {
+            clearInterval(tt);
+            getcodebtn.innerHTML = '重新获取';
+            time = 60;
+            istimeout = true;
+        }
+        else
+        {
+            time--;
+            istimeout = false;
+            getcodebtn.innerHTML = time + '秒后获取';
+
+        }
+    }
+
+    //绑定或解疑手机
+
+    function bind(type)
+    {
+        if (typeof compareOldphone == 'function') {
+            if (!compareOldphone()) {
+                return false;
+            }
+        }
+        var code = $('#code').val();
+        var safecode = $('#safecode').val();
+
+        if (type == 'bind')
+        {
+            var phonenum = $('#phonenum').val();
+			if(phonenum == ''){
+				addError($('#phonenum'),'请输入新手机号');
+                return false;
+			}else if (!phonenum.validateMobile()){
+				addError($('#phonenum'),'请输入正确的手机号');
+                return false;
+            }
+            //如果已经绑定过手机
+			if ($('#oldphonenum').val() && ($('#oldphonenum').val() == phonenum)) {
+				addError($('#phonenum'),'新手机号与原手机号相同');
+				return false;
+			}
+
+        }
+
+        if (code.isEmpty() || !code.match(/^\d{6}$/))
+        {
+            $('#code').focus();
+            $('#code').parent().addClass('bgf4');
+            $('.TelTs').show();
+            $('.TelTs').html('请输入正确的验证码');
+            return false;
+        }
+        $('.TelTs').hide();
+        phonenum = phonenum.replace(/^\+?86/, '');
+
+        $.post('/user/phone', {'type': type, 'phone': phonenum, 'code': code, 'safecode': safecode}, function(data) {
+            var result = data.split('#');
+            $('.TelTs').show();
+            $('.TelTs').html(result[1]);
+            if (result[0] == 1)
+            {
+                alert(result[1]);
+                $('#oldphonenum').val("");
+                $('#phonenum').val("");
+                $('#code').val("");
+                $('.TelTs').html("");
+                window.location.reload();
+            }
+
+        })
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        ClearText('oldpasswd');
+        ClearText('confirmpasswd');
+        ClearText('passwd');
+        ClearText('oldphonenum');
+        ClearText('phonenum');
+    })
+
+
+    //提示框
+    function  showErrorMessage(a,w) {
+		var c, b, w;
+        if (!arguments[1]) {
+            w = 200;
+        }
+        c = 2000;
+        b = 100;
+        console.log(c);
+        $('body').append('<section id="showMessage" style="display:;position: fixed;z-index: 99;top:' + b + 'px;left: 50%;background: rgba( 0 , 0 , 0 ,.8);color: #fff;margin: -15px 0 0 -100px;width: '+ w +'px;height: 30px;line-height: 30px;border-radius: 5px;box-shadow: 0 1px 0 1px rgba(0,0,0,.2);text-align: center;">' + a + '</section>');
+        setTimeout(function() {
+            $('#showMessage').remove();
+        }, c);
+    }
+    //拨打家庭医生电话
+    function telMeoo(usermobile, docmobile) {
+        if (!usermobile || !docmobile) {
+            return false;
+        }
+        return false;
+        $.getJSON("http://3g.club.xywy.com/api/common/ajaxTellme?usermobile=" + usermobile + "&docmobile=" + docmobile + "&callback=?");
+    }
+    //提示框长版
+    function  showErrorMessageL(a, b, c) {
+
+        if (!arguments[1]) {
+            b = 300;
+        }
+        if (!arguments[2]) {
+            c = 2000;
+        }
+        $('body').append('<section id="showMessage" style="display:none;position: fixed;z-index: 9999;top:' + b + 'px;left: 50%;background: rgba( 0 , 0 , 0 ,.8);color: #fff;margin: -15px 0 0 -100px;width: 220px;height: 75px;line-height: 30px;border-radius: 5px;box-shadow: 0 1px 0 1px rgba(0,0,0,.2);text-align: center; font-size:14px;">' + a + '</section>');
+        $('#showMessage').show();
+        setTimeout(function() {
+            $('#showMessage').hide();
+            $('#showMessage').remove();
+        }, 2000);
+    }
+
+
+
+//发送验证码
+    function sendMsg(phone) {
+
+        $.ajax({
+            url: '/user/authUser',
+            data: '&phone=' + phone + '&act=userSMS_iflimit&project=3G_DEFAULT&ajax=isajax&time=' + new Date().getTime(),
+            success: function(msg) {
+                console.log(msg);
+                dataArr = msg.split('#');
+                if (dataArr[0] == '10000') {//未达到发送短信条数上限，可以继续发送短信
+                    //发送动态验证码  ????????????    2014-12-05
+                    $.ajax({
+                        url: '/user/authUser',
+                        data: 'phone=' + phone + '&act=userSMS_send&project=3G_DEFAULT&ajax=isajax&time=' + new Date().getTime(),
+                        success: function(data) {
+                            dataArr2 = data.split('#');
+                            if (dataArr2[0] == '10000') {//短信发送成功
+                                showErrorMessage(dataArr2[1]);
+                                tt = setInterval("stopgetcode()", 1000);
+								$('.TelTs').hide();
+                                return false;
+                            } else {//短信发送失败
+                                if (dataArr2[1] == '') {
+                                    dataArr2[1] = '短信发送失败';
+                                }
+                                //alert(result[1]);
+                                getcodebtn.innerHTML = '重新获取';
+                                showErrorMessage(dataArr2[1]);
+								$('.TelTs').hide();
+                                return false;
+                            }
+                        }
+                    });
+
+                }else if(dataArr[0] == '-8001'){
+					/*showErrorMessage(dataArr[1]);
+					getcodebtn.innerHTML = '获取验证码';
+					istimeout = true;*/
+					addError($('#phonenum'),dataArr[1]);
+					getcodebtn.innerHTML = '获取验证码';
+					istimeout = true;
+                    return false;
+                }else{
+					istimeout = false;
+					getcodebtn.innerHTML = '正在获取...';
+					$('.TelTs').hide();
+					return false;
+				}
+            }
+        });
+    }
+</script>

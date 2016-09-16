@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <title>健康计算器查疾病_疾病大全_疾病查询</title>
+    <meta name="keywords" content="疾病信息，疾病大全，疾病症状" />
+    <meta name="description" content="健康计算器食物信息库为您解惑" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/user_center.css?v=2016052809">
+    <link rel="stylesheet" href="../css/club_app.css" type="text/css" />
+    <link rel="stylesheet" href="../css/my-base.css">
+    <link rel="stylesheet" href="../css/style2.css">
+    <link rel="stylesheet" href="../css/zt-Cdisease.css?v=20160521">
+    <link href="../css/m_reset.css" rel="stylesheet"/>
+    <link href="../css/ques.css" rel="stylesheet"/>
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="../lib/jquery.min.js"></script>
+    <script type="text/javascript" src="js/config.js"></script>
+    <script type="text/javascript" src="js/global.js"></script>
+    <style>
+    .wrap {overflow:hidden;}
+    .one { width:600px; height:100px; margin:0 auto;}
+    .comments {  width:100%; overflow:auto; word-break:break-all;}
+      </style>
+      </head>
+      <body> 
+
+    <header class="header header-link" style="">
+        <div class="header-wrap">
+            <a href="../index.html" onmousedown="clicktest(this);" clicktype="3g_xywy_club" clicken="3g_club_xywy_com_xywy">返回首页</a>
+        </div>
+    <script type="text/javascript">
+    var all = [];
+    var HABIT_MAP = {"1":"心慌或烦躁","2":"胃纳不佳","3":"呼吸短气或声音低微","4":"手脚经常冰凉","5":"便秘","6":"失眠或多梦","7":"头晕或胸闷","8":"皮肤干燥","9":"脸色或指甲淡白","10":"面色萎黄或无光泽","11":"胃脘饱胀","12":"忍饥挨饿或总爱吃撑",
+        "13":"熬夜","14":"思虑过度","15":"常吃冷饮或以水果、生蔬菜为主食","16":"常过量饮酒","17":"久坐（每天坐超过4小时）","18":"压力大","19":"经常洗冷水澡或冬泳",
+        "20":"经常使用空调","21":"经常使用电热毯等加热器","22":"每周体育运动时间:1小时以下","23":"每周体育运动时间:1-4小时","24":"每周体育运动时间:4-7小时","25":"每周体育运动时间:7小时以上"};
+    
+    $(function() {
+        if (window.sessionStorage.getItem("userid") != undefined && window.sessionStorage.getItem("userid") != "") {
+	        $.doAjaxPostCall("queryHabit", "userid="+window.sessionStorage.getItem("userid"), function(responseData){
+	             console.log(responseData);
+	             var obj =responseData;
+	             
+	             var habit = responseData.habit;
+	             var other = responseData.other;
+	             
+	             if (habit != null) {
+	                 var arrStr = habit.split(",");
+	                 $("#habitcount").text("("+arrStr.length+")");
+	                 $("#nonehabit").text("您平时的生活习惯包括：");
+	                 for (var j=0; j<arrStr.length; j++) {
+	                     $("#inlineCheckbox" + arrStr[j]).attr("checked","checked");
+	                     $("#nonehabit").append(" "+HABIT_MAP[arrStr[j]]+" ");
+	                 }
+	             }
+	             
+	             if (other != null) {
+	                 $("#displayarea").text(other);
+	             }
+	        }); 
+        }
+    });
+    
+    
+    function getValue() {
+       for(var i=1; i<26; i++) {
+          var id = i.toString();
+          var val = $("#inlineCheckbox" + id).val();
+          if ($("#inlineCheckbox" + id).is(':checked') == true) {
+             all.push(i);
+          }
+       }
+       
+       var habit = "";
+       for (var j=0; j<all.length; j++) {
+           if (j == 0) {
+              habit = all[j];
+           }
+           else {
+              habit = habit+","+all[j];
+           }
+       }
+       var other = document.getElementById('displayarea').value;
+       
+       $.doAjaxPostCall("userHabit", "userid="+window.sessionStorage.getItem("userid")+"&habit="+habit+"&other="+other, function(responseData){
+            console.log(responseData);
+            var obj =responseData;
+            
+            if (responseData.retmsg == "success") {
+                alert("数据更新成功");
+                window.location.reload();
+            }
+            else {
+                alert("数据更新失败");
+            }
+       });
+    }
+</script>
+</header>
+      
+<div class="container">
+   <form action="./symptoms.html?" class="form-horizontal"  role="form">
+   <div>
+    <label for="name">日常不适（点击您的饮食习惯）</label>
+   <div>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox1" class="regular-checkbox" value="1"/><label for="inlineCheckbox1">心慌或烦躁</label>
+   </label>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox2" class="regular-checkbox" value="2"/><label for="inlineCheckbox2">胃纳不佳</label>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox3" class="regular-checkbox" value="3"/><label for="inlineCheckbox3">呼吸短气或声音低微</label>
+   </label>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox4" class="regular-checkbox" value="4"/><label for="inlineCheckbox4">手脚经常冰凉</label>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox5" class="regular-checkbox" value="5"/><label for="inlineCheckbox5">便秘</label>
+   </label>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox6" class="regular-checkbox" value="6"/><label for="inlineCheckbox6">失眠或多梦</label>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox7" class="regular-checkbox" value="7"/><label for="inlineCheckbox7">头晕或胸闷</label>
+   </label>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox8" class="regular-checkbox" value="8"/><label for="inlineCheckbox8">皮肤干燥</label>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox9" class="regular-checkbox" value="9"/><label for="inlineCheckbox9">脸色或指甲淡白</label>
+   </label>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox10" class="regular-checkbox" value="10"/><label for="inlineCheckbox10">面色萎黄或无光泽</label>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox11" class="regular-checkbox" value="11"/><label for="inlineCheckbox11">胃脘饱胀</label>
+   </label>
+   </div>
+   </div>
+   <div class="j-navico bgf8"><span></span></div>
+   <div>
+    <label for="name">生活习惯（点击您的生活习惯）</label>
+   <div>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox12" class="regular-checkbox" value="12"/><label for="inlineCheckbox12">忍饥挨饿或总爱吃撑</label>
+   </label>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox13" class="regular-checkbox" value="13"/><label for="inlineCheckbox13">熬夜</label>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox14" class="regular-checkbox" value="14"/><label for="inlineCheckbox14">思虑过度</label>
+   </label>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox15" class="regular-checkbox" value="15"/><label for="inlineCheckbox15">常吃冷饮或以水果、生蔬菜为主食</label>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox16" class="regular-checkbox" value="16"/><label for="inlineCheckbox16">常过量饮酒</label>
+   </label>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox17" class="regular-checkbox" value="17"/><label for="inlineCheckbox17">久坐（每天坐超过4小时）</label>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox18" class="regular-checkbox" value="18"/><label for="inlineCheckbox18">压力大</label>
+   </label>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox19" class="regular-checkbox" value="19"/><label for="inlineCheckbox19">经常洗冷水澡或冬泳</label>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox20" class="regular-checkbox" value="20"/><label for="inlineCheckbox20">经常使用空调</label>
+   </label>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox21" class="regular-checkbox" value="21"/><label for="inlineCheckbox21">经常使用电热毯等加热器</label>
+   </label>
+   </div>
+   <div class="j-navico bgf8"><span></span></div>
+   <div>
+    <label for="name">运动频率（点击您的运动频率）</label>
+   <div>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox22" class="regular-checkbox" value="22"/><label for="inlineCheckbox22">每周体育运动时间:1小时以下</label>
+   </label>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox23" class="regular-checkbox" value="23"/><label for="inlineCheckbox23">每周体育运动时间:1-4小时</label>
+   </label>
+   </div>
+   <div>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox24" class="regular-checkbox" value="24"/><label for="inlineCheckbox24">每周体育运动时间:4-7小时</label>
+   </label>
+   <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox25" class="regular-checkbox" value="25"/><label for="inlineCheckbox25">每周体育运动时间:7小时以上</label>
+   </label>
+   </div>
+   </div>
+   <div class="j-navico bgf8"><span></span></div>
+
+
+   <div>
+   <label>其他症状：</label>
+   </div>
+   <div>
+      <textarea class="comments" id="displayarea" name="displayarea" rows="10" cols="30"></textarea>
+    </div>
+   </div>
+   </div>
+   </div>
+   <div class="j-navico bgf8"><span></span></div>
+   </div>
+   </form>
+   </div>
+
+   <div class="sec-items">
+            <div class="sec-btn">
+        <input type="submit" class="sec-submit" value="保存" onclick="getValue()"/>
+      </div>
+    </form>
+  </div>                
+
+<section class="user_con mt10 ml10 mr10 fWei" id="userlist" >
+<div class="myFamilyDoctor">
+    <h2  >
+        <a name="myphonedoctor"></a>
+        <div class="dib fl my_userglbg" clicken="3g_health_wdjkgl" onmousedown="clicktest(this)" clicktype="3g_health">我的历史生活习惯<i class="ml10 fn coliyel" id="habitcount">(0)</i>
+        </div>
+        <span class="dib fr userbg">
+        </span>
+    </h2>
+
+    <div class="myphonedoctor" style="display:none;">
+        <div  id="datalist_myhealthmanager">
+           <div class="familyDoctor nonefamilyDoctor " >
+               <div>
+                  <div class="F-cont noneDoctorCont">
+                    <div class="noneDoctor">
+                      <p class="f14" id="nonehabit">暂无历史记录</p>
+                    </div>
+                  </div>
+               </div>
+            </div>
+        </div>
+     </div>
+</div>
+</section>
+    
+<div style="display: none;"></div>
+<footer id="footers">
+    <div class="line"></div>
+    <p><a href="login.html">登录</a><span>|</span><a href="register.html">注册</a></p>  
+    <p><a href="javascript:;">触屏版</a><span>|</span><a class="col" href="../indexmobile.html">手机版</a></p>
+        
+    <p>参考信息不作为诊断医疗数据</p>    
+    <p>版权所有:健康计算器(2002-2016)</p>  
+</footer>
+<script type="text/javascript">
+  (function() {
+    var container = document.getElementById('userlist'),
+    oChild = container.children,
+    length = oChild.length,
+    oSpan = container.getElementsByTagName('h2');
+    for (var i = 0; i < length; i++) {
+      oSpan[i].onclick = function(d) {
+        return function() {
+          for (var i = 0; i < length; i++) {
+            if (i === d) {
+              if (oSpan[d].parentNode.children[1].style.display == 'block') {
+                oSpan[d].parentNode.children[1].style.display = 'none';
+                oSpan[d].className = '';
+              } else {
+                oSpan[d].className = 'current';
+                oSpan[d].parentNode.children[1].style.display = 'block';
+              }
+            } else {
+              oSpan[i].className = '';
+              oSpan[i].parentNode.children[1].style.display = 'none';
+            }
+          }
+        }
+      } (i);
+    }
+  })();
+</script>
+
+</body>
+</html>

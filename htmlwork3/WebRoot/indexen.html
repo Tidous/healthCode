@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Health Calculator</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/3gbx.css"/>
+	<link rel="stylesheet" href="css/swiper.min.css"/>
+    <link rel="stylesheet" href="css/hp-3gdoctor.css" />
+	<script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+	<script type="text/javascript" src="js/config.js"></script>
+    <script type="text/javascript" src="js/global.js"></script>
+	<script type="text/javascript">
+	var lang = navigator.language
+	boolean isEnglish = false;
+	if(lang == "zh-CN"){
+		isEnglish = false;
+	}else{
+		isEnglish = true;
+	}
+　　<!--
+　　//平台、设备和操作系统
+　　var system = {
+　　win: false,
+　　mac: false,
+　　xll: false,
+　　ipad:false
+　　};
+　　//检测平台
+　　var p = navigator.platform;
+　　system.win = p.indexOf("Win") == 0;
+　　system.mac = p.indexOf("Mac") == 0;
+　　system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+　　system.ipad = (navigator.userAgent.match(/iPad/i) != null)?true:false;
+　　//跳转语句，如果是手机访问就自动跳转到" "里的页面
+　　if (system.win || system.mac || system.xll||system.ipad) {
+　　
+　　} else {
+　　
+　　window.location.href = "./indexmobile.html";
+　　}
+　　-->
+
+    if(!window.sessionStorage){
+	    alert("该游览器不支持某些组件，请使用IE8以上的游览器，谢谢配合");
+	}
+
+	$(function () {
+	    if (window.sessionStorage.getItem("user") && window.sessionStorage.getItem("user") != "") {
+	         $("#userInfo").text("欢迎 "+window.sessionStorage.getItem("user")+"先生/女士");
+	         $("#userInfo").show();
+	         $("#logout").show();
+	         $("#loginimpl").hide();
+	         $("#registerimpl").hide();
+	    }
+	    else {
+	    	 $("#logout").hide();
+	         $("#userInfo").hide();
+	         $("#loginimpl").show();
+	         $("#registerimpl").show();
+	    }
+    });
+
+    function logout() {
+    	var r = confirm("是否确定退出？");
+		if (r==true) {
+		    window.sessionStorage.clear();
+		}
+    }
+　　</script>
+<style>
+.one{ width:600px; height:100px; margin:0 auto;}
+</style>
+</head>
+<body> 
+<div class="one">
+	<header class="hdisBbox">
+		<span></span>
+		<form action="" class="box-flex searchBox">
+				<div class="box-flex searchBox">
+					<input type="text"  id="keyword" class="box-sizing jb-search" placeholder="找医生、搜症状" style="width: 80%"/>
+					<label class="del"></label>
+					<button type="button" class="btn btn-info" style="margin-top: 6px;">搜索</button>
+				</div>
+		</form>
+		<a href="./pagesenpc/login.html" style="width: 50px;margin-top: 16px;font-size:50%;" id="loginimpl">请登入</a>
+		<a href="./pagesenpc/register.html" style="width: 50px;margin-top: 16px;font-size:50%;" id="registerimpl">注册</a>
+		<p id="userInfo" style="width: 200px;margin-top: 16px;font-size:50%;text-align:right"><p>
+		<p style="width: 10px;"><p>
+	    <a href="" id="logout" style="width: 50px;margin-top: 16px;font-size:50%;" onclick="logout()">退出</a>
+	</header>
+
+	<section>
+		<!-- 首页轮转广告 -->
+		<div class="swiper-container">
+
+			<div class="swiper-wrapper">
+	
+				
+				<div class="swiper-slide">
+				<img src="images/1.jpg">
+				</div>
+				
+				<div class="swiper-slide">
+				<img src="images/2.png">
+				</div>
+				
+				
+				<div class="swiper-slide">
+				<img src="images/3.png">
+				</div>
+				
+					
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+		
+		 <!--养生四大模块-->
+		<div class="hk-tab js-tab-wrap">
+            <div class="hp-tab-wrap">
+                <div class="hp-tab-box js-tab-box">
+                    <ul>
+					<li>
+                    	<a class="js-href1" href="./pagesenpc/weather.html" ><img src="./images/hp-checkIllness-icon.png"><span>看天吃饭</span></a>
+					</li>
+					<li>
+						<a class="js-href2" href="./pagesenpc/people.html" ><img src="./images/hp-checkSymptom-icon.png"><span>看人吃饭</span></a>
+                    </li>
+					</ul>
+					<ul>
+					<li>
+						<a href="./pagesenpc/food.html" ><img src="./images/hp-findIill-icon.png"><span>食疗养生</span></a>
+                    </li>
+					<li>
+						<a href="./pagesenpc/simple_people.html" ><img src="./images/hp-allDrug-icon.png"><span>体质特点</span></a>
+                    </li>
+					</ul>
+                </div>
+            </div>
+        </div>
+
+
+
+
+<div class="panel panel-info">
+   <div class="panel-heading">
+      <h3 class="panel-title">本周精选养生文章</h3>
+   </div>
+   <div class="panel-body">
+      <a class="js-href1" href="./pagesenpc/article1.html">没事儿的时候应该闭目养神</a>
+   </div>
+</div>
+<div class="panel panel-info">
+   <div class="panel-heading">
+      <h3 class="panel-title">本周精选养生文章</h3>
+   </div>
+   <div class="panel-body">
+      <a class="js-href1" href="./pagesenpc/article2.html">内经为什么有素问？</a>
+   </div>
+</div>
+<div class="panel panel-info">
+   <div class="panel-heading">
+      <h3 class="panel-title">本周精选养生文章</h3>
+   </div>
+   <div class="panel-body">
+      <a class="js-href1" href="./pagesenpc/article3.html">中医针灸疗法中的灸法</a>
+   </div>
+</div>
+
+		<!--底部详细模块-->
+		<div class="usercenter">
+	        <div class="dis-box fyahei f12">
+				<a class="box-flex-1 db" href="./indexen.html?fromurl=wk_1" onMouseDown="__sendClickOdm('3g_homepage', this, '3gindex:3g_home_fuwu+')">
+					<dl>
+						<dt><img src="./images/ft-icon1.png" alt=""></dt>
+						<dd>首页</dd>
+					</dl>
+				</a>
+				<a class="box-flex-1 db" href="./pagesenpc/symptoms.html" onMouseDown="__sendClickOdm('3g_homepage', this, '3gindex:3g_home_gl+')">            
+	            <dl class=""> 
+	                <dt><img src="./images/ft-icon2.png" alt=""></dt>
+	                <dd>生活习惯</dd>
+	            </dl>
+				</a>
+				<a class="box-flex-1 db" href="./pagesenpc/article1.html" onMouseDown="__sendClickOdm('3g_homepage', this, '3gindex:3g_home_myhospital+')">
+	            <dl>
+	                <dt><img src="./images/ft-icon3.png" alt=""></dt>
+	                <dd>养生宝典</dd>
+	            </dl>
+				</a>
+				<a class="box-flex-1 db" href="./pagesenpc/login.html?fromurl=wk_1" onMouseDown="__sendClickOdm('3g_homepage', this, '3gindex:3g_home_selfcenter_down+')">
+	            <dl>
+	                <dt><img src="./images/ft-icon4.png" alt=""></dt>
+	                <dd>个人中心</dd>
+	            </dl>
+				</a>
+	        </div>
+	    </div> 
+    </section>
+
+
+</div>
+</body>
+</html>

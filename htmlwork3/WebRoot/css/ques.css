@@ -1,0 +1,131 @@
+body{font-size:14px;font-family:"Microsoft Yahei";position:relative;}
+input {-webkit-appearance:none;outline:none;}
+h2{font-weight:normal;}
+em{font-style:normal;}
+a,a:hover{text-decoration:none;}
+.flex{display:box;display:-webkit-box;display:-moz-box;}
+.flexRate{box-flex:1;-moz-box-flex:1;-webkit-box-flex:1;}
+.borderBox{box-sizing:border-box;-moz-box-sizing:border-box; /* Firefox */-webkit-box-sizing:border-box;} 
+
+/* 妇科 */
+.wrap{width:100%;position:relative;min-height:460px;}
+.wrapBg{background:#f7f7f7;}
+.header{width:100%;height:42px;line-height:42px;text-align:center;font-size:16px;color:#3cb3bf;border-top:1px solid #b3b2b1;border-bottom:1px solid #c7c6c5;background:-webkit-linear-gradient(top,#e9e9e9,#e4e4e4 50%,#dfdfdf);background:linear-gradient(top,#e9e9e9,#e4e4e4 50%,#dfdfdf);position:relative;}
+.banner{width:100%;height:88px;background:url(http://static.img.xywy.com/3g_ques/images/ban.jpg) no-repeat center center;border-bottom:1px solid #e7e7e7;max-width:640px;margin:0 auto;}
+.ban-wrap{width:100%;}
+.ban-photoDiv{width: 58px; height: 58px; display: inline-block; padding: 10px 0px 0px 10px;}
+.ban-photo{display:block;width:56px;height:56px;border:1px solid #b6b6b6;border-radius:58px;margin-top:6px;background:#fff;}
+.ban-para{padding:16px 0 0 10px;color:#fff;font-size:12px;}
+.ban-title{line-height:20px;}
+.ban-name{font-size:14px;margin-right:10px;}
+.ban-des{line-height:18px;max-width:230px;}
+.dia-ban-para{padding-top:25px;}
+
+.con-wrap{padding:5px 10px 0;}
+.con-list li{height:38px;line-height:38px;text-align:center;border:1px solid #c8c8c8;background:#fff;width:100%;border-radius:4px;margin-top:10px;color:#666;font-size:16px;}
+.con-list li.cur{background:#0dc3ce;color:#fff;border-color:#34abb0;}
+
+.btn-wrap{position:absolute;bottom:16px;left:2%;width:96%;}
+.btn-cancel{display:block;height:38px;line-height:38px;text-align:center;border:1px solid #6d727b;background:#848b96;color:#fff;width:100%;border-radius:4px;font-size:14px;font-family:"Microsoft Yahei";}
+.btn-sure{background:#0dc3ce;border-color:#34abb0;}
+
+/* 日期选择框 */
+.filter{position:absolute;top:0;left:0;background:rgba(0,0,0,0.37);width:100%;height:100%;}
+.dateBox{position:fixed;bottom:0;left:0;height:0;background:#fff;width:100%;overflow:hidden;transition:height 500ms;-webkit-transition:height 500ms;/* border-top:1px solid #707070; */}
+.dateTitle{height:44px;line-height:44px;background:#efefef;text-align:right;}
+.dateTitle span{font-size:16px;color:#3cb3bf;padding:0 10px;}
+.dateChoose{margin:20px 0;position:relative;height:174px;overflow:auto;}
+.dateLine{display:block;width:100%;height:34px;border-top:1px solid #cdcdcd;border-bottom:1px solid #cdcdcd;position:relative;top:50%;margin-top:-17px;left:0;}
+.dateCon{width:100%;height:174px;overflow:hidden;position:absolute;top:0;left:0;color:#000;}
+.dateNum,.dateUnit{width:50%;height:174px;position:absolute;top:0;color:#000;}
+.dateNum{left:0;}
+.dateNum li{line-height:36px;font-size:16px; text-align:right;}
+.dateNum li span{display:inline-block;width:80px;text-align:center;}
+.dateUnit{right:0;line-height:174px;font-size:18px;}
+.dateUnit span{margin-left:25px;}
+
+/* 糖尿病 */
+.state-wrap{padding-top:5px;}
+.state-list li{width:52px;height:40px;line-height:40px;padding:6px 0;border:1px solid #c8c8c8;border-radius:4px;background:#fff;margin:10px 0 0 10px;text-align:center;color:#666;}
+.state-list li:nth-of-type(5n){margin-right:10px;}
+.state-list li.select{background:#0dc3ce;border-color:#34abb0;color:#fff;}
+.state-btn{position:absolute;bottom:16px;left:2%;width:96%;}
+.state-btn a{display:block;height:38px;line-height:38px;text-align:center;border:1px solid #34abb0;background:#0dc3ce;color:#fff;width:100%;border-radius:4px;font-size:14px;font-family:"Microsoft Yahei";}
+.arrow{width:10px;height:20px;position:absolute;left:10px;top:11px;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAqCAMAAABr5eDcAAAAYFBMVEUAAACZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZnx1IImAAAAH3RSTlMA978GI3gU8NvIpDbq5dOWT0IPCrixh2gtG1vsm2xHq0tFTAAAAMRJREFUKM+F01kOhCAQBFBBXHHfdZa+/y1nrL9qSKzPFxLLbkh0zsVYp3HqRMQqTK38Y5S+5U7FmAGLg/AS5Es4GuBOeBTAjTAvgTXhXAFtSkVXYJnT0R7YuEhR4wkHQQZCb4AfQtcA+1jRlTtZYDXT0ZqK8vDUUloUHZOYeqUZ/yp/rZv0WmmEdAUwbsrZ6tUgntbIkwxb78H1QDZwez7Ups0vqnZe8kZ4UVm89vVQm8b6cop7cPBaVnotVBtnufZSWPcD2r4dKHarZLgAAAAASUVORK5CYII=") no-repeat;background-size:cover;}
+
+.state-val-list li{width:288px;font-size:12px;height:38px;line-height:38px;padding:0;}
+.state-val-list li:nth-of-type(2n){margin-right:10px;}
+
+/* 登录前 首页 */
+.header-link{text-align:left;}
+.header-wrap{padding-left:10px;padding-right:10px;}
+.header-wrap a{color:#3cb3bf;}
+.sec-items{position:relative;}
+.sec-title,.sec-drop{height:38px;border-bottom:1px dashed #e7e7e7;line-height:38px;font-size:14px;color:#666;}
+.sec-title-list{border-right:1px solid #e7e7e7;background:#f7f7f7;text-align:center;}
+.sec-title-list:nth-of-type(3){border-right:none;}
+.sex.select{background:#ededed;color:#3cb3bf;}
+.age{position:relative;}
+.arrow-down{position:absolute;width:9px;height:5px;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAJCAMAAAAIAYw9AAAAXVBMVEUAAADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCDo/D3AAAAHnRSTlMA0/r069q7B5KCUUQsIhgNy8nAsa6loHJuY184NhSD6SI3AAAAWklEQVQI11WMRQ6FUBTFzn2Gw3eF7n+ZECRAR00HVYq1DtQxyfDVXqqAqb3gvlv5Oa6t1N2hWEoBj2y2HJ6TZS/ItfKG29Al3Ge/lp5o+FIH/gFCrxONWbPqCI0pBIRlS+K7AAAAAElFTkSuQmCC") no-repeat;background-size:cover;top:17px;left:50%;margin-left:20px;}
+.sec-box{padding:10px;height:230px;border-bottom:1px dashed #e7e7e7;background:#fff;}
+.sec-box textarea{border:none;height:174px;display:block;width:100%;font-family:"Microsoft Yahei";font-size:14px;outline:none;line-height:20px;}
+.sec-below{height:56px;}
+.sec-total{float:right;line-height:20px;color:#aaa9a9;margin-top:36px;font-size:13px;}
+.sec-total em{color:#3cb3bf;}
+.sec-phone-wrap{padding:15px 10px;}
+.sec-phone{height:40px;width:100%;}
+.sec-phone-icon{display:block;width:14px;height:26px;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAA0CAMAAACuLKj9AAAAOVBMVEUAAADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMAqUmI3AAAAEnRSTlMAYJDL0YAp9efdw8C9tJl6WAvVGtIAAAAAaElEQVQ4y+3USRKAIAxE0UZQ5vH+hxVZxarEC8jfdd4+uPQQ0hfMEDMgI52zRA4U9THTDNIo2nIwFbuwgq0uVDyqjRs3/hNz56znhXJvdE5GBSgJA2ZBwPhgFHA0oNENQ5f3dJnPN34DBzQjAdxA/bwAAAAASUVORK5CYII=") no-repeat;background-size:cover;margin:7px 11px 7px 6px;}
+.sec-phone-input{display:block;height:38px;border:1px solid #e7e7e7;border-radius:5px;font-size:14px;font-family:"Microsoft Yahei";padding-left:22px;}
+.sec-btn{padding:0 10px;margin-bottom:15px;}
+.sec-btnhalf{padding:0 10px;margin-bottom:15px;width:48%;float:left;}
+.sec-submit{height:38px;line-height:38px;text-align:center;border:1px solid #34abb0;background:#0dc3ce;color:#fff;width:100%;border-radius:4px;font-size:14px;font-family:"Microsoft Yahei";}
+
+.sec-upload-form{padding:0 10px;position:absolute;top:0;left:0;}
+.sec-upload-wrap{width:100%;height:46px;padding:5px 0;}
+.sec-upload-btn{float:left;display:block;width:44px;height:44px;border:1px solid #e7e7e7;border-radius:4px;text-align:center;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwAQMAAABtzGvEAAAABlBMVEUAAADn5+cmm20aAAAAAXRSTlMAQObYZgAAABpJREFUGNNjYGBgPMDAMBip/2CASg0Ol+GhADETM9w/XMS+AAAAAElFTkSuQmCC") no-repeat center center;background-size:24px 24px;}
+.sec-upload-list{float:left;max-width:204px;height:46px;overflow:hidden;}
+.sec-upload-list ul{height:46px;}
+.sec-upload-file{display:block;width:44px;height:44px;opacity:0;}
+.sec-upload-image{float:left;width:46px;height:46px;margin-right:5px;position:relative;}
+.sec-upload-image img{display:block;width:46px;height:46px;border-radius:4px;}
+.sec-upload-del{width:14px;height:14px;position:absolute;top:2px;right:2px;background:url(http://static.img.xywy.com/3g_ques/images/close.png) no-repeat;background-size:cover;}
+.uploadUnit{right:0;line-height:auto;font-size:18px;}
+.uploadUnit ul{margin-left:25px;}
+.uploadUnit span{margin-left:0px;}
+.uploadUnit li{line-height:36px;}
+
+/* 弹窗 */
+.alertBox{width:270px;border-radius:10px;text-align:center;background:#fff;position:absolute;top:50%;left:50%;margin-left:-135px;margin-top:-51px;font-size:16px;}
+.alertDes{line-height:58px;border-bottom:1px solid #afafbc;color:#000;}
+.alertBut{display:block;line-height:44px;color:#007aff;}
+.alertCen{padding:0 10px;line-height:42px;font-size:14px;background:rgba(0,0,0,.65);border-radius:10px;position:absolute;top:50%;margin-top:-21px;left:50%;color:#fff;opacity:0;}
+
+/* 登录后 提问页 */
+.sec-drop{background:#f7f7f7;position:relative;}
+.sec-drop-wrap{padding:0 46px 0 10px;position:relative;}
+.sec-drop-title{width:100%;}
+.sec-drop-arrow{position:absolute;top:0;right:0;height:38px;width:45px;border-left:1px solid #e7e7e7;background:#ededed;}
+.sec-drop-arrow span{display:block;width:45px;height:38px;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAARCAMAAACLgl7OAAAAbFBMVEUAAADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMBHjFj6AAAAI3RSTlMA+gcC9ePBrjvu1GRMHd7Qm3wqEffrlFA2JxkO4KWAbGAsEhYHiGcAAACqSURBVCjPdZDpDoMgEIQXEO+7Vlvtve//jnWEhBjg+wMzkyXLEJFUFAXRW+g8EudtUpGcmJM6mC8Jc0FKM7OoyKcSe9IR3a68M3j5C7Ye99u9xXVW5+16mGVziLWDyCQ5ZAYrvVi5pU4e/FI34gbwoKEpIXtFDjXblcBXh9YeYBY56inCH/8IPipbJnP61Akme2Ff8kFlhsdIQVCZ/U2MtTN9xNky8ZQn5w/9yxGwT0PmnAAAAABJRU5ErkJggg==") no-repeat  center center;background-size:16px 8px;transition:transform ease-in 0.3s;-webkit-transition:transform ease-in 0.3s;}
+.sec-drop-arrow span.cur{transform:rotate(180deg);-webkit-transform:rotate(180deg);}
+.sec-drop-list{border-top:1px solid #e7e7e7;width:100%;height:0px;background:#fff;position:absolute;top:38px;left:0;box-shadow:0 2px 2px #eee;transition:height ease-in 0.3s;-webkit-transition:height ease-in 0.3s;overflow:hidden;}
+.sec-drop-list li{padding-left:10px;height:36px;line-height:36px;border-bottom:1px solid #e7e7e7;}
+.sec-drop-list li:nth-of-type(1){color:#3cb3bf;}
+
+/* 添加问诊人员 */
+.add-ask-wrap{width:100%;height:0px;position:fixed;bottom:0;left:0;background:#fff;color:#666;transition:height 0.5s;-webkit-transition:height 0.5s;overflow:hidden;}
+.add-ask-title{height:52px;line-height:52px;border-bottom:1px solid #dcdbdc;text-align:center;font-size:16px;}
+.add-ask-con{padding:0 10px;}
+.add-ask-list{width:100%;}
+.add-ask-line{line-height:40px;border-bottom:1px solid #dcdbdc;padding:0 10px;}
+.add-ask-text{width:90px;display:block;font-size:14px;}
+.add-ask-select{padding-left:35px;color:#aaa9a9;position:relative;}
+.add-ask-arrow{position:absolute;right:0;top:16px;width:14px;height:8px;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAPCAMAAADAkV+TAAAAb1BMVEUAAADZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dvZ2dtmbY0OAAAAJHRSTlMA49n59XhIHhIM8OnLi2hYJ8WtqWM8MBcGA9HPuLWal4ZsUz2HDR/lAAAAmklEQVQY03WPVxLDIAxEhcEYg3t3etH9zxgRGAZS3gdod0EjwcSGEn5QDuYOGrFS35mqEAXQgVnxmRWZtd3FujTrmDfXAxVmibPFhHaqp1LPEHhqMo6rH+xEQkjwSEGyD0NuI0neOtFyEudovf2CRGPLxlbjBjG19XKA3N7XPcm8W7/f3NIk9HP/U8IkxJS68Q78AX+YGZOxfgGpAA+RMKjKvwAAAABJRU5ErkJggg==") no-repeat;background-size:14px 8px;}
+.add-ask-btn{padding:10px 0;}
+.add-ask-btn input{display:block;height:36px;line-height:36px;border-radius:4px;color:#fff;font-size:14px;font-family:"Microsoft Yahei";}
+.add-ask-btn input:nth-of-type(1){background:#848b96;border:1px solid #6d727b;margin-right:10px;}
+.add-ask-btn input:nth-of-type(2){background:#0dc3ce;border:1px solid #34abb0;}
+#relList{width:100%;}
+#relList li{text-align:center;}
+
+
+

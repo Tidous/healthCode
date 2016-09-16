@@ -1,0 +1,230 @@
+.dis-box,.dis-box1{
+	width:100%;
+	display:-webkit-box;
+	display:-moz-box;
+	display:-ms-box;
+	display:box;
+	-moz-box-sizing:border-box;
+	-ms-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+.box-flex{
+	box-flex:1;
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	-ms-box-flex:1;
+}
+.col3{
+	color: #333;
+}
+.col6{
+	color: #666;
+}
+.P-cont{
+	-moz-box-shadow: 0 .1em .1em #d9d9d9;
+	-webkit-box-shadow: 0 .1em .1em #d9d9d9;
+	box-shadow: 0 .1em .1em #d9d9d9;
+	border: 1px solid #d9d9d9;
+	background: #fff;
+	border-radius: 4px;
+	padding-bottom: 20px;
+	margin: 15px 10px 20px;
+	font-size: 14px;
+	color: #999;
+}
+.P-cont h2{
+	height: 45px;
+	line-height: 45px;
+	border-bottom: 1px solid #d9d9d9;
+	font-size: 15px;
+	font-weight: normal;
+	padding-left: 10px;
+	color: #333;
+}
+
+.icon-star{
+	display: inline-block;
+	width: 13px;
+	height: 16px;
+	vertical-align: middle;
+	background: url(http://static.img.xywy.com/3g_family_doctor/images/icon-star-de.png) no-repeat;
+	background-size: 13px auto;
+	margin-right: 3px;
+}
+.on{
+	background: url(http://static.img.xywy.com/3g_family_doctor/images/icon-star.png) no-repeat;
+	background-size: 13px auto;
+}
+
+.icon-p-bg{
+	display: inline-block;
+	width: 55px;
+	height: 18px;
+	border: 1px solid #d9d9d9;
+	background: #f3fdf8;
+	color: #707070;
+	line-height: 18px;
+	text-align: center;
+	font-size: 12px;
+	margin-right: 5px;
+	position: relative;
+}
+.icon-p-bg.on{
+	height: 16px;
+	border: 2px solid #32b16c;
+	line-height:16px;
+	background: #f3fdf8 url(http://static.img.xywy.com/3g_family_doctor/images/icon-selec.png) no-repeat right bottom; 
+	background-size: 11px auto;
+}
+ 
+.textBox{height:134px;border:1px solid #d9d9d9;border-radius:2px;}
+.textBox .textarea,.textarea:focus{border:0 none;outline:0;}
+.textBox p{position:absolute;bottom:0;right:10px;height:18px;line-height:18px;color:#999;font-size:12px;}
+.textBox span{color:#32b16c;}
+
+.P-cont .textarea{
+	
+	width: 100%;
+	height: 125px;
+	box-sizing:border-box;
+	padding: 10px;
+	color: #333;
+	font-size: 15px;
+	font-family: \5FAE\8F6F\96C5\9ED1;
+}
+
+.P-cont .btn-box{
+	margin-top: 10px;
+	text-align: center;
+}
+
+.P-cont .btn-box button{
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	color: #fff;
+	background: #32b16c;
+	border:none;
+	border-radius: 4px;
+	width: 30%; 
+}
+
+
+.user-fabg {
+	background-position: 12px -441px;
+}
+
+.F-cont .F-tit{
+	height: 45px;
+	line-height: 45px;
+	font-weight: normal;
+	padding: 0 10px;
+	border-bottom: 1px solid #d9d9d9;
+}
+.F-cont .F-tit span{
+	color: #ff7a22;
+}
+.F-cont .F-tit b{
+	font-weight: normal;
+	color: #666;
+}
+.F-order {
+	padding:8px 10px;
+	border-bottom: 1px dashed #d9d9d9;
+}
+.F-order dt p span{
+	color: #666;
+}
+.F-order dd a{
+	display: inline-block;
+	height: 28px;
+	line-height: 28px;
+	border-radius: 4px;
+	font-size: 14px;
+	border: none;
+	padding: 0 10px;
+	color: #fff;
+	background: #32b16c;
+}
+.F-order dd a.de{
+	background: #999;;
+}
+.F-pic {
+	padding: 10px;
+}
+.F-pic img{
+	border: 1px solid #d9d9d9;
+	border-radius: 56px;
+}
+
+.col094{
+	color: #009944;
+}
+
+
+.F-btn{
+	display: block;
+	height: 30px;
+	color: #fff;
+	background: #32b16c;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 4px;
+	font-size: 15px;
+}
+.F-btn-w{
+	display: block;
+	height: 30px;
+	color: #fff;
+	background: #fd9c2b;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 4px;
+	font-size: 15px;
+}
+
+.F-more{
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	border-bottom: 1px solid #d8d8d9;
+	color: #666;
+	font-size: 13px;
+}
+.more-L span{
+	display:block;
+	height:50px;
+}
+
+.more-L .loading{
+	background:url(http://static.img.xywy.com/3g_club/images/xywy_loading.gif) no-repeat 35% center;
+	-webkit-background-size:24px auto; background-size:24px auto;
+}
+
+
+.F-hint{
+	color: #ff7a22;
+}
+.w40{
+	width: 40%;
+	margin: 0 auto;
+}
+.F-pay{padding-top: 15px;border-top: 1px dashed #d9d9d9;padding-bottom:10px;}
+.my-dl{padding: 8px 10px;}
+
+.noneDoctor{height:80px;text-align:center;line-height:30px;padding-top:20px;margin-bottom:30px;}
+.noneDoctor a{color:#32b16c;}
+.myFamilyDoctor .noneDoctorCont{padding-bottom:0;margin-bottom:20px;}
+.nonefamilyDoctor{padding-bottom:1px;}
+
+
+.s-noResult{width:100%;position:absolute;text-align:center;top:40%;}
+
+.bus p{float:left;margin-top:15px;}
+.bus .pay-mode-bg p span{margin-top:-17px}
+
+.myFamilyDoctor{background:#ebebeb;}
+.myFamilyDoctor h2{background:#fff;}
+.myFamilyDoctor .F-cont{margin-top:10px;background:#fff;border-radius:5px;width:98%;margin-left:1%;margin-bottom:10px;padding-bottom: 10px;}
+.text-elli {display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:1;word-wrap:break-word;}

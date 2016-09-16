@@ -1,0 +1,161 @@
+
+<html>
+<head>
+<meta charset="utf-8" /> 
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<title>新用户注册中心_健康计算器</title>
+	<meta name="description" content="手机健康计算器3g版"/> 
+	<meta name="keywords" content="手机健康计算器,健康计算器首页,手机健康计算器3g"/>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+    	<link rel="stylesheet" href="../css/3gbx.css" />
+	<link rel="stylesheet" type="text/css" href="../css/zt_reg_style.css">
+	<link href="../bootstrap/css/bootstrap-select.min.css" rel="stylesheet"/>
+	<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+  <script type="text/javascript" src="../bootstrap/js/bootstrap-select.min.js"></script>
+  <script type="text/javascript" src="../js/jquery.js"></script>
+  <script type="text/javascript" src="../js/jquery-2.2.2.min.js"></script>
+  <script type="text/javascript" src="js/config.js"></script>
+  <script type="text/javascript" src="js/global.js"></script>
+  <script type="text/javascript">
+
+    function check() {
+
+      if (document.getElementById("username").value == "") {
+        alert("请输入用户名");
+        return false;
+      }
+      if (document.getElementById("mobile").value == "") {
+        alert("请输入手机号");
+        return false;
+      }
+      if (document.getElementById("password").value == "") {
+        alert("请输入密码");
+        return false;
+      }
+
+      return true; 
+    }
+    
+    function submit() {
+        if (check()) {
+
+          var username = document.getElementById("username").value;
+          var mobile = document.getElementById("mobile").value;
+          var password = document.getElementById("password").value;
+  
+          $.doAjaxPostCall("insertUserInfo", "username="+username+"&mobile="+mobile+"&password="+password, function(responseData){
+  
+            console.log(responseData);
+            var obj =responseData;
+
+            var res = obj.result;
+            var user = obj.username;
+            if (res == "1") {
+                sessionStorage.setItem("user",user);
+                window.location="../index.html";
+            }
+            else if(res == "0") {
+                alert ("注册失败，请联系管理员");
+            }
+          });
+        }
+    }
+    
+    function isNew() {
+        if (document.getElementById("username").value == "") {
+	       alert("请输入用户名");
+	       return;
+	    }
+	    var username = document.getElementById("username").value;
+	    $.doAjaxPostCall("getUserByName", "username="+username, function(responseData){
+  
+            console.log(responseData);
+            var obj =responseData;
+
+            var res = obj.result;
+            var user = obj.username;
+            if (res == "1") {
+                alert("该用户已经存在");
+            }
+        });
+    }
+  </script>
+</head>
+<body class="fYaHei bcfff">
+<div class="wrap dis-box f16">
+		<div class="box-flex-1 ml10 mr10 ">
+        <a href="../index.html">健康计算器</a> <a href="./login.html">· 个人中心</a> 
+        
+        <a href="./user.html
+		" class="fr" clicken="3g_register_dl" onmousedown="clicktest(this);__sendClickOdm('3g_ucenter', this, 'zhuce:3g_register_dl+')" clicktype="3g_ucenter_click">返回</a></div>
+	</div>
+	<h1 class="f18 fwno tc mt20 pt10 mb20">建立家人档案</h1>
+
+	<div class="my_reg">
+		<section class="my-form">
+			<div class="my-wb my_bor mb15 bcfff dis-box">
+				<div class="box-flex-1 pl10">
+				<tr>
+	            	<input type="text" class="m_username f15" id="username" onblur="isNew()" placeholder="请输入姓名" maxlength="15">
+	            </tr>
+				</div>
+            </div>
+			
+			<div class="sec-title flex w">
+				<select id="selectpicker" class="form-control selectpicker" style="width:30%" id="city">
+					<option value ="">家庭关系</option>
+					<option value ="配偶">配偶</option>
+					<option value ="子女">子女</option>
+					<option value ="父母">父母</option>
+					<option value ="其他亲戚">其他亲戚</option>
+				</select>
+			</div>
+			</br>
+			
+			<div class="sec-title flex w">
+				<select id="selectpicker" class="form-control selectpicker" style="width:30%" id="city">
+					<option value ="男">男</option>  
+					<option value ="女">女</option>
+				</select>
+			</div>
+			</br>
+
+            <div class="my-wb my_bor mb15 bcfff dis-box">
+	            <div class="box-flex-1 pl10">
+	            	<input type="text" class="m_username f15" id="mobile" placeholder="请输入身份证号">
+	            </div>
+            </div>
+
+			<div class="my-wb my_bor mb15 bcfff dis-box">
+	            <div class="box-flex-1 pl10">
+	            	<input type="text" class="m_username f15" id="mobile" placeholder="请输入手机号">
+	            </div>
+            </div>
+
+            <!--  <div class="mb15 zt-yam">
+		        <form action="" class="zt-yzm-form" name="">
+		            <div class="zt-forminput my_bor pl10">
+		                <input type="text" class="m_yzm f15" placeholder="激活码">
+		            </div>
+		            <div class="formSub">
+                                <a href="javascript:void(0);" clicken="3g_register_fsyzm" onmousedown="clicktest(this);__sendClickOdm('3g_ucenter', this, 'zhuce:3g_register_fsyzm+')" clicktype="3g_ucenter_click"><input data="m_pvHaveYzm" class="m_yzm_btn" type="button" value="免费发送激活码" /></a>
+		            </div>
+		        </form>
+		    </div> -->
+
+            <div class="sign mt15 mb30">
+                    <button type="button" data-login="loginUp" class="bc39" onclick="submit()">保存</button>
+            </div>
+
+            
+		</section>
+	</div>
+	<input type="hidden" value="3g_web_reg" id="3g_web_reg">
+    <input type="hidden" value="../index.html" name="backurl" id="backurl">
+</body>
+</html>

@@ -1,0 +1,198 @@
+
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="yes" name="apple-touch-fullscreen" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<title>修改个人密码</title>
+	<link rel="stylesheet" href="../css/3gbx.css?v=1463585509">
+    <link rel="stylesheet" type="text/css" href="../css/s3glogin.css?v=1463585509">
+	<link rel="stylesheet" href="../css/m_reset.css"/>
+	<link rel="stylesheet" href="../css/reset_login.css"/>
+	<script src="../js/a.js" language="JavaScript"></script>
+    <script src="../js/odm.js" language="JavaScript"></script>
+    <script src="../lib/jquery.min.js"></script>
+    <script src="../js/iscroll.js"></script>
+  <script type="text/javascript" src="js/config.js"></script>
+  <script type="text/javascript" src="js/global.js"></script>
+  <script type="text/javascript">
+  
+    if(!window.sessionStorage){
+	  alert("该游览器不支持某些组件，请使用IE8以上的游览器，谢谢配合");
+	}
+    
+    $(function () {
+	    if (window.sessionStorage.getItem("user") && window.sessionStorage.getItem("user") != "") {
+	         $("#userInfo").text("您好 "+window.sessionStorage.getItem("user")+"先生/女士");
+	         $("#userInfo").show();
+	    }
+	    else {
+	         $("#userInfo").hide();
+	    }
+    });
+    
+    function orginpsdLine(){
+		$('[data-login=orginpsd]').parent().parent().removeClass('my-wb');
+		$('[data-login=orginpsd]').parent().parent().addClass('bor-warn');
+	}
+	function newpsdLine(){
+		$('[data-login=newpsd]').parent().parent().removeClass('my-wb');
+		$('[data-login=newpsd]').parent().parent().addClass('bor-warn');
+	}
+	function confirmpsdLine(){
+		$('[data-login=confirmpsd]').parent().parent().removeClass('my-wb');
+		$('[data-login=confirmpsd]').parent().parent().addClass('bor-warn');
+	}
+	function lineRemove(){
+		$('[data-login=orginpsd]').parent().parent().addClass('my-wb');
+		$('[data-login=orginpsd]').parent().parent().removeClass('bor-warn');
+		$('[data-login=newpsd]').parent().parent().addClass('my-wb');
+		$('[data-login=newpsd]').parent().parent().removeClass('bor-warn');
+		$('[data-login=confirmpsd]').parent().parent().addClass('my-wb');
+		$('[data-login=confirmpsd]').parent().parent().removeClass('bor-warn');
+		$('[data-yzm=yzm]').parent().removeClass('bor-warn');
+	}
+	function hidden(objhidea){
+		objhidea.addClass('hidden');
+	}
+	function show(objhideb){
+		objhideb.removeClass('hidden');
+	}
+
+    function check() {
+
+      if (document.getElementById("orginpsd").value == "") {
+            lineRemove();
+            orginpsdLine();
+			show($('[data-title=error]'));
+			$('[data-title=error]').html('请输入密码!');
+            $('[data-login=update]').html('修改密码');
+            $('input').removeAttr('disabled');
+            return false;
+      }
+
+      if (document.getElementById("newpsd").value == "") {
+            lineRemove();
+            newpsdLine();
+			show($('[data-title=error]'));
+			$('[data-title=error]').html('请输入新密码!');
+            $('[data-login=update]').html('修改密码');
+            $('input').removeAttr('disabled');
+            return false;
+      }
+      
+      if (document.getElementById("confirmpsd").value == "") {
+          lineRemove();
+          confirmpsdLine();
+		  show($('[data-title=error]'));
+		  $('[data-title=error]').html('请确认新密码!');
+          $('[data-login=update]').html('修改密码');
+          $('input').removeAttr('disabled');
+          return false;
+      }
+      
+      if (document.getElementById("confirmpsd").value != document.getElementById("newpsd").value) {
+          lineRemove();
+          confirmpsdLine();
+          newpsdLine();
+		  show($('[data-title=error]'));
+		  $('[data-title=error]').html('两次密码输入不一致!');
+          $('[data-login=update]').html('修改密码');
+          $('input').removeAttr('disabled');
+          return false;
+      }
+ 
+      alert ("信息提交成功"); 
+      return true; 
+    }
+    
+    function update() {
+    	if (check()) {
+
+            var oldpsd = document.getElementById("orginpsd").value;
+            var newpsd = document.getElementById("confirmpsd").value;
+    
+            $.doAjaxPostCall("updateUserPsd", "username="+window.sessionStorage.getItem("user")+"&newpsd="+newpsd+"&oldpsd="+oldpsd, function(responseData){
+    
+              console.log(responseData);
+              var obj =responseData;
+        
+              var res = obj.result;
+              
+              if (res == "0") {
+            	 alert("未找到该用户！请重新验证用户信息");
+            	 window.location="getpwd_confirm.html";
+              }
+              else if (res == "3"){
+            	 alert("密码修改失败！请重新验证用户信息");
+             	 window.location="getpwd_confirm.html";
+              }
+              else if (res == "1"){
+                 alert("密码修改成功，请重新登录");
+                 window.sessionStorage.clear();
+                 window.location="login.html";
+              }
+            });
+         }
+    }
+  </script>
+</head>
+<body>
+
+		<header class="header box borderBox">
+			<div class="header-logo boxFlex">
+            <a href="../index.html">健康计算器</a><span class="header-dot">·</span><a href="./login.html">个人中心</a>            
+            </div>
+			<div class="header-reg boxFlex"><a href="./register.html" id="userInfo"></a></div>
+		</header>	
+		<section class="reset-con">
+			<div class="title">
+				<h2 class="title-name">修改密码</h2>
+				<a href="./login.html" class="lgoin-link">去登录</a>
+			</div>
+			<form class="reset-form">
+			<div data-title="error" class="mt-10 mb10 f14 cff6 ml10 hidden">请输入验证码！</div>
+			<div class="my-wb mb10 bcfff dis-box"><!--获取验证码时加class名 bor-warn  -->
+				<div class="reset-list data">
+					<input data-login="orginpsd" type="password" class="j-close-show username" id="orginpsd" name="orginpsd" placeholder="请输入原密码">
+					<span class="closebtn"></span>
+				</div>
+		    </div>
+				</br>
+			<div class="my-wb mb10 bcfff dis-box"><!--获取验证码时加class名 bor-warn  -->
+				<div class="reset-list data">
+					<input data-login="newpsd" type="password" class="j-close-show username" id="newpsd" name="newpsd" placeholder="请输入新密码">
+					<span class="closebtn"></span>
+				</div>
+			</div>
+				</br>
+			<div class="my-wb mb10 bcfff dis-box"><!--获取验证码时加class名 bor-warn  -->
+				<div class="reset-list data">
+					<input data-login="confirmpsd" type="password" class="j-close-show username" id="confirmpsd" name="confirmpsd" placeholder="请再次输入新密码">
+					<span class="closebtn"></span>
+				</div>
+			</div>
+				</br>
+			<div class="sign mt15 mb30">
+                    <button type="button" data-login="update" class="bc39" onclick="update()">修改密码</button>
+            </div>
+			</form>
+		</section>
+		<section class="mt20" id="ifooter">
+
+	<nav class="tc w navList f14 clearfix">
+    <a href="../index.html">健康计算器首页</a>
+    </nav>
+	<footer class="clearfix foot lh180 pt10">
+		<div class="w320 clearfix bc">
+ 		</div>
+	</footer>
+</section>
+
+</body>
+</html>

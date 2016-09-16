@@ -1,0 +1,357 @@
+body,html{
+	height:100%;
+}
+body{
+	font-size: 14px;
+	font-family:\5FAE\8F6F\96C5\9ED1;
+	width:100%;
+
+}
+.c3{
+	color:#333;
+}
+.c6{
+	color:#666;
+}
+.c9{
+	color:#999;
+}
+.f10{
+	font-size:10px;
+}
+.mt30{
+	margin-top:30px;
+}
+.mb30{
+	margin-bottom:30px;
+}
+.lh26{
+	line-height: 26px;
+	margin-top: 15px;
+}
+.ti20{
+	text-indent: 20px;
+}
+.tc{
+	text-align:center;
+}
+.fhsy{
+	color:#3ec0ce;
+}
+.mt25{
+	margin-top:25px;
+}
+.wrap{
+	width:100%;
+	height:44px;
+	background:#39becd;
+	line-height:44px;
+		overflow:hidden;
+}
+.wrap a{color:#fff;}
+
+.my-form{
+/* 	width: 100%; */
+	padding: 0px 10px;
+	box-sizing: border-box;
+/* 	margin-left: auto;
+	margin-right: auto; */
+}
+
+
+.my_reg .my-wb{
+	height: 42px;
+	border-radius:5px;
+}
+.my_bor{
+	border:1px solid #d9d9d9;
+}
+.my_reg .my-wb input{
+	width: 100%;
+	height: 100%;
+	color: #333;
+	outline: none;
+	/* text-indent: 0.5em; */
+	border: none;
+	border-radius: 5px;
+	margin-left: -10px;
+	padding-left: 10px;
+	box-sizing: border-box;	
+}
+.my_reg .my-wb .m_password{
+	width: 100%;
+	height: 100%;
+	color: #333;
+	outline: none;
+	/* text-indent: 0.5em; */
+	border: none;
+	border-radius: 5px;
+	margin:0px;
+	box-sizing: border-box;
+}
+.my-wb label{
+	width: 46px;
+	height: 42px;
+	background-size: 15px auto;
+	display: block;
+}
+
+.my-use{
+	background: url(http://static.img.xywy.com/3g_login/images/moblie.png) no-repeat 16px center;
+}
+.my-pw{
+	background: url(http://static.img.xywy.com/3g_login/images/mi.png) no-repeat 16px center;
+}
+
+/*发送验证码 */
+.zt-yam{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+	height: 42px;
+}
+.zt-yzm-form{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+	width: 100%;
+	height: 42px;
+}
+.zt-forminput {
+	box-flex: 1;
+	-moz-box-flex: 1;
+	-webkit-box-flex: 1;
+	margin-right: 15px;
+	border-radius: 5px;
+	background: #fff;
+	height: 42px;
+	padding-left: 0px;
+	
+}
+.zt-forminput input{
+	width: 100%;
+	height: 42px;
+	border: 0px;
+	outline: none;
+	border-radius: 5px;
+	/* text-indent: 0.5em; */
+	font-size: 14px!important;
+	color: #333;
+	padding-left:10px;
+	box-sizing: border-box;	
+}
+.formSub{
+	height: 42px;
+	width: 140px;  border: #d9d9d9 1px solid;  border-radius: 3px;
+	background: #f7f7f7;
+}
+.formSub input{
+	display: block;
+	/* padding: 0 20px; */
+	height: 42px;
+	width: 100%;
+	font-size: 12px;
+	color: #333;
+	outline: none;
+	cursor: pointer;
+	border-radius: 3px;
+	background: #f7f7f7;
+	border: none;
+	/* width: 85px; */  
+	/* border: #d9d9d9 1px solid; */
+}
+
+.formSub .failBtn{
+	background: #afafaf;
+}
+
+.sign{
+	height: 45px;
+}
+.sign button{
+	width: 100%;
+	height: 100%;
+	border: none;
+	cursor: pointer;
+	font-size: 18px;
+	color: white;
+	border-radius:5px;
+	outline: none;
+}
+.m_zcxy input{
+	vertical-align: middle;
+}
+.m_zcxy label{
+	color: #bbbbbb;
+}
+.m_zcxy label a{
+	color: #39becd;
+}
+
+/*input的border阴影*/
+.bor-error{
+	border:1px solid #ff0000;
+	border-radius: 5px;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~*/
+.cfif0{background: #f1f0f0;}
+.bc39{background: #39becd;}
+.bcfff{background: white;}
+.cef5{color: #ef5f08}
+.fl{float: left;}
+.fr{float: right;}
+.tc{text-align:center;}
+.none{display: none;}
+.m_wrom{
+	width:100%;
+	background-color:#ffe4d3;
+	border:1px solid #ffe0cc;
+	border-radius:4px;
+	line-height:15px;
+	padding:13px 13px 10px 13px;
+	color:#333;
+	box-sizing: border-box;
+}
+.gx-bg{
+	width: 14px;
+	height: 14px;
+	display: block;
+	float: left;
+	/* border-radius: 0px; */
+	background: url('http://static.img.xywy.com/3g_login/images/gx-bg.png');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	margin-right:5px;
+}
+.gx-bg.on{
+	width: 14px;
+	height: 14px;
+	display: block;
+	float: left;
+	/* border-radius: 0px; */
+	background: url('http://static.img.xywy.com/3g_login/images/gx-bgon.png');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.fanhuibtn img{
+	float: left;
+    width: 10px;
+    height: 17px;
+    margin-top: 13px;
+}
+/************************************ yzm *****************/
+.my-yam{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+	height: 45px;
+}
+.yzm-form{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+	width: 100%;
+	height: 45px;
+}
+.forminput {
+	box-flex: 1;
+	-moz-box-flex: 1;
+	-webkit-box-flex: 1;
+	margin-right: 15px;
+	border-radius: 5px;
+	background: #fff;
+	height: 45px;
+	border: 1px solid #d9d9d9;
+}
+.forminput.bor-error{
+	border:1px solid #ff0000;
+	border-radius: 5px;
+}
+.forminput input{
+	height: 45px;
+	border: 0px;
+	outline: none;
+	border-radius: 5px;
+	text-indent: 0.5em;
+	font-size: 14px!important;
+}
+.bfff{background: #fff;}
+.bor-warn{
+	box-shadow: #f6c09d 0px 0px 3px 0px;
+	border:1px solid #f6c09d;
+	border-radius: 5px;
+}
+
+.w{width: 100%;}
+.formSub{
+	height: 42px;
+}
+.yzpic{
+	border: 1px solid #c0c0c0;
+	border-radius: 5px;
+	padding:0 10px;
+	height: 45px;
+}
+.yzpic img{margin-top: 4px;}
+.yzpic p{
+	line-height: 17px;
+	font-size: 10px;
+	margin-left: 10px;
+	margin-top: 6px;
+}
+.yzpic p a{margin-left: 10px;}
+.formSub button{
+	display: block;
+	padding: 0 20px;
+	height: 45px;
+	width: 100%;
+	font-size: 16px;
+	color: white;
+	outline: none;
+	cursor: pointer;
+	border-radius: 5px;
+	background: #39becd;
+	border: none;
+}
+
+.formSub .failBtn{
+	background: #afafaf;
+}
+
+/*****************       结束          *****************/
+
+.j-navico {
+margin:65px 0 30px;
+height: 15px;
+border-top: 1px solid #e0e0e0;
+text-align: center;
+}
+
+.j-navico span {
+display: block;
+margin-top: -8px;
+}
+.j-navico b {
+padding: 0 6px;
+background-color: #fff;
+color: #bdbdbd;
+font-weight: normal;
+}
+.other-way{
+	width: 111px;
+	margin:0 auto;
+	padding-bottom: 59px;
+}
+.other-way a{
+	width:42px; 
+	height:42px;
+	margin-right: 25px;
+	display: block;
+}
+.other-way a:last-child{
+	margin-right: 0px;	
+}
+.other-way a img{
+	width: 	100%;
+	height: 100%;
+}

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=GBK"> 
+<meta charset="gb2312"> 
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0 ">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>个人中心</title>
+<meta name="description" content="个人中心"> 
+<meta name="keywords" content="中医养生网">
+<script type="text/javascript" src="./js/t.js"></script>
+<script type="text/javascript" src="./js/head.js"></script>
+<!--[if !IE]>-->
+ <link rel="stylesheet" href="../css/3gbx.css?v=1463585509">
+	<link rel="stylesheet" type="text/css" href="../css/s3glogin.css?v=1463585509">
+<!--<![endif]-->
+<script type="text/javascript" src="../lib/jquery.min.js"></script>
+</head>
+
+<body class="fYaHei cfif0">
+    
+	<div class="wrap dis-box f16">
+		<div class="box-flex-1 pl15"><a href="../indexmobile.html">中医养生网</a> <a href="./login.html">· 个人中心</a></div>
+		<div class="box-flex-1 tr pr15 f14"><a href="./register.html" onmousedown="__sendClickOdm(&#39;3g_ucenter&#39;, this, &#39;login:3g_register_dl+&#39;)" class="cola9 f14">注册</a></div>
+	</div>
+	<h1 class="f18 fwno tc mt30 mb32 c51">登录中医养生网账号</h1>
+	<section class="login">
+	<input type="hidden" name="backurl" id="backurl" value="./mobile1.html">
+		<section class="my-form">
+		<form class="loginForm">
+			<div data-title="error" class="mt-10 mb10 f14 cff6 ml10 hidden">请输入验证码！</div>
+
+            <div class="my-wb mb10 bcfff dis-box"><!--获取验证码时加class名 bor-warn  -->
+	            <div class="box-flex-1 data">
+	            	<input type="text" data-login="user" class="username" name="userName" placeholder="请输入用户名/手机号/邮箱">
+	            </div>
+	            <span class="user-closeBtn closeBtn mr10 dn"></span>
+            </div>
+
+			<div class="my-wb bcfff dis-box mb15"><!--获取验证码时加class名 bor-warn -->
+	            <div class="box-flex-1 data">
+	            	<input data-login="password" type="password" class="password" placeholder="请输入登录密码">
+	            </div>
+	            <span class="pas-closeBtn closeBtn mr10 dn"></span>
+            </div>
+
+          
+            <div class="pass-forget clearfix"><a href="./getpwd_confirm.html" class="fr forget-btn">忘记密码？</a></div>
+
+            <div class="mb15 my-yam hidden">
+		        <div class="yzm-form">
+		            <div class="forminput">  <!--获取验证码时加class名 bor-warn  -->
+                                <input data-yzm="yzm" autocomplete="off" type="text" name="keyword" placeholder="请输入验证码" class="w" style="font-size:12px;">
+		            </div>
+		            <div class="yzpic bfff">
+		                <img data-pictilt="picLitt" class="box-flex-1 fl" onclick="this.src=&#39;http://passport.xywy.com/login.php?act=member_login_captcha&amp;&#39;+Math.random()" src="../js/login.js" alt="">
+		                <p class="fr">看不清楚</p><p></p>
+		                <p><a data-littlepic="picLittle" class="c39" href="javascript:">换一张</a></p>
+		            </div>
+		        </div>
+		    </div>
+
+            <a onmousedown="__sendClickOdm(&#39;3g_ucenter&#39;, this, &#39;login:dl+&#39;)" href="javascript:void(0);">            
+                <div class="sign mt15 mb30">
+                        <button type="submit" data-login="loginUp" class="bc39">登录</button>
+                </div>
+            </a>
+            <div>
+                        <a class="my-wen" href="./doclogin.html?req=login" onmousedown="__sendClickOdm(&#39;3g_ucenter&#39;, this, &#39;login:doctorlogin+&#39;)">我是专家，登录回复问题&gt;&gt;</a></div>
+			                <div class="j-navico"><span><b>其他账号登录</b></span></div>
+			
+			<!--<div class="other-way dis-box">
+				<a class="box-flex-1 " onmousedown="__sendClickOdm(&#39;3g_ucenter&#39;, this, &#39;login:weibo+&#39;)" href="http://3g.i.xywy.com/oauth/sinaLogin"><img src="../images/wb.png"></a>
+				<a class="box-flex-1 " onmousedown="__sendClickOdm(&#39;3g_ucenter&#39;, this, &#39;login:zhifubao+&#39;)" href="http://3g.i.xywy.com/alipay/login"><img src="../images/zfb.png"></a>
+			</div>-->
+		</form>
+        </section>
+	</section>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/a.js"></script><div id="stat-z" style="display: none;">
+</div>
+
+<script type="text/javascript" src="../js/odm.js"></script>
+<script>
+    __sendVisitOdm('3g_ucenter', 'login:3g_register_dl+@zhifubao+@weibo+@dl+@doctorlogin+');
+        $('[data-littlePic=picLittle]').on('click',function(){
+            $('[data-pictilt=picLitt]').attr('src','http://passport.xywy.com//login.php?act=member_login_captcha&'+Math.random());
+        });
+	//$('[data-login=loginUp]').on('click',haveAll);
+	$('.loginForm').on('submit',haveAll);
+	
+	backurl = 'http://3g.i.xywy.com/user/index' ;
+	
+	$('.username').on('blur', function(){
+		var value = $.trim($(this).val());
+		if(value !== ''){
+			tapGo();
+		}
+		
+	});
+	
+	
+	function tapGo(){
+		var loginUsername = $.trim($('[data-login=user]').val());
+		var loginPassword = $.trim($('[data-login=password]').val());
+		var loginYzm = $.trim($('[data-yzm=yzm]').val());
+		//var loginUsername = $('[data-login=user]').val();
+		//console.log(loginUsername+'*****user********'+loginPassword+'******password*******');
+		$.ajax({
+			url:'http://passport.xywy.com/login.php?act=member_login_faild_if_limit&callback=?',
+			dataType:'jsonp',
+			data:'&username='+loginUsername,
+			error: showError,
+			success:function(data){
+				if(data.result == '10000'){					
+					hidden($('[data-yzm=yzm]').parent().parent().parent());
+				}else if(data.result == '-10001'){
+					show($('[data-title=error]'));
+					$('[data-title=error]').html('请输入用户名！');
+					$('input').removeAttr('disabled');
+					hidden($('[data-yzm=yzm]').parent().parent().parent());
+				}else if(data.result == '-10002'){
+					show($('[data-yzm=yzm]').parent().parent().parent());
+					//show($('[data-title=error]'));
+					//$('[data-title=error]').html('manzu');
+				}else{
+					$('input').removeAttr('disabled');
+					hidden($('[data-yzm=yzm]').parent().parent().parent());
+					/*hidden($('[data-title=error]'));*/
+				}
+			}
+		});
+	};
+	function showError(XMLHttpRequest, textStatus, errorThrown) {
+	    var pattern = /timeout|error|notmodified|parsererror/i;
+	    if (pattern.test(textStatus)) {
+	    	$('[data-title=error]').html('加载失败');
+	    	$('[data-login=loginUp]').html('登录');
+            $('input').removeAttr('disabled');
+	    }
+	}
+	
+	function haveAll(){
+		$('[data-login=loginUp]').html('登录中...');
+        $('input').attr('disabled','disabled');
+		var loginUsername = $.trim($('[data-login=user]').val());
+		var loginPassword = $.trim($('[data-login=password]').val());
+		var loginYzm = $.trim($('[data-yzm=yzm]').val());
+		//console.log('进行提交');
+		//console.log(loginUsername+'------'+loginPassword);
+		if(loginUsername == '' && loginPassword == ''){
+			lineRemove();
+			userLine();
+			passLine();
+			show($('[data-title=error]'));
+			$('[data-title=error]').html('请输入用户名和密码!');
+            $('[data-login=loginUp]').html('登录');
+            $('input').removeAttr('disabled');
+            return false;
+		}else if(loginUsername == ''){
+			lineRemove();
+			userLine();
+			show($('[data-title=error]'));
+			$('[data-title=error]').html('请输入用户名!');
+            $('[data-login=loginUp]').html('登录');
+            $('input').removeAttr('disabled');
+            return false;
+		}else if(loginPassword == ''){
+			lineRemove();
+			passLine();
+			show($('[data-title=error]'));
+			$('[data-title=error]').html('请输入密码!');
+            $('[data-login=loginUp]').html('登录');
+            $('input').removeAttr('disabled');
+            return false;
+		}else{
+			$.ajax({
+				url:'http://passport.xywy.com/login.php?act=member_login_submit&callback=?',
+				dataType:'jsonp',
+				data:'&username='+loginUsername+'&passwd='+loginPassword+'&captcha='+loginYzm,
+				error: showError,
+				success:function(data){
+					//console.log(data);
+					tapGo();
+					if(data.result == '-1001'){						
+						lineRemove();
+						userLine();
+						show($('[data-title=error]'));
+						$('[data-title=error]').html('请输入用户名!');
+                        $('[data-login=loginUp]').html('登录');
+                        $('input').removeAttr('disabled');
+					}else if(data.result == '-10002'){
+						lineRemove();
+						userLine();
+						show($('[data-title=error]'));
+						$('[data-title=error]').html('该用户账号不存在!');
+                        $('[data-login=loginUp]').html('登录');
+                        $('input').removeAttr('disabled');
+						$('[data-pictilt=picLitt]').attr('src','http://passport.xywy.com//login.php?act=member_login_captcha&'+Math.random());
+					}else if(data.result == '-10006'){
+						lineRemove();
+						userLine();
+						show($('[data-title=error]'));
+						$('[data-title=error]').html('医生用户请从专用入口登录');
+                        $('[data-login=loginUp]').html('登录');
+                        $('input').removeAttr('disabled');
+						$('[data-pictilt=picLitt]').attr('src','http://passport.xywy.com//login.php?act=member_login_captcha&'+Math.random());
+					}else if(data.result == '-1002'){
+						/*if(loginYzm == ''){
+							lineRemove();
+							passLine();
+	                        yzmLine();
+							show($('[data-title=error]'));
+							$('[data-title=error]').html('请输入密码!');
+	                        $('[data-login=loginUp]').html('登录');
+	                        $('input').removeAttr('disabled');
+                        }else{*/
+                            lineRemove();
+							passLine();
+							show($('[data-title=error]'));
+							$('[data-title=error]').html('请输入密码!');
+                            $('[data-login=loginUp]').html('登录');
+                            $('input').removeAttr('disabled');
+                        /*}*/
+					}else if(data.result == '-10003'){
+						lineRemove();
+						userLine();
+						passLine();
+						show($('[data-title=error]'));
+						$('[data-title=error]').html('您输入的密码和用户名不匹配，请重新输入!');
+                        $('[data-login=loginUp]').html('登录');
+                        $('input').removeAttr('disabled');
+						$('[data-pictilt=picLitt]').attr('src','http://passport.xywy.com//login.php?act=member_login_captcha&'+Math.random());
+					}else if(data.result == '-10005'){
+						//手机未验证    跳转手机激活页面
+						lineRemove();
+						$.ajax({
+							url:'/index/userPwd/&callback=?',
+							data:'&passwd='+loginPassword,
+							success:function(data) {
+							   hidden($('[data-title=error]'));
+							   $('[data-title=error]').html('hrefgo');
+							   backurl = '/index/authUser?act=t_3g_login_vcode&refreshTemp=2&mobile='+loginUsername;
+							   if(data){
+								   backurl+='&backurl='+data;
+								}
+							   //checkLogin(backurl);
+							   window.location = backurl;
+							   return false ;
+							}	
+						});
+				        //return true ;
+						
+					}else if(data.result == '-10004'){
+						//邮箱未验证     but  this time   success
+						lineRemove();
+						hidden($('[data-title=error]'));
+						//checkLogin(backurl);
+						//window.location = backurl;
+					}else if(data.result == '-1003'){
+						lineRemove();
+						yzmLine();
+						show($('[data-title=error]'));
+						$('[data-title=error]').html('请输入验证码!');
+                        $('[data-login=loginUp]').html('登录');
+                        $('input').removeAttr('disabled');
+					}else if(data.result == '-1004'){
+						lineRemove();
+						yzmLine();
+						show($('[data-title=error]')); 
+						$('[data-title=error]').html('验证码输入错误!');
+                        $('[data-login=loginUp]').html('登录');
+                        $('input').removeAttr('disabled');
+                        $('[data-pictilt=picLitt]').attr('src','http://passport.xywy.com//login.php?act=member_login_captcha&'+Math.random());
+					}else{
+						//login success！
+						lineRemove();
+						var from_url = '';
+						var link_url = '';
+						var searchUrl = location.search;
+						var from_url = '';
+						if(from_url)link_url = '?'+from_url;
+						if(backurl){
+							
+							window.location=backurl;
+						}else if(searchUrl.indexOf('ucback=') != -1){
+							var urlLen = searchUrl.indexOf('ucback=');
+							var ucBackUrl = searchUrl.substring(urlLen+7);
+							window.location = ucBackUrl;
+						}else{
+							window.location="/user/index"+link_url;
+							$('[data-login=loginUp]').html('登录');
+                        	$('input').removeAttr('disabled');
+						}
+					}
+				}
+			});
+		}
+		return false;
+	};
+
+	function userLine(){
+		$('[data-login=user]').parent().parent().removeClass('my-wb');
+		$('[data-login=user]').parent().parent().addClass('bor-warn');
+	}
+	function passLine(){
+		$('[data-login=password]').parent().parent().removeClass('my-wb');
+		$('[data-login=password]').parent().parent().addClass('bor-warn');
+	}
+	function yzmLine(){
+		$('[data-yzm=yzm]').parent().addClass('bor-warn');
+	}
+	function lineRemove(){
+		$('[data-login=user]').parent().parent().addClass('my-wb');
+		$('[data-login=user]').parent().parent().removeClass('bor-warn');
+		$('[data-login=password]').parent().parent().addClass('my-wb');
+		$('[data-login=password]').parent().parent().removeClass('bor-warn');
+		$('[data-yzm=yzm]').parent().removeClass('bor-warn');
+	}
+	function hidden(objhidea){
+		objhidea.addClass('hidden');
+	}
+	function show(objhideb){
+		objhideb.removeClass('hidden');
+	}
+        
+        
+    $('.data').on('focus', 'input', function(){
+		var userN = $.trim($('.username').val());
+		var passN = $.trim($('.password').val());
+		$(this).parent('.data').siblings('.my-use').addClass("my-sruse");
+		$(this).parent('.data').siblings('.my-pw').addClass("my-srpw");
+	});
+
+	$('.data').on('blur', 'input', function(){
+		var userN = $.trim($('.username').val());
+		var passN = $.trim($('.password').val());
+		if(!userN == ''){
+			$('.user-closeBtn').css('display','block');
+		}else{
+			$('.user-closeBtn').css('display','none');
+			$('.my-use').removeClass("my-sruse");
+		}
+		if(!passN == ''){
+			$('.pas-closeBtn').css('display','block');
+		}else{
+			$('.pas-closeBtn').css('display','none');
+			$('.my-pw').removeClass("my-srpw");
+		}
+
+	})
+	$('.closeBtn').on('click',function(){
+		$(this).siblings().find('input').val('');
+		$(this).css('display','none');
+		$(this).siblings('.my-use').removeClass("my-sruse");
+		$(this).siblings('.my-pw').removeClass("my-srpw");
+	});
+</script>
+
+
+</body></html>
