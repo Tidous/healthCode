@@ -19,6 +19,20 @@
 	<link rel="stylesheet" href="../css/my-base.css">
     <!--<![endif]-->
         <script type="text/javascript" src="../js/common.js"></script>
+        <script type='text/javascript'>
+    window.onload=function(){
+		if (window.sessionStorage.getItem("user") && window.sessionStorage.getItem("user") != "") {
+	         $("#userInfo").text("欢迎 "+window.sessionStorage.getItem("user")+"先生/女士");
+	         $("#userInfo").show();
+	         $("#loginimpl").hide();
+	         $("#registerimpl").hide();
+	    }
+	    else {
+			alert("请先登录或注册");
+			window.location.href = "./login.html";
+	    }
+	}
+	</script>
 </head>
 <body>
 
