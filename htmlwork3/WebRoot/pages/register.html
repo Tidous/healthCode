@@ -13,27 +13,77 @@
 	<meta content="telephone=no" name="format-detection" />
     	<link rel="stylesheet" href="../css/3gbx.css" />
 	<link rel="stylesheet" type="text/css" href="../css/zt_reg_style.css">
+<style>
+.one{ width:600px; height:100px; margin:0 auto;}
+</style>
   <script type="text/javascript" src="../js/jquery.js"></script>
   <script type="text/javascript" src="../js/jquery-2.2.2.min.js"></script>
   <script type="text/javascript" src="js/config.js"></script>
   <script type="text/javascript" src="js/global.js"></script>
   <script type="text/javascript">
 
+    if(!window.sessionStorage){
+	  alert("该游览器不支持某些组件，请使用IE8以上的游览器，谢谢配合");
+	}
+	
+	function userLine(){
+		$('[data-login=user]').parent().parent().removeClass('my-wb');
+		$('[data-login=user]').parent().parent().addClass('bor-warn');
+	}
+	function passLine(){
+		$('[data-login=password]').parent().parent().removeClass('my-wb');
+		$('[data-login=password]').parent().parent().addClass('bor-warn');
+	}
+	function phoneLine(){
+		$('[data-login=mobile]').parent().parent().removeClass('my-wb');
+		$('[data-login=mobile]').parent().parent().addClass('bor-warn');
+	}
+	function lineRemove(){
+		$('[data-login=user]').parent().parent().addClass('my-wb');
+		$('[data-login=user]').parent().parent().removeClass('bor-warn');
+		$('[data-login=password]').parent().parent().addClass('my-wb');
+		$('[data-login=password]').parent().parent().removeClass('bor-warn');
+		$('[data-yzm=yzm]').parent().removeClass('bor-warn');
+	}
+	function hidden(objhidea){
+		objhidea.addClass('hidden');
+	}
+	function show(objhideb){
+		objhideb.removeClass('hidden');
+	}
+
     function check() {
 
       if (document.getElementById("username").value == "") {
-        alert("请输入用户名");
-        return false;
-      }
-      if (document.getElementById("mobile").value == "") {
-        alert("请输入手机号");
-        return false;
-      }
-      if (document.getElementById("password").value == "") {
-        alert("请输入密码");
-        return false;
+            lineRemove();
+			userLine();
+			show($('[data-title=error]'));
+			$('[data-title=error]').html('请输入用户名!');
+            $('[data-login=loginUp]').html('登录');
+            $('input').removeAttr('disabled');
+            return false;
       }
 
+      if (document.getElementById("mobile").value == "") {
+            lineRemove();
+			phoneLine();
+			show($('[data-title=error]'));
+			$('[data-title=error]').html('请输入手机号!');
+            $('[data-login=loginUp]').html('登录');
+            $('input').removeAttr('disabled');
+            return false;
+      }
+      
+      if (document.getElementById("password").value == "") {
+            lineRemove();
+			passLine();
+			show($('[data-title=error]'));
+			$('[data-title=error]').html('请输入密码!');
+            $('[data-login=loginUp]').html('登录');
+            $('input').removeAttr('disabled');
+            return false;
+      }
+ 
       return true; 
     }
     
@@ -58,34 +108,19 @@
             else if(res == "0") {
                 alert ("注册失败，请联系管理员");
             }
+            else if (res == "2") {
+            	alert ("该用户已经存在");
+            }
           });
         }
-    }
-    
-    function isNew() {
-        if (document.getElementById("username").value == "") {
-	       alert("请输入用户名");
-	       return;
-	    }
-	    var username = document.getElementById("username").value;
-	    $.doAjaxPostCall("getUserByName", "username="+username, function(responseData){
-  
-            console.log(responseData);
-            var obj =responseData;
-
-            var res = obj.result;
-            var user = obj.username;
-            if (res == "1") {
-                alert("该用户已经存在");
-            }
-        });
     }
   </script>
 </head>
 <body class="fYaHei bcfff">
+<div>
 <div class="wrap dis-box f16">
 		<div class="box-flex-1 ml10 mr10 ">
-        <a href="../index.html">健康计算器</a> <a href="./login.html">· 个人中心</a> 
+        <a href="../indexmobile.html">健康计算器</a> <a href="./login.html">· 个人中心</a> 
         
         <a href="./login.html
 		" class="fr" clicken="3g_register_dl" onmousedown="clicktest(this);__sendClickOdm('3g_ucenter', this, 'zhuce:3g_register_dl+')" clicktype="3g_ucenter_click">登录</a></div>
@@ -98,7 +133,7 @@
 			
 			<div class="my-wb my_bor mb15 bcfff dis-box">
 	            <div class="box-flex-1 pl10">
-	            	<input type="text" class="m_username f15" id="username" onblur="isNew()" placeholder="请输入用户名" maxlength="15">
+	            	<input type="text" class="m_username f15" id="username" placeholder="请输入用户名" maxlength="15">
 	            </div>
             </div>
 
@@ -147,17 +182,15 @@
                 <b class="gx-bg on"></b>
             	<label for="m_check" class="fl">同意健康计算器<a href="./agreement.html" clicken="3g_register_zcxy" onmousedown="clicktest(this);__sendClickOdm('3g_ucenter', this, 'zhuce:3g_register_zcxy+')" clicktype="3g_ucenter_click">注册协议</a></label>
             </div>
-			<!--
-            <div class="j-navico"><span><b>其他账号登录</b></span></div>
 			
-            <div class="other-way dis-box">
-                <a class="box-flex-1 " onmousedown="__sendClickOdm('3g_ucenter', this, 'zhuce:weibo+')" href="/oauth/sinaLogin"><img  src="../images/wb.png"></a>
-                <a class="box-flex-1 " onmousedown="__sendClickOdm('3g_ucenter', this, 'zhuce:zhifubao+')" href="/alipay/login"><img  src="../images/zfb.png"></a>
-            </div>
-			-->
+            <!--  <div class="other-way dis-box">
+                 <a class="box-flex-1 " onmousedown="__sendClickOdm('3g_ucenter', this, 'zhuce:weibo+')" href="/oauth/sinaLogin"><img  src="../images/wb.png"></a>
+                 <a class="box-flex-1 " onmousedown="__sendClickOdm('3g_ucenter', this, 'zhuce:zhifubao+')" href="/alipay/login"><img  src="../images/zfb.png"></a>
+            </div> -->
 		</section>
 	</div>
 	<input type="hidden" value="3g_web_reg" id="3g_web_reg">
-    <input type="hidden" value="../index.html" name="backurl" id="backurl">
+    <input type="hidden" value="../indexmobile.html" name="backurl" id="backurl">
+  </div>
 </body>
 </html>
