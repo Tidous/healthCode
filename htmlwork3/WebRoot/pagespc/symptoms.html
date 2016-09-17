@@ -43,29 +43,27 @@
         "20":"经常使用空调","21":"经常使用电热毯等加热器","22":"每周体育运动时间:1小时以下","23":"每周体育运动时间:1-4小时","24":"每周体育运动时间:4-7小时","25":"每周体育运动时间:7小时以上"};
     
     $(function() {
-        if (window.sessionStorage.getItem("userid") != undefined && window.sessionStorage.getItem("userid") != "") {
-	        $.doAjaxPostCall("queryHabit", "userid="+window.sessionStorage.getItem("userid"), function(responseData){
-	             console.log(responseData);
-	             var obj =responseData;
-	             
-	             var habit = responseData.habit;
-	             var other = responseData.other;
-	             
-	             if (habit != null) {
-	                 var arrStr = habit.split(",");
-	                 $("#habitcount").text("("+arrStr.length+")");
-	                 $("#nonehabit").text("您平时的生活习惯包括：");
-	                 for (var j=0; j<arrStr.length; j++) {
-	                     $("#inlineCheckbox" + arrStr[j]).attr("checked","checked");
-	                     $("#nonehabit").append(" "+HABIT_MAP[arrStr[j]]+" ");
-	                 }
-	             }
-	             
-	             if (other != null) {
-	                 $("#displayarea").text(other);
-	             }
-	        }); 
-        }
+        $.doAjaxPostCall("queryHabit", "userid="+window.sessionStorage.getItem("userid"), function(responseData){
+             console.log(responseData);
+             var obj =responseData;
+             
+             var habit = responseData.habit;
+             var other = responseData.other;
+             
+             if (habit != null) {
+                 var arrStr = habit.split(",");
+                 $("#habitcount").text("("+arrStr.length+")");
+                 $("#nonehabit").text("您平时的生活习惯包括：");
+                 for (var j=0; j<arrStr.length; j++) {
+                     $("#inlineCheckbox" + arrStr[j]).attr("checked","checked");
+                     $("#nonehabit").append(" "+HABIT_MAP[arrStr[j]]+" ");
+                 }
+             }
+             
+             if (other != null) {
+                 $("#displayarea").text(other);
+             }
+        });
     });
     
     
@@ -272,7 +270,7 @@
 <footer id="footers">
     <div class="line"></div>
     <p><a href="login.html">登录</a><span>|</span><a href="register.html">注册</a></p>  
-    <p><a href="javascript:;">触屏版</a><span>|</span><a class="col" href="../indexmobile.html">手机版</a></p>
+    <p><a href="javascript:;">触屏版</a><span>|</span><a class="col" href="../index.html">电脑版</a></p>
         
     <p>参考信息不作为诊断医疗数据</p>    
     <p>版权所有:健康计算器(2002-2016)</p>  

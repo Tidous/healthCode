@@ -4,8 +4,8 @@
             actionName = '';
         }
         //return "http://5776920e23f5a.sh.cdb.myqcloud.com:4770/QiJian/" + actionName;
-//        return "http://localhost:8080//QiJian/" + actionName;
-        return "http://115.159.217.201:7001//QiJian/" + actionName;
+        //return "http://localhost:8080//QiJian/" + actionName;
+        return "../QiJian/" + actionName;
     }
 
 });

@@ -16,36 +16,36 @@
 		<link href="../css/ques.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../css/my-base.css">
         <link rel="stylesheet" href="../css/zt-Cdisease.css?v=20160521">
-		<style>
-		.one{ width:600px; height:100px; margin:0 auto;}
-		</style>
-		<script src="../lib/jquery.min.js"></script>
-		<script type="text/javascript" src="js/config.js"></script>
-        <script type="text/javascript" src="js/global.js"></script>
-        <script type="text/javascript">
-        function change(id) {
-
-	        $.doAjaxPostCall("queryfoodinfo", "id="+id, function(responseData){
-	            console.log(responseData);
-	            var obj =responseData;
-	            
-	            if (obj.retmsg == "success") {
-	                $("#resultfield").text(obj.fooddesc);
-	            }
-	            else {
-	                alert("数据获取失败");
-	            }
-	        });
-        }
-        </script>
-		</head>
-		<body> 
-	    <div class="one">
-		<header class="header header-link" style="">
-	        <div class="header-wrap">
-	            <a href="../indexmobile.html" onmousedown="clicktest(this);" clicktype="3g_xywy_club" clicken="3g_club_xywy_com_xywy">返回首页</a>
-	        </div>
-	    </header>
+        <script type="text/javascript" src="../js/head.js"></script>
+        <script type="text/javascript" src="../js/pos.js?n=201510271045"></script>
+    </head>
+    <body> 
+        <script type="text/javascript" src="../js/odm.js"></script>
+<script type="text/javascript" src="../js/word.js"></script>
+<header class="header header-link" style="">
+        <div class="header-wrap">
+            <a href="../indexmobile.html" onmousedown="clicktest(this);__sendClickOdm('3g_club_ask_question', this, 'dcpage:xywy+');" clicktype="3g_xywy_club" clicken="3g_club_xywy_com_xywy">返回首页</a>
+        </div>
+    </header>
+<script type="text/javascript" src="../lib/zepto.min.js"></script>	
+<section id="downList" style="display: none;">
+        <ul>
+            <li><a href="../indexmobile.html"><span class="list_icon1"></span>健康计算器网首页</a></li>
+            <li class="active"><a href="./food.html"><span class="list_icon2"></span>查疾病</a></li>    
+            <script  type="text/javascript">
+                if(islogin == true)  {
+                        document.writeln('<li><a href="http://3g.i.xywy.com/user/index" ><span class="list_icon6"></span>个人中心</a></li>');
+                }   else  {
+                        document.writeln('<li><a href="http://3g.i.xywy.com/index/login" ><span class="list_icon6"></span>登录</a></li>');
+                }
+		       $(function() {
+                       	$('.ui-qnav').on('click' , function () {
+                            	$( '#downList' ).toggle();
+                        });
+                }) ;
+            </script> 
+        </ul>   
+</section>
 
         <section class="main mt15 box-flex  pl10 pr10">
 		
@@ -57,46 +57,71 @@
                     </div>
                 </form>
             </div-->
+            <script type="text/javascript">
+                var clearErrorTimeout = null ;
+                showError  = function (a,b,c) {
+                    if(!arguments[1]) {
+                             b = 100;
+                     }
+                     if(!arguments[2]) {
+                             c = 2000;
+                     }
+                     $('body').append('<section id="showMessage" style="display:none;position: fixed;z-index: 99;top:'+b+'px;left: 50%;background: rgba( 0 , 0 , 0 ,.8);color: #fff;margin: -15px 0 0 -100px;width: 200px;height: 30px;line-height: 30px;border-radius: 5px;box-shadow: 0 1px 0 1px rgba(0,0,0,.2);text-align: center; font-size:14px;">'+a+'</section>');
+                     $('#showMessage').show();
+                      clearTimeout( clearErrorTimeout ) ;
+                      clearErrorTimeout = setTimeout(function(){
+                            $('#showMessage').remove();
+                    },c);
+                 }; 
+             $("#searchKeyword").on("click" , function (){
+                  var keyword = $("#TkeyWord").val() ;
+                  if( !keyword ) {
+                      showError("请输入搜索关键字") ;
+                      return false ;
+                  }
+                  window.location.href = "http://m.so.xywy.com/comse.php?keyword=" + keyword ;
+             }) ;
+            </script>
             <div class="zt-sy-info mt20 fyahei pb20">
                 <h4>食物大类</h4>
                 <ul>				
                     <li class="ui-display-box cl666">
-                        <a class="ui-box-flex" clicken="index_common_ill_1635" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="8" onclick="change(id)">辛热的食物</a>
-                        <a class="ui-box-flex" clicken="index_common_ill_2364" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="9" onclick="change(id)">辛平的食物</a>
-                        <a class="ui-box-flex" clicken="index_common_ill_2411" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="10" onclick="change(id)">辛凉的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_1635" onmousedown="clicktest(this)" clicktype="mobilejib">辛热的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_2364" onmousedown="clicktest(this)" clicktype="mobilejib">辛平的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_2411" onmousedown="clicktest(this)" clicktype="mobilejib">辛凉的食物</a>
                     </li>
 									
                     <li class="ui-display-box cl666">
-                        <a class="ui-box-flex" clicken="index_common_ill_3745" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="5" onclick="change(id)">甘热的食物</a>
-                        <a class="ui-box-flex" clicken="index_common_ill_3106" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="6" onclick="change(id)">甘平的食物</a>
-                        <a class="ui-box-flex" clicken="index_common_ill_3307" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="7" onclick="change(id)">甘寒的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_3745" onmousedown="clicktest(this)" clicktype="mobilejib">甘热的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_3106" onmousedown="clicktest(this)" clicktype="mobilejib">甘平的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_3307" onmousedown="clicktest(this)" clicktype="mobilejib">甘寒的食物</a>
                     </li>
 					
 					<li class="ui-display-box cl666">
-                        <a class="ui-box-flex" clicken="index_common_ill_3745" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="13" onclick="change(id)">淡味的食物</a>
-                        <a class="ui-box-flex" clicken="index_common_ill_3106" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="11" onclick="change(id)">咸温的食物</a>
-                        <a class="ui-box-flex" clicken="index_common_ill_3307" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="12" onclick="change(id)">咸凉的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_3745" onmousedown="clicktest(this)" clicktype="mobilejib">淡味的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_3106" onmousedown="clicktest(this)" clicktype="mobilejib">咸温的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_3307" onmousedown="clicktest(this)" clicktype="mobilejib">咸凉的食物</a>
                     </li>
 					
 					<li class="ui-display-box cl666">
-                        <a class="ui-box-flex" clicken="index_common_ill_3745" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="1" onclick="change(id)">酸温的食物</a>
-                        <a class="ui-box-flex" clicken="index_common_ill_3106" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="2" onclick="change(id)">酸寒的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_3745" onmousedown="clicktest(this)" clicktype="mobilejib">酸温的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_3106" onmousedown="clicktest(this)" clicktype="mobilejib">酸寒的食物</a>
 						<a class="ui-box-flex"></a>
                     </li>
 					
 					<li class="ui-display-box cl666">
-                        <a class="ui-box-flex" clicken="index_common_ill_3745" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="3" onclick="change(id)">苦热的食物</a>
-                        <a class="ui-box-flex" clicken="index_common_ill_3106" onmousedown="clicktest(this)" clicktype="mobilejib" onmouseover="this.style.cursor=&#39;pointer&#39;" id="4" onclick="change(id)">苦寒的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_3745" onmousedown="clicktest(this)" clicktype="mobilejib">苦热的食物</a>
+                        <a class="ui-box-flex" clicken="index_common_ill_3106" onmousedown="clicktest(this)" clicktype="mobilejib">苦寒的食物</a>
 						<a class="ui-box-flex"></a>
                     </li>
                 </ul>
 			</div>
 			<div class="j-navico bgf8"><span></span></div>
-            <div class="well well-lg" id="resultfield">辛热的食物：姜、白酒、黄酒、葡萄酒、红茶、花椒、芥末、葱、大蒜、洋葱、胡椒、桂皮。姜，可以生吃、煮姜枣茶、煮水泡脚、也可以用市售“黑糖老姜”泡茶。体寒时食用神仙粥：糯米与姜末同煮沸，后入葱白段，煮熟时，调入醋。鼓励天天泡脚，泡脚时可加入姜或10毫升50度的酒。</div>
+            <div class="well well-lg">辛热的食物：姜、白酒、黄酒、葡萄酒、红茶、花椒、芥末、葱、大蒜、洋葱、胡椒、桂皮。姜，可以生吃、煮姜枣茶、煮水泡脚、也可以用市售“黑糖老姜”泡茶。体寒时食用神仙粥：糯米与姜末同煮沸，后入葱白段，煮熟时，调入醋。鼓励天天泡脚，泡脚时可加入姜或10毫升50度的酒。</div>
 
 
 
-            <div class="j-navico bgf8"><span><b><i class="ui-icoc"></i></b></span></div>
+                    <div class="j-navico bgf8"><span><b><i class="ui-icoc"></i></b></span></div>
             </div>
         </section>
     
@@ -104,6 +129,39 @@
 <script type="text/javascript" src="../js/a.js"></script>
 <script type="text/javascript" src="../js/click.js"></script>
 </div>
-</div>
-</body>
+<footer id="footers">
+    <div class="line"></div>
+    <p>
+        <script type="text/javascript">
+              if(islogin === true)  {
+                  document.writeln('<a href="http://3g.i.xywy.com/user/index">我的咨询</a><span>|</span><a href="http://3g.i.xywy.com/user/index">我的预约</a>') ;
+             } else {
+                  document.writeln('<a href="./login.html">登录</a><span>|</span><a href="./register.html">注册</a>') ;
+              }
+       </script> 
+    </p>
+	
+    <p><a href="javascript:;">触屏版</a><span>|</span><a class="col" href="../index.html">电脑版</a><span>|</span>
+        
+    <p>参考信息不作为诊断医疗数据</p>		
+    <p>版权所有:健康计算器(2002-2016)</p>	
+</footer>
+<script>
+if(/AlipayClient/i.test(navigator.userAgent)){
+    $('.jib3g_ad').hide() ;
+    $('.applink').hide() ;
+    $('#head').hide() ;
+    $('#footers').hide() ;
+}
+</script>
+
+    </body>
+    <script type="text/javascript">
+        $(".zt-jbfl").on("click" , function () {
+          var accesskey =  $(this).attr("accesskey") ;
+          $(this).toggleClass('borb');
+          $(this).find(".xllb").toggleClass("on") ;
+          $("#" + accesskey).toggle();
+        }) ;
+    </script>
 </html>

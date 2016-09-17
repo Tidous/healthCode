@@ -18,11 +18,11 @@
 	<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="../css/m_reset.css" rel="stylesheet"/>
     <link href="../css/ques.css" rel="stylesheet"/>
+	<link href="../bootstrap/css/bootstrap-select.min.css" rel="stylesheet"/>
 	<script type="text/javascript" src="../bootstrap/js/bootstrap-select.min.js"></script>
 	<script type="text/javascript" src="../bootstrap/js/i18n/defaults-zh_CN.js"></script>
     <style>
 	.wrap{overflow:hidden;}
-	.one{}
 .comments {  width:100%;
  overflow:auto;  
  word-break:break-all; }
@@ -90,7 +90,6 @@
   </script>
 </head>
 <body>
-<div class="one">
 <script type="text/javascript" src="../js/pos.js?n=201510271045"></script>
 <script>
     (function(){
@@ -106,7 +105,7 @@
 <div class="wrap wrapBg">
     <header class="header header-link" style="">
         <div class="header-wrap">
-            <a href="../index.html" onmousedown="clicktest(this);__sendClickOdm('3g_club_ask_question', this, 'dcpage:xywy+');" clicktype="3g_xywy_club" clicken="3g_club_xywy_com_xywy">返回首页</a>
+            <a href="../indexmobile.html" onmousedown="clicktest(this);__sendClickOdm('3g_club_ask_question', this, 'dcpage:xywy+');" clicktype="3g_xywy_club" clicken="3g_club_xywy_com_xywy">返回首页</a>
         </div>
     </header>
     <section class="pb20">
@@ -129,7 +128,7 @@
 <//选择城市>
 <div class="sec-title flex w">
 <label>请选择城市: </label>
-   <select id="selectpicker" class="form-control selectpicker" style="width:30%">
+  <select id="selectpicker" class="form-control selectpicker" style="width:30%" id="city">
   <option value ="北京">北京</option>  
   <option value ="上海">上海</option>  
   <option value="重庆">重庆</option>  
@@ -171,22 +170,35 @@
 </select>
 </div>
 </br>
+<ul>
+<li><label>温度：</label></li>
+</br>
+<li><label>湿度：</label></li>
+</ul>
 
-<div class="sec-btn">
+
+   <div class="sec-btn">
    <input onclick="submit()" type="button" class="sec-submit" value="看天吃饭"/>
    </div>
 		<div>
 <label>以下是专家给出的建议：</label>
 </div>
 <div>
-<textarea class="comments" id="displayarea" disabled="disabled" rows="5" cols="30"></textarea>
+			<textarea class="comments" id="displayarea" disabled="disabled" rows="5" cols="30" id="advice"></textarea>
+			</div>
+        <script type="text/javascript">
+            __sendVisitOdm("3g_club_ask_question", "askquestion:Submit_questions+");
+        </script>
+	</div>
 </div>
-</div>
-</div>
+
+
+<script type="text/javascript" src="../js/odm.js"></script>
 </section>
-<div style="display:none;">
+    <script id="pagevisitscript" type="text/javascript" src="http://a.xywy.com/p.js"  data="pv3g_club_xywy_ask_form"></script>
+    <div style="display:none;">
+<script src='http://w.cnzz.com/c.php?id=30098111&l=3' language='JavaScript'></script>
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000239016'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000239016' type='text/javascript'%3E%3C/script%3E"));</script>
 </div>
-</div>
-</body>
+    </body>
 </html>
