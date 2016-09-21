@@ -21,11 +21,24 @@ public class FoodinfoServiceImpl implements FoodinfoService {
 		return baseDAO.find(hql,param);
 	}
 
-	
 	@Override
 	public List<Foodinfo> find(String hql) {
 
 		return baseDAO.find(hql);
+	}
+	
+	@Override
+	public void update(Foodinfo foodinfo) {
+		
+		baseDAO.update(foodinfo);
+		
+	}
+	
+	@Override
+	public void delete(Foodinfo foodinfo) {
+		
+		baseDAO.delete(foodinfo);
+		
 	}
 	
 	public Foodinfo findFoodById(Integer id)  {

@@ -129,6 +129,20 @@
 				<param name="callbackParameter">callback</param>
 			</result>
 		</action>
+		
+		<action name="dbadmindelete" class="action.update.DeleteDBAdmin"
+			method="execute">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+		
+		<action name="dbadminupdate" class="action.update.UpdateDBAdmin"
+			method="execute">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
 
 	</package>
 

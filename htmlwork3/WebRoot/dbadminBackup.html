@@ -11,27 +11,107 @@
     <meta name="description" content="手机健康计算器3g版 - xywy.com"/>
     <meta name="keywords" content="手机健康计算器,健康计算器首页,手机健康计算器3g版"/>
     <div style="display:none;"></div>
-	<link rel="stylesheet" href="./css/my-base.css">
-    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="./css/my-base.css" rel="stylesheet" >
 	<link href="./css/m_reset.css" rel="stylesheet"/>
     <link href="./css/ques.css" rel="stylesheet"/>
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .wrap{overflow:hidden;}
+        .box{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.2);
+            display: none;
+        }
+        .box1{
+            width: 500px;
+            height: 500px;
+            position: fixed;left: 50%; top: 25%;
+            margin-left: -250px;
+            border: 1px solid #000000;
+            background: #fff;
+        }
     </style>
     <script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/config.js"></script>
 	<script type="text/javascript" src="js/global.js"></script>
 	<script type="text/javascript">
-	var pageno = "0";
-	var pagesize = "10";
-	function querytable() {
-	    var table = document.getElementById('selectpicker').value;
-	    $.doAjaxPostCall("dbadminquery", "table="+table+"&pageno="+pageno+"&pagesize="+pagesize, function(responseData){
-	           
-               var obj =responseData;
-	    });
-    }
-	</script>
+		var pageno = "0";
+		var pagesize = "10";
+		var datacenter = null;
+
+		function querytable() {
+		    var table = document.getElementById('selectpicker').value;
+		    $.doAjaxPostCall("dbadminquery", "table="+table+"&pageno="+pageno+"&pagesize="+pagesize, function(responseData){
+		           
+	             var obj =responseData;
+	             datacenter = responseData
+	             
+	             $("#resultheader").empty();
+	             $("#resulttable").empty();
+	             
+	             if (table == "foodinfo") {
+	                 //根据选择的表，动态生成表头
+	                 var headerinfo = "<tr><th  data-field='sellRecordId' data-sortable='true' hidden='true'>id</th><th data-field='srNumber'>食物描述</th><th class='col-xs-2' data-field='action' data-formatter='actionFormatter' data-events='actionEvents'>操作</th></tr>";
+	                 $("#resultheader").append(headerinfo);
+	                 //根据返回结果，生成结果表集
+	                 if (obj.result != null) {
+
+			             for (var i = 0; obj.result != null && i < obj.result.length; i++) {
+
+					         var fundbody = "<tr><th data-field='sellRecordId' data-sortable='true' hidden='true'>"+obj.result[i][0]+"</th><th data-field='srNumber'>"+obj.result[i][1]+"</th><th class='col-xs-2' data-field='action' data-formatter='actionFormatter' data-events='actionEvents'><button class='btn btn-default' onclick='modify(id)' id='"+obj.result[i][0]+"'>修改</button><button class='btn btn-default' onclick='delrecrod(id)' id='"+obj.result[i][0]+"'>删除</button></th></tr>";
+					         $("#resulttable").append(fundbody);
+			             }
+		             }
+	             }
+		    });
+	    }
+	    
+	    function delrecrod(id) {
+	        $.doAjaxPostCall("dbadmindelete", "table="+table+"&pageno="+pageno+"&pagesize="+pagesize, function(responseData){
+		           
+	             var obj =responseData;
+		    });
+	    }
+	    
+	    function modify(id) {
+	        var table = document.getElementById('selectpicker').value;
+	        if (table == "foodinfo") {
+	            for (var i = 0; datacenter.result != null && i < datacenter.result.length; i++) {
+	                if (id == datacenter.result[i][0]) {
+	                     document.getElementById('foodid').value = id;
+	                     document.getElementById('fooddesc').value = datacenter.result[i][1];
+	                }
+	            }
+	        }
+	        jQuery('.box').show();
+	    }
+	    
+	    function confrim() {
+	        var id = document.getElementById('foodid').value;
+	        var desc = document.getElementById('fooddesc').value;
+	        $.doAjaxPostCall("dbadminupdate", "table="+table+"&id="+id+"&desc="+desc, function(responseData){
+		           
+	             var obj =responseData;
+		    });
+	    }
+	    
+	    function back() {
+	        if (pageno == "0") {
+	           alert("当前已经是第一页");
+	        }
+	        else {
+	           pageno = (parseInt(pageno) - 10).toString();
+	           querytable();
+	        }
+	    }
+	    
+	    function next() {
+	        pageno = (parseInt(pageno) + 10).toString();
+	        querytable();
+	    }
+    </script>
 </head>
 <body>
 <div class="wrap wrapBg">
@@ -42,59 +122,53 @@
     </header>
     <section class="pb20">
     <div class="page-header">
-    <h1>数据库维护</h1>
-</div>
-<div class="dropdown" style="padding-left:10px">
-   <label>表名</label>
-   <div class="sec-title flex w">
-		<select id="selectpicker" class="form-control selectpicker" style="width:30%" id="city">
-			<option value ="">--选择表名--</option>
-			<option value ="birthdate">日期信息</option>
-			<option value ="casetable">先天后天信息</option>
-			<option value ="cityinfo">城市</option>
-			<option value ="comuser">用户</option>
-			<option value ="foodinfo">食物</option>
-			<option value ="incrementaldata">自增表</option>
-			<option value ="useradv">专家建议</option>
-			<option value ="userhabit">用户习惯</option>
-			<option value ="userinfo">用户信息</option>
-		</select>
+	    <h1>数据库维护</h1>
 	</div>
-</div>
-   <!--  <p>请输入sql语句（建议有sql相关经验的人员使用）</p> -->
-   </div>
-   <form style="padding-left:10px">
-   <!--<div class="form-group">
+	<div class="dropdown" style="padding-left:10px">
+	   <label>表名</label>
+	   <div class="sec-title flex w">
+			<select id="selectpicker" class="form-control selectpicker" style="width:30%">
+				<option value ="">--选择表名--</option>
+				<option value ="casetable">先天后天信息</option>
+				<option value ="comuser">用户</option>
+				<option value ="foodinfo">食物</option>
+			</select>
+		</div>
+	</div>
+    <!--  <p>请输入sql语句（建议有sql相关经验的人员使用）</p> -->
+    </div>
+    <!--<div class="form-group">
       <input type="text" class="form-control" id="name" 
          placeholder="请输入sql">
-   </div>-->
-   <button class="btn btn-default" onclick="querytable()">查询</button>
-   <button class="btn btn-default" onclick="createtable()">新增</button>
-   </form>
+    </div>-->
+    <button class="btn btn-default" onclick="querytable()">查询</button>
+    <button class="btn btn-default" onclick="createtable()">新增</button>
 
-<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="./dist/bootstrap-table.min.css" rel="stylesheet" type="text/css">
+	<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="./dist/bootstrap-table.min.css" rel="stylesheet" type="text/css">
 
-<table class="table table-hover" id="cusTable"
+    <table class="table table-hover" id="cusTable"
        data-pagination="true"
        data-show-refresh="true"
        data-show-toggle="true"
        data-showColumns="true">
-       <thead>
-          <tr>                                                         
-             <th  data-field="sellRecordId" data-sortable="true">
-                          列名1
-             </th>
-             <th data-field="srNumber" >
-                          列名2
-             </th>
-             <!-- 在此省略表格列的代码，代码和上面差不多 -->
-             <th class="col-xs-2" data-field="action" data-formatter="actionFormatter" data-events="actionEvents">Action</th>   
-          </tr>
+       <thead id="resultheader">
        </thead>
-       <tbody>
+       <tbody id="resulttable">
        </tbody>
-</table>
+    </table>
+    
+    <div class="box">
+        <div class="box1">
+            <div hidden="true"><label>id：</label><input width="200px;" id="foodid"/></div>
+            <div><label>修改内容：</label><input width="200px;" id="fooddesc"/></div>
+            <button class="btn btn-default" onclick="jQuery('.box').hide()" class="close">关闭</button>
+            <button class="btn btn-default" onclick="confrim()" class="close">确定修改</button>
+        </div>
+    </div>
+    
+    <button class="btn btn-default" onclick="back()">上一页</button>
+    <button class="btn btn-default" onclick="next()">下一页</button>
 	
 </body>
 </html>

@@ -12,5 +12,9 @@ public interface FoodinfoService {
 	public List<Foodinfo> find(String hql, List<Object> param);
 	
 	public Foodinfo findFoodById(Integer id);
+	
+    public void update(Foodinfo foodinfo);
+
+	public void delete(Foodinfo foodinfo);
 }
 
