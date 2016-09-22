@@ -52,7 +52,7 @@
 	             $("#resulttable").empty();
 	             
 	             if (table == "foodinfo") {
-	                 //根据选择的表，动态生成表头
+	                 //根据选择的表，动态生成表头食物信息
 	                 var headerinfo = "<tr><th  data-field='sellRecordId' data-sortable='true' hidden='true'>id</th><th data-field='srNumber'>食物描述</th><th class='col-xs-2' data-field='action' data-formatter='actionFormatter' data-events='actionEvents'>操作</th></tr>";
 	                 $("#resultheader").append(headerinfo);
 	                 //根据返回结果，生成结果表集
@@ -61,6 +61,21 @@
 			             for (var i = 0; obj.result != null && i < obj.result.length; i++) {
 
 					         var fundbody = "<tr><th data-field='sellRecordId' data-sortable='true' hidden='true'>"+obj.result[i][0]+"</th><th data-field='srNumber'>"+obj.result[i][1]+"</th><th class='col-xs-2' data-field='action' data-formatter='actionFormatter' data-events='actionEvents'><button class='btn btn-default' onclick='modify(id)' id='"+obj.result[i][0]+"'>修改</button><button class='btn btn-default' onclick='delrecrod(id)' id='"+obj.result[i][0]+"'>删除</button></th></tr>";
+					         $("#resulttable").append(fundbody);
+			             }
+		             }
+	             }
+
+	             if (table == "cityinfo") {
+	                 //根据选择的表，动态生成表头城市信息
+	                 var headerinfo = "<tr><th  data-field='sellRecordId' data-sortable='true' hidden='true'>id</th><th data-field='srNumber'>城市代码</th><th data-field='srNumber'>城市名称</th><th data-field='srNumber'>城市英文名</th><th data-field='srNumber'>国内海外</th><th data-field='srNumber'>南北半球</th><th data-field='srNumber'>数据版本</th><th class='col-xs-2' data-field='action' data-formatter='actionFormatter' data-events='actionEvents'>操作</th></tr>";
+	                 $("#resultheader").append(headerinfo);
+	                 //根据返回结果，生成结果表集
+	                 if (obj.result != null) {
+
+			             for (var i = 0; obj.result != null && i < obj.result.length; i++) {
+
+					         var fundbody = "<tr><th data-field='sellRecordId' data-sortable='true' hidden='true'>"+obj.result[i][0]+"</th><th data-field='srNumber'>"+obj.result[i][1]+"</th><th data-field='srNumber'>"+obj.result[i][2]+"</th><th data-field='srNumber'>"+obj.result[i][3]+"</th><th data-field='srNumber'>"+obj.result[i][4]+"</th><th data-field='srNumber'>"+obj.result[i][5]+"</th><th data-field='srNumber'>"+obj.result[i][6]+"</th><th class='col-xs-2' data-field='action' data-formatter='actionFormatter' data-events='actionEvents'><button class='btn btn-default' onclick='modify(id)' id='"+obj.result[i][0]+"'>修改</button><button class='btn btn-default' onclick='delrecrod(id)' id='"+obj.result[i][0]+"'>删除</button></th></tr>";
 					         $("#resulttable").append(fundbody);
 			             }
 		             }
