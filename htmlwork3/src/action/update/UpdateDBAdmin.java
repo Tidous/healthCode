@@ -1,7 +1,7 @@
 package action.update;
 
 import hib.ora.entity.Foodinfo;
-import hib.service.FoodinfoService;
+import hib.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,8 +15,15 @@ public class UpdateDBAdmin extends AbstractJsonLogAction {
 
 	@Autowired
 	private FoodinfoService foodinfoService;
+	private UseradvService useradvService;
+	private BirthdateService birthdateService;
+	private CasetableService casetableService;
+	private ComuserService comuserService;
+	private UserhabitService userhabitService;
+
 
 	public String execute() {
+        before();
 		if (table == "foodinfo") {
 			String hql = "update "+table+" set fooddesc='"+desc+"' where idfoodinfo="+id;
 //			Foodinfo food = new Foodinfo();
@@ -24,6 +31,18 @@ public class UpdateDBAdmin extends AbstractJsonLogAction {
 //			food.setFooddesc(desc);
 			foodinfoService.update(hql);
 		}
+
+//		if (table == "casetable") {
+//			String hql = "update "+table+" set fooddesc='"+desc+"' where idfoodinfo="+id;
+//			casetableService.update(hql);
+//		}
+//
+//		if (table == "comuser") {
+//			String hql = "update "+table+" set fooddesc='"+desc+"' where idfoodinfo="+id;
+//			comuserService.update(hql);
+//		}
+        after();
+        print();
 
 		return SUCCESS;
 	}
