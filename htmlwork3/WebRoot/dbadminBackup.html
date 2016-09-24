@@ -194,6 +194,7 @@
 	    }
 	    
 	    function confrim() {
+	        var table = document.getElementById('selectpicker').value;
 	        var id = document.getElementById('foodid').value;
 	        var desc = document.getElementById('fooddesc').value;
 	        $.doAjaxPostCall("dbadminupdate", "table="+table+"&id="+id+"&desc="+desc, function(responseData){
