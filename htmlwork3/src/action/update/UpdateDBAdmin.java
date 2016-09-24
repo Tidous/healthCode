@@ -18,10 +18,11 @@ public class UpdateDBAdmin extends AbstractJsonLogAction {
 
 	public String execute() {
 		if (table == "foodinfo") {
-			Foodinfo food = new Foodinfo();
-			food.setid(id);
-			food.setFooddesc(desc);
-			foodinfoService.update(food);	
+			String hql = "update "+table+" set fooddesc='"+desc+"' where idfoodinfo="+id;
+//			Foodinfo food = new Foodinfo();
+//			food.setid(id);
+//			food.setFooddesc(desc);
+			foodinfoService.update(hql);
 		}
 
 		return SUCCESS;
