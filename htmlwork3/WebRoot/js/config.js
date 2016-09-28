@@ -3,7 +3,8 @@
         if (actionName == null || actionName.trim() == '' || actionName.toLowerCase() == 'undefined') {
             actionName = '';
         }
-        return "http://115.159.217.201:7001//QiJian/" + actionName;
+        //return "http://115.159.217.201:7001//QiJian/" + actionName;
+        return "../QiJian/" + actionName;
     }
 
 });

@@ -33,18 +33,18 @@ public class FoodinfoServiceImpl implements FoodinfoService {
 		baseDAO.update(foodinfo);
 		
 	}
-
-	@Override
-	public void update(String hql) {
-
-		baseDAO.update(hql);
-
-	}
 	
 	@Override
 	public void delete(Foodinfo foodinfo) {
 		
 		baseDAO.delete(foodinfo);
+		
+	}
+	
+	@Override
+	public void save(Foodinfo foodinfo) {
+		
+		baseDAO.save(foodinfo);
 		
 	}
 	
@@ -65,4 +65,9 @@ public class FoodinfoServiceImpl implements FoodinfoService {
 	}
 	
 	
+//	public void updateInfo(Foodinfo foodinfo)  {
+//
+//		this.update(foodinfo);
+//	}
+
 }

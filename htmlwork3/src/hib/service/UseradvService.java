@@ -1,7 +1,8 @@
 package hib.service;
 
-import java.util.List;
 import hib.ora.entity.Useradv;
+
+import java.util.List;
 
 public interface UseradvService {
 	

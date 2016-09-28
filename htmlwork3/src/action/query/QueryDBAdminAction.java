@@ -16,7 +16,7 @@ public class QueryDBAdminAction extends AbstractJsonLogAction {
 	
 	@Autowired
 	private DBAdminService dbAdminService;
-	
+
 	private List result;
 	
 	public String query() {

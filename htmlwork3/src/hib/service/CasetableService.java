@@ -23,5 +23,4 @@ public interface CasetableService {
 	public List<Casetable> findAllCase();
 	
 	public List<Casetable> findCaseWithFilter(String m, String s);
-
 }

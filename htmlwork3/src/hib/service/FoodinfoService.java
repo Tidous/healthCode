@@ -15,8 +15,8 @@ public interface FoodinfoService {
 	
     public void update(Foodinfo foodinfo);
 
-	public void update(String hql);
-
 	public void delete(Foodinfo foodinfo);
+	
+	public void save(Foodinfo foodinfo);
 }
 

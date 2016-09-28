@@ -44,8 +44,6 @@
         }
         
         $.doAjaxPostCall("getPeopleInfo", "birthday="+newdate+"&time="+newtime, function(responseData){
-    
-               console.log(responseData);
                var obj =responseData;
     
                if (obj.descriptionFront != null && obj.descriptionFront != "") {
@@ -79,6 +77,34 @@
                $("#displayarea").text(text1+"\n"+text2+"\n"+text3+"\n"+text4);
          });
     });
+    
+    function saveinfo() {
+         var userid = window.sessionStorage.getItem("userid");
+         if (userid == undefined || userid == "" || userid == null) {
+              alert("请先登录系统！");
+         }
+         else {
+              var adv = document.getElementById('displayarea').value;
+              $.doAjaxPostCall("saveUserAdv", "userid="+userid+"&adv="+adv, function(responseData){       
+                    var obj =responseData;
+                    
+                    if (obj != null) {
+                         if(obj.result == "3") {
+                             alert("更新失败，请先联系管理员！");
+                         }
+                         else if(obj.result == "0") {
+                             alert("新增失败，请先联系管理员！");
+                         }
+                         else if(obj.result == "1") {
+                             alert("保存成功！");
+                         }
+                    }
+                    else {
+                         alert("系统错误，请先联系管理员！");
+                    }
+              });
+         }
+    }
     </script>
   </head>
   
@@ -110,23 +136,16 @@
           <p id="displayarea"></p>
       </div>
       <div class="sec-items">
-        <div class="sec-btn">
-           <input onclick="javascript:history.go(-1);" type="button" class="sec-submit" value="关闭"/>
+        <div class="sec-btnhalf" style="margin-left:12px;">
+           <input onclick="javascript:history.go(-1);" type="button" class="sec-submit" value="关闭"/>          
+        </div>
+        <div class="sec-btnhalf">
+           <input onclick="saveinfo();" type="button" class="sec-submit" value="保存"/>
         </div>
       </div>
     </div>
     <script type="text/javascript" src="../js/odm.js"></script>
-    <script>var uploadTop = $('.sec-below').position().top;
-      $('.sec-upload-form').css('top', uploadTop);
-      $('.alertCen').css('marginLeft', '-' + ($('.alertCen').width()) / 2 + 'px');
-      dateQues.init();</script>
     </section>
-    <script id="pagevisitscript" type="text/javascript" src="http://a.xywy.com/p.js" data="pv3g_club_xywy_ask_form"></script>
-    <div style="display:none;">
-      <script src='http://w.cnzz.com/c.php?id=30098111&l=3' language='JavaScript'></script>
-      <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://": " http://");
-        document.write(unescape("%3Cspan id='cnzz_stat_icon_1000239016'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000239016' type='text/javascript'%3E%3C/script%3E"));</script>
-    </div>
     <footer id="footers">
       <div class="line"></div>
       <p>
