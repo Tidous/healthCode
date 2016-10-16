@@ -46,6 +46,11 @@
     
     function submit() {
         if (check()) {
+          var location = document.getElementById("selectpicker").value;
+            if (location == "north"){
+
+            } else {
+            }
 
           var arg = document.getElementById("day").value.split(" ");
           var newdate = arg[2]+"-"+DATE_MAP[arg[1]]+"-"+arg[0];
@@ -140,6 +145,15 @@
 					<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                 </div>
 				<input type="hidden" id="dtp_input3" value="" /><br/>
+            </div>
+            <div class="dropdown" style="padding-left:10px">
+                <label for="dtp_input3" class="col-md-2 control-label">选择地点</label>
+                <div class="sec-title flex w">
+                    <select id="selectpicker" class="form-control selectpicker" style="width:30%">
+                        <option value ="north">北半球</option>
+                        <option value ="south">南半球</option>
+                    </select>
+                </div>
             </div>
 			<div>
 			<!--<a id="displayUI" onclick="displayUI()">自定义后天时间</a>-->
