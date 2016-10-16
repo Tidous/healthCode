@@ -18,6 +18,24 @@
         <link rel="stylesheet" href="../css/zt-Cdisease.css?v=20160521">
         <script type="text/javascript" src="../js/head.js"></script>
         <script type="text/javascript" src="../js/pos.js?n=201510271045"></script>
+        <script type="text/javascript" src="js/config.js"></script>
+        <script type="text/javascript" src="js/global.js"></script>
+        <script type="text/javascript">
+        function change(id) {
+
+	        $.doAjaxPostCall("queryfoodinfo", "id="+id, function(responseData){
+	            console.log(responseData);
+	            var obj =responseData;
+
+	            if (obj.retmsg == "success") {
+	                $("#resultfield").text(obj.fooddesc);
+	            }
+	            else {
+	                alert("数据获取失败");
+	            }
+	        });
+        }
+        </script>
     </head>
     <body> 
         <script type="text/javascript" src="../js/odm.js"></script>
