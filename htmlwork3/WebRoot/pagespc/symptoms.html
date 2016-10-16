@@ -87,7 +87,7 @@
        }
        var other = document.getElementById('displayarea').value;
        
-       $.doAjaxPostCall("userHabit", "userid="+window.sessionStorage.getItem("userid")+"&habit="+habit+"&other="+other, function(responseData){
+       $.doAjaxPostCall("userHabit", "userid="+window.sessionStorage.getItem("user")+"&habit="+habit+"&other="+other, function(responseData){
             console.log(responseData);
             var obj =responseData;
             

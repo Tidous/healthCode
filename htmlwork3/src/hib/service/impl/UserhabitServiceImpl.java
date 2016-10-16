@@ -43,7 +43,7 @@ public class UserhabitServiceImpl implements UserhabitService  {
 	@Override
 	public void save(Userhabit userhabit){
 
-		String Hql = "insert into Userhabit(" +
+		String Hql = "insert into userhabit(" +
 				"userid," +
 				"habit," +
 				"other," +
