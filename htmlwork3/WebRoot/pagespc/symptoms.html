@@ -92,7 +92,11 @@
            }
        }
        var other = document.getElementById('displayarea').value;
-       
+       var userid = window.sessionStorage.getItem("user");
+        if (userid == null){
+            alert("请先登录或注册");
+            window.location.href = "./login.html";
+        }
        $.doAjaxPostCall("userHabit", "userid="+window.sessionStorage.getItem("user")+"&habit="+habit+"&other="+other, function(responseData){
             console.log(responseData);
             var obj =responseData;
