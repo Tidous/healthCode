@@ -148,27 +148,6 @@ public class BirthdateServiceImpl implements BirthdateService {
 
 			return list.get(0);
 		}
-		else if(list.size()>0 && list.get(0) != null) {
-
-			categoryBehind = list.get(0).getCategory();
-			sumanBehind = list.get(0).getSuman();
-			sumb1nBehind = list.get(0).getSumb1n();
-			sumb2nBehind = list.get(0).getSumb2n();
-			sumcnBehind = list.get(0).getSumcn();
-			sumdnBehind = list.get(0).getSumdn();
-			sumenBehind = list.get(0).getSumen();
-			sumasBehind = list.get(0).getSumas();
-			sumb1sBehind = list.get(0).getSumb1s();
-			sumb2sBehind = list.get(0).getSumb2s();
-			sumcsBehind = list.get(0).getSumcs();
-			sumdsBehind = list.get(0).getSumds();
-			sumesBehind = list.get(0).getSumes();
-
-			sumBnBehind = sumb1nBehind+sumb2nBehind;
-			sumBsBehind = sumb1sBehind+sumb2sBehind;
-
-			return list.get(0);
-		}
 		else {
 			return null;
 		}

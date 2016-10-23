@@ -51,15 +51,15 @@
             if (res2[0] == "newtime") {
                 newtime = res2[1];
             }
-            if (res3[0] == "north") {
+            if (res3[1] == "north") {
                 currentPosition = "N";
             }
-            else (res3[0] == "south")
+            if (res3[1] == "south")
             {
                 currentPosition = "S";
             }
 
-            $.doAjaxPostCall("getPeopleInfo", "birthday=" + newdate + "&time=" + newtime + "&location=" + currentPosition[0], function (responseData) {
+            $.doAjaxPostCall("getPeopleInfo", "birthday=" + newdate + "&time=" + newtime + "&location=" + currentPosition, function (responseData) {
                 var obj = responseData;
 
                 if (obj.descriptionFront != null && obj.descriptionFront != "") {
