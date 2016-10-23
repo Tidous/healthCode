@@ -12,6 +12,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico"/>
     <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
     <meta content="telephone=no" name="format-detection"/>
+    <link href="../css/ques.css" rel="stylesheet"/>
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/user_center.css?v=2016052809">
@@ -29,15 +30,29 @@
             overflow: auto;
             word-break: break-all;
         }
+
         .checkbox {
             width: 5%;
             border: 1px solid;
             border-color: black;
         }
-        .p{
-            left: 500px;
+
+        .p {
+            width: 500px;
         }
-        .sec-submit{height:38px;line-height:38px;text-align:center;border:1px solid #34abb0;background:#0dc3ce;color:#fff;width:100%;border-radius:4px;font-size:14px;font-family:"Microsoft Yahei";}
+
+        .sec-submit {
+            height: 38px;
+            line-height: 38px;
+            text-align: center;
+            border: 1px solid #34abb0;
+            background: #0dc3ce;
+            color: #fff;
+            width: 100%;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: "Microsoft Yahei";
+        }
     </style>
 </head>
 <body>
@@ -151,61 +166,59 @@
 <div class="container">
     <form action="./symptoms.html?" class="form-horizontal" role="form">
         <div>
-            <label>日常不适</label>
+            <label style="width: auto;">日常不适</label>
             <div>
-                <label class="checkbox-inline" style="width:350px;">
-   <span>
-   <input type="checkbox" class="checkbox" id="inlineCheckbox1" value="1" onclick="checkSelected(id)"><label class="p">心慌或烦躁</label></span>
-
-                </label>
-                <label class="checkbox-inline" style="width:350px;">
-                    <span><input type="checkbox" class="checkbox" id="inlineCheckbox2" value="2"
-                                 onclick="checkSelected(id)">胃纳不佳</span>
+                <th><label style="width:350px;">
+                    <td><input type="checkbox" class="checkbox" id="inlineCheckbox1" value="1" onclick="checkSelected(id)"></td><td>心慌或烦躁</td></input>
+                </label></th>
+                <label style="width:350px;">
+                    <input type="checkbox" class="checkbox" id="inlineCheckbox2" value="2"
+                                 onclick="checkSelected(id)">胃纳不佳
                 </label>
             </div>
             <div>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" id="inlineCheckbox3" value="3"
                                  onclick="checkSelected(id)">呼吸短气或声音低微</span>
                 </label>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" id="inlineCheckbox4" value="4"
                                  onclick="checkSelected(id)">手脚经常冰凉</span>
                 </label>
             </div>
             <div>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" id="inlineCheckbox5" value="5"
                                  onclick="checkSelected(id)">便秘</span>
                 </label>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
    <span>
       <input type="checkbox" class="checkbox" id="inlineCheckbox6" value="6" onclick="checkSelected(id)">失眠或多梦
 	</span>
                 </label>
             </div>
             <div>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" id="inlineCheckbox7" value="7"
                                  onclick="checkSelected(id)">头晕或胸闷</span>
                 </label>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" id="inlineCheckbox8" value="8"
                                  onclick="checkSelected(id)">皮肤干燥</span>
                 </label>
             </div>
             <div>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" id="inlineCheckbox9" value="9"
                                  onclick="checkSelected(id)">脸色或指甲淡白</span>
                 </label>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" id="inlineCheckbox10" value="10"
                                  onclick="checkSelected(id)">面色萎黄或无光泽</span>
                 </label>
             </div>
             <div>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" id="inlineCheckbox11" value="11"
                                  onclick="checkSelected(id)">胃脘饱胀</span>
                 </label>
@@ -215,53 +228,53 @@
         <div>
             <label for="name">生活习惯</label>
             <div>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
    <span>
       <input type="checkbox" class="checkbox" id="inlineCheckbox12" value="12" onclick="checkSelected(id)">忍饥挨饿或总爱吃撑
 	  </span>
                 </label>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" id="inlineCheckbox13" value="13"
                                  onclick="checkSelected(id)">熬夜</span>
                 </label>
             </div>
             <div>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" id="inlineCheckbox14" value="14"
                                  onclick="checkSelected(id)">思虑过度</span>
                 </label>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" id="inlineCheckbox15" value="15"
                                  onclick="checkSelected(id)">常吃冷饮或以水果、生蔬菜为主食</span>
                 </label>
             </div>
             <div>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" id="inlineCheckbox16" value="16"
                                  onclick="checkSelected(id)">常过量饮酒</span>
                 </label>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
    <span>
       <input type="checkbox" class="checkbox" id="inlineCheckbox17" value="17" onclick="checkSelected(id)">久坐（每天坐超过4小时）
 	  </span>
                 </label>
             </div>
             <div>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" id="inlineCheckbox18" value="18"
                                  onclick="checkSelected(id)">压力大</span>
                 </label>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" id="inlineCheckbox19" value="19"
                                  onclick="checkSelected(id)">经常洗冷水澡或冬泳</span>
                 </label>
             </div>
             <div>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" id="inlineCheckbox20" value="20"
                                  onclick="checkSelected(id)">经常使用空调</span>
                 </label>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" id="inlineCheckbox21" value="21"
                                  onclick="checkSelected(id)">经常使用电热毯等加热器</span>
                 </label>
@@ -270,21 +283,21 @@
             <!--体育锻炼-->
             <div class="j-navico bgf8"><span></span></div>
             <div>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" name="identity" id="identity1" value="22"
                                  onClick="radioSelected1()"/>每周体育运动时间:1小时以下</span>
                 </label>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" name="identity" id="identity2" value="23"
                                  onClick="radioSelected2()"/>每周体育运动时间:1-4小时</span>
                 </label>
             </div>
             <div>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" name="identity" id="identity3" value="24"
                                  onClick="radioSelected3()"/>每周体育运动时间:4-7小时</span>
                 </label>
-                <label class="checkbox-inline" style="width:350px;">
+                <label style="width:350px;">
                     <span><input type="checkbox" class="checkbox" name="identity" id="identity4" value="25"
                                  onClick="radioSelected4()"/>每周体育运动时间:7小时以上</span>
                 </label>
