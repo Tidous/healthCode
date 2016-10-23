@@ -46,17 +46,13 @@
     
     function submit() {
         if (check()) {
-          var location = document.getElementById("selectpicker").value;
-            if (location == "north"){
+            var location = document.getElementById("selectpicker").value;
 
-            } else {
-            }
-
-          var arg = document.getElementById("day").value.split(" ");
+            var arg = document.getElementById("day").value.split(" ");
           var newdate = arg[2]+"-"+DATE_MAP[arg[1]]+"-"+arg[0];
           var newtime = document.getElementById("time").value;
   
-          $.doAjaxPostCall("getPeopleInfo", "birthday="+newdate+"&time="+newtime, function(responseData){
+          $.doAjaxPostCall("getPeopleInfo", "birthday="+newdate+"&time="+newtime+"&location="+location, function(responseData){
   
             console.log(responseData);
             var obj =responseData;
