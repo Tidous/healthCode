@@ -16,23 +16,12 @@
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/user_center.css?v=2016052809">
     <link rel="stylesheet" href="../css/club_app.css" type="text/css"/>
-    <link rel="stylesheet" href="../css/my-base.css">
-    <link rel="stylesheet" href="../css/zt-Cdisease.css?v=20160521">
-    <link href="../css/m_reset.css" rel="stylesheet"/>
-    <link href="../css/ques.css" rel="stylesheet"/>
-    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
     <script src="../lib/jquery.min.js"></script>
     <script type="text/javascript" src="js/config.js"></script>
     <script type="text/javascript" src="js/global.js"></script>
     <style>
         .wrap {
             overflow: hidden;
-        }
-
-        .one {
-            width: 600px;
-            height: 100px;
-            margin: 0 auto;
         }
 
         .comments {
@@ -45,6 +34,10 @@
             border: 1px solid;
             border-color: black;
         }
+        .p{
+            left: 500px;
+        }
+        .sec-submit{height:38px;line-height:38px;text-align:center;border:1px solid #34abb0;background:#0dc3ce;color:#fff;width:100%;border-radius:4px;font-size:14px;font-family:"Microsoft Yahei";}
     </style>
 </head>
 <body>
@@ -158,11 +151,11 @@
 <div class="container">
     <form action="./symptoms.html?" class="form-horizontal" role="form">
         <div>
-            <label for="name">日常不适</label>
+            <label>日常不适</label>
             <div>
                 <label class="checkbox-inline" style="width:350px;">
    <span>
-   <input type="checkbox" class="checkbox" id="inlineCheckbox1" value="1" onclick="checkSelected(id)">心慌或烦躁</span>
+   <input type="checkbox" class="checkbox" id="inlineCheckbox1" value="1" onclick="checkSelected(id)"><label class="p">心慌或烦躁</label></span>
 
                 </label>
                 <label class="checkbox-inline" style="width:350px;">
@@ -324,7 +317,7 @@
     <div class="myFamilyDoctor">
         <h2>
             <a name="myphonedoctor"></a>
-            <div class="dib fl my_userglbg" clicken="3g_health_wdjkgl" onmousedown="clicktest(this)"
+            <div class="dib fl my_userglbg" clicken="3g_health_wdjkgl"
                  clicktype="3g_health">我的历史生活习惯<i class="ml10 fn coliyel" id="habitcount">(0)</i>
             </div>
             <span class="dib fr userbg">
@@ -375,6 +368,97 @@
         }
     })();
 </script>
+<script type="text/javascript">
+    function checkSelected(id) {
+        if (document.getElementById(id).checked) {
+            document.getElementById(id).style.backgroundColor = "#888";
+        } else {
+            document.getElementById(id).style.backgroundColor = "white";
+        }
+    }
 
+    function radioSelected1() {
+        document.getElementById("identity1").checked = "false";
+        document.getElementById("identity2").checked = "false";
+        document.getElementById("identity3").checked = "false";
+        document.getElementById("identity4").checked = "false";
+        document.getElementById("identity1").style.backgroundColor = "white";
+        document.getElementById("identity2").style.backgroundColor = "white";
+        document.getElementById("identity3").style.backgroundColor = "white";
+        document.getElementById("identity4").style.backgroundColor = "white";
+        document.getElementById("identity1").checked = "true";
+        document.getElementById("identity1").style.backgroundColor = "#888";
+        document.getElementById("identity2").style.backgroundColor = "white";
+        document.getElementById("identity3").style.backgroundColor = "white";
+        document.getElementById("identity4").style.backgroundColor = "white";
+        document.getElementById("identity2").checked = "false";
+        document.getElementById("identity3").checked = "false";
+        document.getElementById("identity4").checked = "false";
+    }
+
+    function radioSelected2() {
+        document.getElementById("identity1").checked = "false";
+        document.getElementById("identity2").checked = "false";
+        document.getElementById("identity3").checked = "false";
+        document.getElementById("identity4").checked = "false";
+        document.getElementById("identity1").style.backgroundColor = "white";
+        document.getElementById("identity2").style.backgroundColor = "white";
+        document.getElementById("identity3").style.backgroundColor = "white";
+        document.getElementById("identity4").style.backgroundColor = "white";
+        document.getElementById("identity2").checked = "true";
+        document.getElementById("identity1").style.backgroundColor = "white";
+        document.getElementById("identity2").style.backgroundColor = "#888";
+        document.getElementById("identity3").style.backgroundColor = "white";
+        document.getElementById("identity4").style.backgroundColor = "white";
+        document.getElementById("identity1").checked = "false";
+        document.getElementById("identity3").checked = "false";
+        document.getElementById("identity4").checked = "false";
+    }
+
+    function radioSelected3() {
+        document.getElementById("identity1").checked = "false";
+        document.getElementById("identity2").checked = "false";
+        document.getElementById("identity3").checked = "false";
+        document.getElementById("identity4").checked = "false";
+        document.getElementById("identity1").style.backgroundColor = "white";
+        document.getElementById("identity2").style.backgroundColor = "white";
+        document.getElementById("identity3").style.backgroundColor = "white";
+        document.getElementById("identity4").style.backgroundColor = "white";
+        document.getElementById("identity3").checked = "true";
+        document.getElementById("identity1").style.backgroundColor = "white";
+        document.getElementById("identity2").style.backgroundColor = "white";
+        document.getElementById("identity3").style.backgroundColor = "#888";
+        document.getElementById("identity4").style.backgroundColor = "white";
+        document.getElementById("identity1").checked = "false";
+        document.getElementById("identity2").checked = "false";
+        document.getElementById("identity4").checked = "false";
+    }
+
+    function radioSelected4() {
+        document.getElementById("identity1").checked = "false";
+        document.getElementById("identity2").checked = "false";
+        document.getElementById("identity3").checked = "false";
+        document.getElementById("identity4").checked = "false";
+        document.getElementById("identity1").style.backgroundColor = "white";
+        document.getElementById("identity2").style.backgroundColor = "white";
+        document.getElementById("identity3").style.backgroundColor = "white";
+        document.getElementById("identity4").style.backgroundColor = "white";
+        document.getElementById("identity3").checked = "true";
+        document.getElementById("identity1").style.backgroundColor = "white";
+        document.getElementById("identity2").style.backgroundColor = "white";
+        document.getElementById("identity3").style.backgroundColor = "white";
+        document.getElementById("identity4").style.backgroundColor = "#888";
+        document.getElementById("identity1").checked = "false";
+        document.getElementById("identity2").checked = "false";
+        document.getElementById("identity3").checked = "false";
+    }
+
+    $(".zt-jbfl").on("click", function () {
+        var accesskey = $(this).attr("accesskey");
+        $(this).toggleClass('borb');
+        $(this).find(".xllb").toggleClass("on");
+        $("#" + accesskey).toggle();
+    });
+</script>
 </body>
 </html>
