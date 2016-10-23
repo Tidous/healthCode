@@ -50,6 +50,7 @@ public class UserhabitServiceImpl implements UserhabitService  {
 				"verinfo" +") values(" +
 				"?," +
 				"?," +
+				"?," +
 				"?" + ")";
 		
 		Object[] param = new Object[4];
