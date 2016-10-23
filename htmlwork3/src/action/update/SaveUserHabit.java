@@ -9,7 +9,7 @@ import action.AbstractJsonLogAction;
 
 public class SaveUserHabit extends AbstractJsonLogAction {
 
-	private Integer userid;
+	private String user;
 	private String habit;
 	private String other;
 	private Integer verinfo;
@@ -23,7 +23,7 @@ public class SaveUserHabit extends AbstractJsonLogAction {
 		Userhabit userhabit = null;
 		
 		try {
-			userhabit = userhabitService.findUserById(userid);
+			userhabit = userhabitService.findUserById(user);
 			if (userhabit != null) {
 				verinfo = userhabit.getVerinfo() + 1;
 				update();
@@ -53,7 +53,7 @@ public class SaveUserHabit extends AbstractJsonLogAction {
 		try {
 			userhabitService.save(userhabit);
 			Userhabit reshabit = null;
-			reshabit = userhabitService.findUserById(userid);
+			reshabit = userhabitService.findUserById(user);
 			if (reshabit != null) {
 				this.retmsg = "success";
 			}
@@ -81,7 +81,7 @@ public class SaveUserHabit extends AbstractJsonLogAction {
 		try {
 			userhabitService.updateHabit(userhabit);
 			Userhabit reshabit = null;
-			reshabit = userhabitService.findUserById(userid);
+			reshabit = userhabitService.findUserById(user);
 			if (reshabit.getVerinfo() == verinfo) {
 				this.retmsg = "success";
 			}
@@ -101,7 +101,7 @@ public class SaveUserHabit extends AbstractJsonLogAction {
 	}
 	
 	private void setUserHab(Userhabit userhabit) {
-		userhabit.setUserid(userid);
+		userhabit.setUser(user);
 		userhabit.setHabit(habit);
 		userhabit.setOther(other);
 		userhabit.setVerinfo(verinfo);	
@@ -117,12 +117,12 @@ public class SaveUserHabit extends AbstractJsonLogAction {
         return retcode;
     }
 
-	public Integer getUserid() {
-		return userid;
+	public String getUser() {
+		return user;
 	}
 
-	public void setUserid(Integer userid) {
-		this.userid = userid;
+	public void setUser(String user) {
+		this.user = user;
 	}
 
 	public String getHabit() {

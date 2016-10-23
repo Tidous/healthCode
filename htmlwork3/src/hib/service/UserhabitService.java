@@ -11,7 +11,7 @@ public interface UserhabitService {
 	
 	public void save(Userhabit userhabit);
 	
-    public Userhabit findUserById(Integer id);
+    public Userhabit findUserById(String user);
 	
 	public void update(String hql, List<Object> param);
 	

@@ -10,7 +10,7 @@ import action.AbstractJsonLogAction;
 
 public class QueryUserHabitAction extends AbstractJsonLogAction {
 
-	private Integer userid;
+	private String user;
 	private String habit;
 	private String other;
 	
@@ -24,7 +24,7 @@ public class QueryUserHabitAction extends AbstractJsonLogAction {
 
 		if (userhabitService != null) {
 			Userhabit userhabit = null;
-			userhabit = userhabitService.findUserById(userid);
+			userhabit = userhabitService.findUserById(user);
 			if (userhabit != null) {
 				this.habit = userhabit.getHabit();
 				this.other = userhabit.getOther();
@@ -46,12 +46,12 @@ public class QueryUserHabitAction extends AbstractJsonLogAction {
         return retcode;
     }
 
-	public Integer getUserid() {
-		return userid;
+	public String getUser() {
+		return user;
 	}
 
-	public void setUserid(Integer userid) {
-		this.userid = userid;
+	public void setUser(String user) {
+		this.user = user;
 	}
 
 	public String getHabit() {

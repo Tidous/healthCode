@@ -54,9 +54,9 @@ public class UserhabitServiceImpl implements UserhabitService  {
 		
 		Object[] param = new Object[4];
 		
-		if(userhabit.getUserid()!=null){
+		if(userhabit.getUser()!=null){
 			
-			param[0]=userhabit.getUserid();
+			param[0]=userhabit.getUser();
 			
 		}else{ param[0]=000000; }
 		
@@ -81,13 +81,13 @@ public class UserhabitServiceImpl implements UserhabitService  {
 		baseDAO.executeSql(Hql, param);	
 	}
 	
-	public Userhabit findUserById(Integer id)  {
+	public Userhabit findUserById(String user)  {
 
 		String Hql = "from Userhabit u where u.userid=?";
 
 		List<Object> param = new ArrayList<Object>();
 
-		param.add(id);
+		param.add(user);
 
 		List<Userhabit> list = this.find(Hql ,param);
 
@@ -109,7 +109,7 @@ public class UserhabitServiceImpl implements UserhabitService  {
 
 		param.add(userhabit.getVerinfo());
 		
-		param.add(userhabit.getUserid());
+		param.add(userhabit.getUser());
 
 		this.update(Hql ,param);
 	}
