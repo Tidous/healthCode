@@ -37,6 +37,7 @@
     <script type="text/javascript">
         var newdate = null;
         var newtime = null;
+        var currentPosition = null;
         $(function () {
             var url = decodeURI(location.href);
             var arrStr = url.substring(url.indexOf("?") + 1).split("&");
@@ -58,7 +59,7 @@
                 currentPosition = "S";
             }
 
-            $.doAjaxPostCall("getPeopleInfo", "birthday=" + newdate + "&time=" + newtime + "&location=" + currentPosition, function (responseData) {
+            $.doAjaxPostCall("getPeopleInfo", "birthday=" + newdate + "&time=" + newtime + "&location=" + currentPosition[0], function (responseData) {
                 var obj = responseData;
 
                 if (obj.descriptionFront != null && obj.descriptionFront != "") {

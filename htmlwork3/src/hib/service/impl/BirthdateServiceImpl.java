@@ -59,7 +59,7 @@ public class BirthdateServiceImpl implements BirthdateService {
 		
 	}
 	
-	public Birthdate getUserBirthInfo(String date, String time, String currentPosition) {
+	public Birthdate getUserBirthInfo(String date, String time) {
 
 		String Sql = "from Birthdate where startdate < STR_TO_DATE(?, '%Y-%m-%d %H:%i:%s') and enddate > STR_TO_DATE(?, '%Y-%m-%d %H:%i:%s')";
 		
@@ -106,7 +106,7 @@ public class BirthdateServiceImpl implements BirthdateService {
 		}
 	}
     
-	public Birthdate getSysdateInfo(String date, String time, String currentPosition) {
+	public Birthdate getSysdateInfo(String date, String time) {
 
         String Sql = "from Birthdate where startdate < STR_TO_DATE(?, '%Y-%m-%d %H:%i:%s') and enddate > STR_TO_DATE(?, '%Y-%m-%d %H:%i:%s')";
 		
@@ -127,7 +127,7 @@ public class BirthdateServiceImpl implements BirthdateService {
 
 		List<Birthdate> list = this.find(Sql ,param);
 		
-		if(list.size()>0 && list.get(0) != null && currentPosition == "N") {
+		if(list.size()>0 && list.get(0) != null) {
 
 			categoryBehind = list.get(0).getCategory();
 			sumanBehind = list.get(0).getSuman();
@@ -148,7 +148,7 @@ public class BirthdateServiceImpl implements BirthdateService {
 
 			return list.get(0);
 		}
-		else if(list.size()>0 && list.get(0) != null && currentPosition == "S") {
+		else if(list.size()>0 && list.get(0) != null) {
 
 			categoryBehind = list.get(0).getCategory();
 			sumanBehind = list.get(0).getSuman();

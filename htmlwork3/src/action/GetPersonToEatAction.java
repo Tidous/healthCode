@@ -21,7 +21,7 @@ public class GetPersonToEatAction extends AbstractJsonLogAction {
 
     private String birthday;
     private String time;
-    private String currentPosition;
+    private String location;
     private String descriptionFront;
     private String dietFront;
     private String descriptionBehind;
@@ -48,13 +48,13 @@ public class GetPersonToEatAction extends AbstractJsonLogAction {
 
         MailSendObserver obj = new MailSendObserver();
 
-        birdateInfo = birthdateService.getUserBirthInfo(birthday, time, currentPosition);
+        birdateInfo = birthdateService.getUserBirthInfo(birthday, time);
 
-        sysdateInfo = birthdateService.getSysdateInfo(sysday, systime, currentPosition);
+        sysdateInfo = birthdateService.getSysdateInfo(sysday, systime);
 
-        queryFront(birthday, currentPosition);
+        queryFront(birthday, location);
 
-        queryBehind(birthday, currentPosition);
+        queryBehind(birthday, location);
 
         after();
         print();
@@ -88,10 +88,10 @@ public class GetPersonToEatAction extends AbstractJsonLogAction {
 
     }
 
-    public String queryBehind(String date, String currentPosition) {
+    public String queryBehind(String date, String location) {
 
         if (casetableService != null) {
-            resultBehind = casetableService.dealwithBehind(date, currentPosition, birdateInfo, sysdateInfo);
+            resultBehind = casetableService.dealwithBehind(date, location, birdateInfo, sysdateInfo);
             if (resultBehind == null) {
                 descriptionBehind = "抱歉，没有查到您的后天信息";
                 dietBehind = "抱歉，没有查到您的后天食疗建议";
@@ -105,10 +105,10 @@ public class GetPersonToEatAction extends AbstractJsonLogAction {
 
     }
 
-    public String queryFront(String date, String currentPosition) {
+    public String queryFront(String date, String location) {
 
         if (casetableService != null) {
-            resultFront = casetableService.dealwithFront(date, currentPosition, birdateInfo);
+            resultFront = casetableService.dealwithFront(date, location, birdateInfo);
             if (resultFront == null) {
                 descriptionFront = "抱歉，没有查到您的先天信息";
                 dietFront = "抱歉，没有查到您的先天食疗建议";
@@ -138,6 +138,14 @@ public class GetPersonToEatAction extends AbstractJsonLogAction {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public Casetable getResultFront() {
