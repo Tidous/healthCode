@@ -81,13 +81,13 @@ public class UserhabitServiceImpl implements UserhabitService  {
 		baseDAO.executeSql(Hql, param);	
 	}
 	
-	public Userhabit findUserById(String user)  {
+	public Userhabit findUserById(String userid)  {
 
 		String Hql = "from Userhabit u where u.userid=?";
 
 		List<Object> param = new ArrayList<Object>();
 
-		param.add(user);
+		param.add(userid);
 
 		List<Userhabit> list = this.find(Hql ,param);
 

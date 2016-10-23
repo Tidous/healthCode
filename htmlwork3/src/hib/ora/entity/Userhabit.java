@@ -36,7 +36,7 @@ public class Userhabit implements java.io.Serializable {
 
     // Property
  	@Id
- 	@Column(name = "user")
+ 	@Column(name = "userid")
 	public String getUserid() {
 		return userid;
 	}
