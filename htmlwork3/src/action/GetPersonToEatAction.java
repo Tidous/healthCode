@@ -18,160 +18,158 @@ import org.springframework.beans.factory.annotation.Autowired;
 import action.mail.MailSendObserver;
 
 public class GetPersonToEatAction extends AbstractJsonLogAction {
-	
-	private String birthday;
-	private String time;
-	private String descriptionFront;
-	private String dietFront;
-	private String descriptionBehind;
-	private String dietBehind;
-	private Casetable resultFront;
-	private Casetable resultBehind;
-	private Birthdate birdateInfo;
-	private Birthdate sysdateInfo;
-	
-	private String sysday;
-	private String systime;
-	
-	@Autowired
-	private BirthdateService birthdateService;
-	
-	@Autowired
-	private CasetableService casetableService;
-	
-	public String execute() throws IOException {
-		handleNullField();
-		before();
 
-		ServletActionContext.getResponse().setHeader("Access-Control-Allow-Origin", "*");
-		
-		MailSendObserver obj = new MailSendObserver();
-		
-		birdateInfo = birthdateService.getUserBirthInfo(birthday, time);
-		
-		sysdateInfo = birthdateService.getSysdateInfo(sysday, systime);
-		
-		queryFront(birthday);
-		
-		queryBehind(birthday);
-        
-		after();
-		print();
+    private String birthday;
+    private String time;
+    private String currentPosition;
+    private String descriptionFront;
+    private String dietFront;
+    private String descriptionBehind;
+    private String dietBehind;
+    private Casetable resultFront;
+    private Casetable resultBehind;
+    private Birthdate birdateInfo;
+    private Birthdate sysdateInfo;
 
-		return SUCCESS;
-	}
-	
-	private void handleNullField() {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		
-		Calendar c = Calendar.getInstance();
-		
-		int hour = c.get(Calendar.HOUR_OF_DAY); 
-		int minute = c.get(Calendar.MINUTE); 
-		int second = c.get(Calendar.SECOND);
+    private String sysday;
+    private String systime;
 
-		Date now = new Date();
-		String sysDate = dateFormat.format(now); 
-		
-		if (null == birthday || birthday.isEmpty()) {
-			birthday = sysDate;
-		}
-		if (null == time || time.isEmpty()) {
-			time = "";
-		}
-		else {
-			time = time + ":00";
-		}
-		
-		sysday = sysDate;
-		systime = hour+":"+minute+":"+second;
+    @Autowired
+    private BirthdateService birthdateService;
 
-	}
-	
-    public String queryBehind(String date) {
-        
-        if (casetableService != null) {   
-        	resultBehind = casetableService.dealwithBehind(date, "N", birdateInfo, sysdateInfo);
-        	if (resultBehind == null) {
-        		descriptionBehind = "抱歉，没有查到您的后天信息";
-            	dietBehind = "抱歉，没有查到您的后天食疗建议";
-        	}
-        	else {
-        		descriptionBehind = resultBehind.getDescription();
-            	dietBehind = resultBehind.getDiet();
-        	}
-        }
-      
+    @Autowired
+    private CasetableService casetableService;
+
+    public String execute() throws IOException {
+        handleNullField();
+        before();
+
+        ServletActionContext.getResponse().setHeader("Access-Control-Allow-Origin", "*");
+
+        MailSendObserver obj = new MailSendObserver();
+
+        birdateInfo = birthdateService.getUserBirthInfo(birthday, time, currentPosition);
+
+        sysdateInfo = birthdateService.getSysdateInfo(sysday, systime, currentPosition);
+
+        queryFront(birthday, currentPosition);
+
+        queryBehind(birthday, currentPosition);
+
+        after();
+        print();
+
         return SUCCESS;
+    }
+
+    private void handleNullField() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Calendar c = Calendar.getInstance();
+
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+        int second = c.get(Calendar.SECOND);
+
+        Date now = new Date();
+        String sysDate = dateFormat.format(now);
+
+        if (null == birthday || birthday.isEmpty()) {
+            birthday = sysDate;
+        }
+        if (null == time || time.isEmpty()) {
+            time = "";
+        } else {
+            time = time + ":00";
+        }
+
+        sysday = sysDate;
+        systime = hour + ":" + minute + ":" + second;
 
     }
-	
-	public String queryFront(String date) {
-        
+
+    public String queryBehind(String date, String currentPosition) {
+
         if (casetableService != null) {
-        	resultFront = casetableService.dealwithFront(date, "N", birdateInfo);
-        	if (resultFront == null) {
-        		descriptionFront = "抱歉，没有查到您的先天信息";
-        		dietFront = "抱歉，没有查到您的先天食疗建议";
-        	}
-        	else {     		
-        		descriptionFront = resultFront.getDescription();
-            	dietFront = resultFront.getDiet();
-        	}
+            resultBehind = casetableService.dealwithBehind(date, currentPosition, birdateInfo, sysdateInfo);
+            if (resultBehind == null) {
+                descriptionBehind = "抱歉，没有查到您的后天信息";
+                dietBehind = "抱歉，没有查到您的后天食疗建议";
+            } else {
+                descriptionBehind = resultBehind.getDescription();
+                dietBehind = resultBehind.getDiet();
+            }
         }
 
         return SUCCESS;
 
     }
 
-	@Override
-	public String getRetmsg() {
-		return retmsg;
-	}
+    public String queryFront(String date, String currentPosition) {
 
-	@Override
-	public String getRetcode() {
-		return retcode;
-	}
+        if (casetableService != null) {
+            resultFront = casetableService.dealwithFront(date, currentPosition, birdateInfo);
+            if (resultFront == null) {
+                descriptionFront = "抱歉，没有查到您的先天信息";
+                dietFront = "抱歉，没有查到您的先天食疗建议";
+            } else {
+                descriptionFront = resultFront.getDescription();
+                dietFront = resultFront.getDiet();
+            }
+        }
 
-	public String getBirthday() {
-		return birthday;
-	}
+        return SUCCESS;
 
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
+    }
 
-	public Casetable getResultFront() {
-		return resultFront;
-	}
+    @Override
+    public String getRetmsg() {
+        return retmsg;
+    }
 
-	public Casetable getResultBehind() {
-		return resultBehind;
-	}
+    @Override
+    public String getRetcode() {
+        return retcode;
+    }
 
-	public String getTime() {
-		return time;
-	}
+    public String getBirthday() {
+        return birthday;
+    }
 
-	public void setTime(String time) {
-		this.time = time;
-	}
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
 
-	public String getDescriptionFront() {
-		return descriptionFront;
-	}
+    public Casetable getResultFront() {
+        return resultFront;
+    }
 
-	public String getDietFront() {
-		return dietFront;
-	}
+    public Casetable getResultBehind() {
+        return resultBehind;
+    }
 
-	public String getDescriptionBehind() {
-		return descriptionBehind;
-	}
+    public String getTime() {
+        return time;
+    }
 
-	public String getDietBehind() {
-		return dietBehind;
-	}
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getDescriptionFront() {
+        return descriptionFront;
+    }
+
+    public String getDietFront() {
+        return dietFront;
+    }
+
+    public String getDescriptionBehind() {
+        return descriptionBehind;
+    }
+
+    public String getDietBehind() {
+        return dietBehind;
+    }
 
 }

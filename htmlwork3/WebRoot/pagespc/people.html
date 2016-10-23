@@ -48,16 +48,12 @@
     function submit() {
         if (check()) {
             var location = document.getElementById("selectpicker").value;
-            if (location == "north"){
-
-            } else {
-            }
 
             var arg = document.getElementById("day").value.split(" ");
             var newdate = arg[2]+"-"+DATE_MAP[arg[1]]+"-"+arg[0];
             var newtime = document.getElementById("time").value;
           
-            var myurl="display.html?newdate="+newdate+"&newtime="+newtime;
+            var myurl="display.html?newdate="+newdate+"&newtime="+newtime+"&location="+location;
             window.location.assign(encodeURI(myurl));
         }
     }

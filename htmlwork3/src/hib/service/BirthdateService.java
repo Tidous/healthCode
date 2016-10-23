@@ -8,9 +8,9 @@ public interface BirthdateService {
 	
 	public List<Birthdate> find(String hql, List<Object> param);
 	
-	public Birthdate getUserBirthInfo(String date, String time);
+	public Birthdate getUserBirthInfo(String date, String time, String currentPosition);
 	
-	public Birthdate getSysdateInfo(String date, String time);
+	public Birthdate getSysdateInfo(String date, String time, String currentPosition);
 	
 }
 
