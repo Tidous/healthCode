@@ -146,6 +146,7 @@
             if (userid == null) {
                 alert("请先登录或注册");
                 window.location.href = "./login.html";
+                return;
             }
             $.doAjaxPostCall("userHabit", "userid=" + window.sessionStorage.getItem("user") + "&habit=" + habit + "&other=" + other, function (responseData) {
                 console.log(responseData);
@@ -154,6 +155,7 @@
                 if (responseData.retmsg == "success") {
                     alert("数据更新成功");
                     window.location.reload();
+                    return;
                 }
                 else {
                     alert("数据更新失败");
