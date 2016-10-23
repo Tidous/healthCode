@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class Userhabit implements java.io.Serializable {
 
 	// Fields
-    private String user;
+    private String userid;
 
     private String habit;
     private String other;
@@ -21,14 +21,14 @@ public class Userhabit implements java.io.Serializable {
 
 	}
     
-    public Userhabit(Integer userid) {
+    public Userhabit(String userid) {
 
-		this.user = user;
+		this.userid = userid;
 	}
     
     public Userhabit(String userid, String diet,String habit, String other, Integer verinfo) {
 
-		this.user = user;
+		this.userid = userid;
 		this.habit = habit;
 		this.other = other;
 		this.verinfo = verinfo;
@@ -37,12 +37,12 @@ public class Userhabit implements java.io.Serializable {
     // Property
  	@Id
  	@Column(name = "user")
-	public String getUser() {
-		return user;
+	public String getUserid() {
+		return userid;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
 	@Column(name = "habit")

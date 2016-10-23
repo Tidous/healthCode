@@ -54,9 +54,9 @@ public class UserhabitServiceImpl implements UserhabitService  {
 		
 		Object[] param = new Object[4];
 		
-		if(userhabit.getUser()!=null){
+		if(userhabit.getUserid()!=null){
 			
-			param[0]=userhabit.getUser();
+			param[0]=userhabit.getUserid();
 			
 		}else{ param[0]=000000; }
 		
@@ -109,7 +109,7 @@ public class UserhabitServiceImpl implements UserhabitService  {
 
 		param.add(userhabit.getVerinfo());
 		
-		param.add(userhabit.getUser());
+		param.add(userhabit.getUserid());
 
 		this.update(Hql ,param);
 	}
