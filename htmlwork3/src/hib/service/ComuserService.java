@@ -25,6 +25,8 @@ public interface ComuserService {
 	public void updatePassword(Integer id, String password);
 	
 	public Comuser findUserById(Integer id);
+
+	public Comuser findUserByPhone(String phone);
 	
 	public Comuser userLogin(String user, String password);
 	

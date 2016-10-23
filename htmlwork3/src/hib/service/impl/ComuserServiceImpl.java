@@ -234,6 +234,30 @@ public class ComuserServiceImpl implements ComuserService {
 
 		if(list.size()>0)
 			return list.get(0);
+		else{
+			Hql = "from Comuser c where c.mobilephone=? and c.password=?";
+
+			list = this.find(Hql ,param);
+
+			if(list.size()>0)
+				return list.get(0);
+			else
+				return null;
+		}
+	}
+
+	public Comuser findUserByPhone(String phone)  {
+
+		String Hql = "from Comuser c where c.mobilephone=?";
+
+		List<Object> param = new ArrayList<Object>();
+
+		param.add(phone);
+
+		List<Comuser> list = this.find(Hql ,param);
+
+		if(list.size()>0)
+			return list.get(0);
 		else
 			return null;
 
