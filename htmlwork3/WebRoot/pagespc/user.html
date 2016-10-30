@@ -48,7 +48,7 @@
     $(function() {
       $("#username").text(window.sessionStorage.getItem("user"));
 	  if(window.sessionStorage.getItem("user") && window.sessionStorage.getItem("user") != ""){
-      $.doAjaxPostCall("queryUserList", "userid=" + window.sessionStorage.getItem("userid"),
+      $.doAjaxPostCall("queryUserList", "userid=" + window.sessionStorage.getItem("user"),
       function(responseData) {
         console.log(responseData);
         var obj = responseData;
@@ -75,7 +75,7 @@
       });}
 
 	  if(window.sessionStorage.getItem("user") && window.sessionStorage.getItem("user") != ""){
-      $.doAjaxPostCall("queryHabit", "userid=" + window.sessionStorage.getItem("userid"),
+      $.doAjaxPostCall("queryHabit", "userid=" + window.sessionStorage.getItem("user"),
       function(responseData) {
         console.log(responseData);
         var obj = responseData;

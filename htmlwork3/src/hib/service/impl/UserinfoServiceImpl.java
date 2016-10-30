@@ -48,7 +48,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 	@Override
 	public void save(Userinfo userinfo){
 
-		String Hql = "insert into health.userinfo(" +
+		String Hql = "insert into health.comuser(" +
 				"userid," +
 				"username," +
 				"relationship," +
