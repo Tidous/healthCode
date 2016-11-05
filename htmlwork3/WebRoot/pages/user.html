@@ -247,20 +247,6 @@
         <section class="user_con mt10 ml10 mr10 fWei" id="userlist" >
 
             <!-- 本次添加地方start-->
-			<div>
-                <h2>
-                    <div class="dib fl hk-center">我关注的医生<i class="ml10 fn coliyel count_doc " count_doc="0">(0)</i></div>
-                    <span class="dib fr userbg"></span>
-				</h2>
-                <div class="botom none" >
-                    <div id="datalist_myattendoc">
-					                    <div class="tc f14 pt20 pb20">暂无关注的医生</div>
-                      
-                     </div>                   
-                	                
-                </div>
-                	
-            </div>
 
 			<div class="myFamilyDoctor">
                 <h2  >
@@ -289,14 +275,29 @@
                                             </div>
                                     </div>
             </div>
-			
+
+            <div>
+                <h2>
+                    <div class="dib fl hk-center">我的习惯变化与总结<i class="ml10 fn coliyel count_doc " count_doc="0">(0)</i></div>
+                    <span class="dib fr userbg"></span>
+                </h2>
+                <div class="botom none" >
+                    <div id="datalist_myattendoc">
+                        <div class="tc f14 pt20 pb20">暂无关注的医生</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
             <!--健康管理 2015-02-02 start-->				
             <div class="myFamilyDoctor">
                 <h2  >
                     <a name="myphonedoctor"></a>
                     <div class="dib fl my_userglbg" clicken="3g_health_wdjkgl" onmousedown="clicktest(this);
                             __sendClickOdm('3g_ucenter', this, 'shouye:3g_health_wdjkgl+')" clicktype="3g_health">
-                        我的健康管理<i class="ml10 fn coliyel">(0)</i>
+                        我的体质与饮食<i class="ml10 fn coliyel">(0)</i>
                     </div>
                     <span class="dib fr userbg">
                     </span>
@@ -376,7 +377,15 @@
                         <input type="hidden" value="" name="safecode" id="safecode">
                     </form>  
                 </div>
-            </div> 
+            </div>
+
+            <div class="advance">
+                <h2>
+                    <a name="advance"></a>
+                    <div class="dib fl userbg user06" onclick="window.scrollTo(0, 400);">高级选项</div>
+                    <span class="dib fr userbg"></span>
+                </h2>
+            </div>
         </section>
         <span class="none" id="page_myattendoc">2</span>
         <span class="none" id="page_myquestion">2</span>
