@@ -9,9 +9,8 @@ import action.AbstractJsonLogAction;
 import action.common.CreateUserFile;
 
 public class UpdateUserFile extends AbstractJsonLogAction {
-	
+
 	private String userid;
-	
 	private String name;
 	private String idno;
 	private String relationship;
@@ -31,7 +30,7 @@ public class UpdateUserFile extends AbstractJsonLogAction {
 		Userinfo userinfo = null;
 		
 		try {
-			userinfo = userinfoService.findUserByKey(userid);
+			userinfo = userinfoService.findUserByKey(name);
 			if (userinfo != null) {
 				update();
 				if (this.retmsg.equalsIgnoreCase("fail")) {	
@@ -44,7 +43,7 @@ public class UpdateUserFile extends AbstractJsonLogAction {
                 	return SUCCESS;
 				}
                 else {
-                	userinfo = userinfoService.findUserByKey(userid);
+                	userinfo = userinfoService.findUserByKey(name);
                 }
 			}
 		} catch (NullPointerException e) {
@@ -72,7 +71,7 @@ public class UpdateUserFile extends AbstractJsonLogAction {
 		
 		try {
 			userinfoService.delete(userinfo);
-			userinfo = userinfoService.findUserByKey(userid);
+			userinfo = userinfoService.findUserByKey(name);
 			if (userinfo == null) {
 				res = "success";
 			}
@@ -109,7 +108,7 @@ public class UpdateUserFile extends AbstractJsonLogAction {
 		try {
 			userinfoService.save(userinfo);
 			Userinfo resinfo = null;
-			resinfo = userinfoService.findUserByKey(userid);
+			resinfo = userinfoService.findUserByKey(name);
 			if (resinfo != null) {
 				this.retmsg = "success";
 			}
@@ -140,7 +139,6 @@ public class UpdateUserFile extends AbstractJsonLogAction {
 	
 	private void setUserInfo(Userinfo userinfo) {
 
-		userinfo.setUserid(userid);
 		userinfo.setUsername(name);
 		userinfo.setRelationship(relationship);
 		userinfo.setSex(sex);
@@ -241,4 +239,5 @@ public class UpdateUserFile extends AbstractJsonLogAction {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
+
 }

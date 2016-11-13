@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" /> 
@@ -127,7 +128,7 @@
 	           var job = document.getElementById("job").value;
 	           var address = document.getElementById("address").value;
 	  
-	           $.doAjaxPostCall("updUserFile", "userid="+window.sessionStorage.getItem("userid")+"&name="+name+"&idno="+idno+"&relationship="+relationship+"&sex="+sex+"&phone="+phone+"&mail="+mail+"&zcode="+zcode+"&job="+job+"&address="+address, function(responseData){
+	           $.doAjaxPostCall("updUserFile", "userid="+window.sessionStorage.getItem("user")+"&name="+name+"&idno="+idno+"&relationship="+relationship+"&sex="+sex+"&phone="+phone+"&mail="+mail+"&zcode="+zcode+"&job="+job+"&address="+address, function(responseData){
 	  
 	               console.log(responseData);
 	               var obj =responseData;
@@ -159,13 +160,13 @@
 			<div class="my-wb my_bor mb15 bcfff dis-box">
 				<div class="box-flex-1 pl10">
 
-	              <input type="text" class="m_username f15" id="username" placeholder="请输入姓名" maxlength="15">
+	              <input type="text" class="m_username f15" id="name" placeholder="请输入姓名" maxlength="15">
 
 				</div>
             </div>
 			
 			<div class="sec-title flex w" style="margin-top:12px;">
-				<select id="selectpicker" class="form-control selectpicker" style="width:30%" id="city">
+				<select id="relationship" class="form-control selectpicker" style="width:30%">
 					<option value ="">家庭关系</option>
 					<option value ="配偶">配偶</option>
 					<option value ="子女">子女</option>
@@ -175,7 +176,7 @@
 			</div>
 			
 			<div class="sec-title flex w" style="margin-top:12px;margin-bottom:12px;">
-				<select id="selectpicker" class="form-control selectpicker" style="width:30%" id="city">
+				<select class="form-control selectpicker" style="width:30%" id="sex">
 					<option value ="男">男</option>  
 					<option value ="女">女</option>
 				</select>
@@ -183,13 +184,13 @@
 
             <div class="my-wb my_bor mb15 bcfff dis-box">
 	            <div class="box-flex-1 pl10">
-	            	<input type="text" class="m_username f15" id="mobile" placeholder="请输入身份证号">
+	            	<input type="text" class="m_username f15" id="idno" placeholder="请输入身份证号">
 	            </div>
             </div>
 
 			<div class="my-wb my_bor mb15 bcfff dis-box">
 	            <div class="box-flex-1 pl10">
-	            	<input type="text" class="m_username f15" id="mobile" placeholder="请输入手机号">
+	            	<input type="text" class="m_username f15" id="phone" placeholder="请输入手机号">
 	            </div>
             </div>
 

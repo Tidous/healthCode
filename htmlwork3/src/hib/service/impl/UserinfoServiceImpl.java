@@ -48,7 +48,7 @@ public class UserinfoServiceImpl implements UserinfoService{
 	@Override
 	public void save(Userinfo userinfo){
 
-		String Hql = "insert into health.comuser(" +
+		String Hql = "insert into health.userinfo(" +
 				"userid," +
 				"username," +
 				"relationship," +
@@ -58,11 +58,7 @@ public class UserinfoServiceImpl implements UserinfoService{
 				"mail," +
 				"zcode," +
 				"job," +
-				"address," +
-				"city," +
-				"province" +") values(" +
-				"?," +
-				"?," +
+				"address" +") values(" +
 				"?," +
 				"?," +
 				"?," +
@@ -74,14 +70,14 @@ public class UserinfoServiceImpl implements UserinfoService{
 				"?," +
 				"?" + ")";
 		
-		Object[] param = new Object[12];
-		
-		if(userinfo.getUserid()!=null){
-			
-			param[0]=userinfo.getUserid();
-			
-		}else{ param[0]=000000; }
-		
+		Object[] param = new Object[10];
+
+		if(userinfo.getUsername()!=null){
+
+			param[0]=userinfo.getUsername();
+
+		}else{ param[1]=""; }
+
 		if(userinfo.getUsername()!=null){
 			
 			param[1]=userinfo.getUsername();
@@ -135,25 +131,13 @@ public class UserinfoServiceImpl implements UserinfoService{
 			param[9]=userinfo.getAddress();
 			
 		}else{ param[9]=""; }
-        
-        if(userinfo.getCity()!=null){
-			
-			param[10]=userinfo.getCity();
-			
-		}else{ param[10]=""; }
-
-		if(userinfo.getProvince()!=null){
-			
-			param[11]=userinfo.getProvince();
-			
-		}else{ param[11]=""; }
 		
 		baseDAO.executeSql(Hql, param);	
 	}
 	
 	public Userinfo findUserByKey(String id)  {
 
-		String Hql = "from Userinfo u where u.userid=? and u.username=? and u.idno=?";
+		String Hql = "from Userinfo u where u.username=?";
 
 		List<Object> param = new ArrayList<Object>();
 
