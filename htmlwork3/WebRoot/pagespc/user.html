@@ -240,7 +240,7 @@
 
     function addFamily() {
         var user = window.sessionStorage.getItem("user");
-        location.href("userdoc.html?name="+user);
+        window.location.href = "./userdoc.html?name="+user;
     }
 </script>
 
@@ -277,7 +277,7 @@
                                 <div class="noneDoctor">
                                     <p class="f14" id="noneDoctor">暂无相关家人资料</p>
                                     <p>
-                                        <a href="" onclick="addFamily()">去关联家人</a></p>
+                                        <a href="javascript:void(0);" onclick="addFamily()">去关联家人</a></p>
                                 </div>
                                 <div id="familytable">
                                     <table summary="Record" cellpadding="0" cellspacing="0" style="width: 100%;"

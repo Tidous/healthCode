@@ -33,18 +33,20 @@
 		$(function () {
 		    var url = decodeURI(location.href);
 		    var arrStr = url.substring(url.indexOf("?")+1).split("&");
-			if (arrStr.length==1){
+			if (arrStr.length==0){
 				return;
 			}
 		    var res1 = arrStr[0].split("=");
-		    var res2 = arrStr[1].split("=");
-		    
+
 		    if (res1[0] == "name") {
 		        name = res1[1];
 		    }
 		    
 		    $.doAjaxPostCall("queryUserinfo", "userid="+window.sessionStorage.getItem("user"), function(responseData){
-	            console.log(responseData);
+	            if (responseData==null){
+					return;
+				}
+				console.log(responseData);
 	            var obj =responseData;
 	
 	            if (obj.retmsg == "success") {
@@ -114,7 +116,7 @@
 	    
 	    function submit() {
 	        if (check()) {
-	
+				var curname = window.sessionStorage.getItem("user");
 	           var name = document.getElementById("name").value;
 	           var idno = document.getElementById("idno").value;
 	           var relationship = document.getElementById("relationship").value;
@@ -157,7 +159,7 @@
 			<div class="my-wb my_bor mb15 bcfff dis-box">
 				<div class="box-flex-1 pl10">
 
-	              <input type="text" class="m_username f15" id="username" onblur="isNew()" placeholder="请输入姓名" maxlength="15">
+	              <input type="text" class="m_username f15" id="username" placeholder="请输入姓名" maxlength="15">
 
 				</div>
             </div>
