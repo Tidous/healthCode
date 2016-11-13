@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class Useradv implements java.io.Serializable {
 
 		// Fields
-		private Integer userid;
+		private String userid;
 		private String useradv;
 		private Integer verinfo;
 
@@ -24,13 +24,13 @@ public class Useradv implements java.io.Serializable {
 		
 
 		/** minimal constructor */
-		public Useradv(Integer userid) {
+		public Useradv(String userid) {
 			this.userid = userid;
 		}
 		
 
 		/** full constructor */
-		public Useradv(Integer userid, String useradv, Integer verinfo) {
+		public Useradv(String userid, String useradv, Integer verinfo) {
 			this.userid = userid;
 			this.useradv = useradv;
 			this.verinfo = verinfo;
@@ -39,7 +39,7 @@ public class Useradv implements java.io.Serializable {
 		// Property
 		@Id
 		@Column(name = "userid")
-		public Integer getUserid() {
+		public String getUserid() {
 			return userid;
 		}
 
@@ -53,7 +53,7 @@ public class Useradv implements java.io.Serializable {
 			return verinfo;
 		}
 
-		public void setUserid(Integer userid) {
+		public void setUserid(String userid) {
 			this.userid = userid;
 		}
 

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class GetUserAdvAction extends AbstractJsonLogAction {
 	
-	private Integer userid;
+	private String userid;
 	private String adv;
 	
 	@Autowired
@@ -54,11 +54,11 @@ public class GetUserAdvAction extends AbstractJsonLogAction {
 		this.adv = adv;
 	}
 
-	public Integer getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 
-	public void setUserid(Integer userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 }

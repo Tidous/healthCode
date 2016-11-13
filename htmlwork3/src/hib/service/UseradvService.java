@@ -12,9 +12,9 @@ public interface UseradvService {
 
 	public void save(Useradv useradv);
 	
-	public Useradv findUserById(Integer id);
+	public Useradv findUserById(String id);
 	
 	public void update(String hql, List<Object> param);
 	
-	public void updateAdv(Integer userid, String adv, Integer ver);
+	public void updateAdv(String userid, String adv, Integer ver);
 }

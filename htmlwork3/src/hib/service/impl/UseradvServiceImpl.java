@@ -55,7 +55,7 @@ public class UseradvServiceImpl implements UseradvService {
 			
 			param[0]=useradv.getUserid();
 			
-		}else{ param[0]=000000; }
+		}else{ param[0]="000000"; }
 		
 		if(useradv.getUseradv()!=null){
 			
@@ -72,7 +72,7 @@ public class UseradvServiceImpl implements UseradvService {
 		baseDAO.executeSql(Hql, param);	
 	}
 	
-	public Useradv findUserById(Integer id)  {
+	public Useradv findUserById(String id)  {
 
 		String Hql = "from Useradv c where c.userid=?";
 
@@ -88,7 +88,7 @@ public class UseradvServiceImpl implements UseradvService {
 			return null;
 	}
 	
-	public void updateAdv(Integer userid, String adv, Integer ver)  {
+	public void updateAdv(String userid, String adv, Integer ver)  {
 
 		String Hql = "update Useradv c set c.useradv=?, c.verinfo=? where c.userid=?";
 

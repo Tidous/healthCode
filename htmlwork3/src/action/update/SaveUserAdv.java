@@ -11,7 +11,7 @@ public class SaveUserAdv extends AbstractJsonLogAction {
     
 	private String adv;
 	private Integer verinfo;
-	private Integer userid;
+	private String userid;
 	
 	private String result;
 	
@@ -97,11 +97,11 @@ public class SaveUserAdv extends AbstractJsonLogAction {
 		this.adv = adv;
 	}
 
-	public Integer getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 
-	public void setUserid(Integer userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 
