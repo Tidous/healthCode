@@ -37,7 +37,7 @@ public class QueryUserFileAction extends AbstractJsonLogAction {
 
 		if (userinfoService != null) {
 			Userinfo userinfo = null;
-			userinfo = userinfoService.findUserByKey(userid, name, idno);
+			userinfo = userinfoService.findUserByKey(userid);
 			if (userinfo != null) {
 				this.retmsg = "success";
 				this.relationship = userinfo.getRelationship();

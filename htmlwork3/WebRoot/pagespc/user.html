@@ -237,6 +237,11 @@
         window.sessionStorage.clear();
         window.location.href = "../index.html";
     }
+
+    function addFamily() {
+        var user = window.sessionStorage.getItem("user");
+        location.href("userdoc.html?name="+user);
+    }
 </script>
 
 <body>
@@ -255,7 +260,7 @@
         <span class="user_name_text" id="username"></span>
         <a href="#" class="ml10" onclick="logout()">退出</a></section>
     <section class="user_con mt10 ml10 mr10 fWei" id="userlist">
-        <!-- 本次添加地方start-->
+        <!-- 我的家人管理-->
         <div class="myFamilyDoctor" onmouseover="this.style.cursor=&#39;pointer&#39;">
             <h2>
                 <a name="myphonedoctor"></a>
@@ -272,7 +277,7 @@
                                 <div class="noneDoctor">
                                     <p class="f14" id="noneDoctor">暂无相关家人资料</p>
                                     <p>
-                                        <a href="userdoc.html">去关联家人</a></p>
+                                        <a href="" onclick="addFamily()">去关联家人</a></p>
                                 </div>
                                 <div id="familytable">
                                     <table summary="Record" cellpadding="0" cellspacing="0" style="width: 100%;"
@@ -320,6 +325,7 @@
                 </div>
             </div>
         </div>
+        <!--习惯变化与总结-->
         <div onmouseover="this.style.cursor=&#39;pointer&#39;">
             <h2>
                 <div class="dib fl hk-center"><h2>习惯变化与总结
@@ -333,7 +339,7 @@
                 </div>
             </div>
         </div>
-        <!--健康管理 2015-02-02 start-->
+        <!--我的体质与饮食-->
         <div class="myFamilyDoctor" onmouseover="this.style.cursor=&#39;pointer&#39;">
             <h2>
                 <a name="myphonedoctor"></a>
@@ -359,6 +365,7 @@
                 </div>
             </div>
         </div>
+        <!--修改密码-->
         <div class="passWord" onmouseover="this.style.cursor=&#39;pointer&#39;">
             <h2>
                 <a name="updpwd"></a>
@@ -395,6 +402,7 @@
                 </form>
             </div>
         </div>
+        <!--高级选项-->
         <div class="advance" onmouseover="this.style.cursor=&#39;pointer&#39;">
             <h2>
                 <a name="advance"></a>

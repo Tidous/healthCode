@@ -12,11 +12,10 @@
 	<meta content="telephone=no" name="format-detection" />
     	<link rel="stylesheet" href="../css/3gbx.css" />
 	<link rel="stylesheet" type="text/css" href="../css/zt_reg_style.css">
-	<link href="../bootstrap/css/bootstrap-select.min.css" rel="stylesheet"/>
 	<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
-    <script type="text/javascript" src="../bootstrap/js/bootstrap-select.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/jquery-2.2.2.min.js"></script>
     <script type="text/javascript" src="js/config.js"></script>
     <script type="text/javascript" src="js/global.js"></script>
@@ -34,17 +33,17 @@
 		$(function () {
 		    var url = decodeURI(location.href);
 		    var arrStr = url.substring(url.indexOf("?")+1).split("&");
+			if (arrStr.length==1){
+				return;
+			}
 		    var res1 = arrStr[0].split("=");
 		    var res2 = arrStr[1].split("=");
 		    
 		    if (res1[0] == "name") {
 		        name = res1[1];
 		    }
-		    if (res2[0] == "idno") {
-		        idno = res2[1];
-		    }
 		    
-		    $.doAjaxPostCall("queryUserinfo", "userid="+window.sessionStorage.getItem("userid")+"&name="+name+"&idno="+idno, function(responseData){
+		    $.doAjaxPostCall("queryUserinfo", "userid="+window.sessionStorage.getItem("user"), function(responseData){
 	            console.log(responseData);
 	            var obj =responseData;
 	
@@ -60,7 +59,6 @@
 	                document.getElementById('mail').value = obj.mail;
 	                document.getElementById('address').value = obj.address;
 	                
-	                $("#idno").attr("disabled","disabled");
 	                $("#name").attr("disabled","disabled");
 	            }
 	        });

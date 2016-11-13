@@ -11,7 +11,7 @@ public interface UserinfoService {
 
 	public void save(Userinfo userinfo);
 
-    public Userinfo findUserByKey(String id, String username, String idno);
+    public Userinfo findUserByKey(String id);
     
     public List<Userinfo> findUserById(String id);
 	

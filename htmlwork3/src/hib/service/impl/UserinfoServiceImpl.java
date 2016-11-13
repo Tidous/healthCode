@@ -12,9 +12,9 @@ import hib.ora.entity.Userinfo;
 import hib.service.UserinfoService;
 
 @Service("userinfoService")
-public class UserinfoServiceImpl implements UserinfoService {
-	
-	@Autowired
+public class UserinfoServiceImpl implements UserinfoService{
+
+		@Autowired
 	BaseDAO<Userinfo> baseDAO;
 	
 	@Override
@@ -151,15 +151,13 @@ public class UserinfoServiceImpl implements UserinfoService {
 		baseDAO.executeSql(Hql, param);	
 	}
 	
-	public Userinfo findUserByKey(String id, String username, String idno)  {
+	public Userinfo findUserByKey(String id)  {
 
 		String Hql = "from Userinfo u where u.userid=? and u.username=? and u.idno=?";
 
 		List<Object> param = new ArrayList<Object>();
 
 		param.add(id);
-		param.add(username);
-		param.add(idno);
 
 		List<Userinfo> list = this.find(Hql ,param);
 

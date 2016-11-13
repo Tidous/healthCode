@@ -31,7 +31,7 @@ public class UpdateUserFile extends AbstractJsonLogAction {
 		Userinfo userinfo = null;
 		
 		try {
-			userinfo = userinfoService.findUserByKey(userid, name, idno);
+			userinfo = userinfoService.findUserByKey(userid);
 			if (userinfo != null) {
 				update();
 				if (this.retmsg.equalsIgnoreCase("fail")) {	
@@ -44,7 +44,7 @@ public class UpdateUserFile extends AbstractJsonLogAction {
                 	return SUCCESS;
 				}
                 else {
-                	userinfo = userinfoService.findUserByKey(userid, name, idno);
+                	userinfo = userinfoService.findUserByKey(userid);
                 }
 			}
 		} catch (NullPointerException e) {
@@ -72,7 +72,7 @@ public class UpdateUserFile extends AbstractJsonLogAction {
 		
 		try {
 			userinfoService.delete(userinfo);
-			userinfo = userinfoService.findUserByKey(userid, name, idno);
+			userinfo = userinfoService.findUserByKey(userid);
 			if (userinfo == null) {
 				res = "success";
 			}
@@ -109,7 +109,7 @@ public class UpdateUserFile extends AbstractJsonLogAction {
 		try {
 			userinfoService.save(userinfo);
 			Userinfo resinfo = null;
-			resinfo = userinfoService.findUserByKey(userid, name, idno);
+			resinfo = userinfoService.findUserByKey(userid);
 			if (resinfo != null) {
 				this.retmsg = "success";
 			}
