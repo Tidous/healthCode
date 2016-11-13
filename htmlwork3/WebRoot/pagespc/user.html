@@ -259,7 +259,7 @@
         <div class="myFamilyDoctor" onmouseover="this.style.cursor=&#39;pointer&#39;">
             <h2>
                 <a name="myphonedoctor"></a>
-                <div class="dib fl my_userjrglbg" clicken="3g_health_wdjkgl" onmousedown="clicktest(this);"
+                <div class="dib fl my_userjrglbg" clicken="3g_health_wdjkgl"
                      clicktype="3g_health">我的家人管理
                     <i class="ml10 fn coliyel" id="familycount">(0)</i></div>
                 <span class="dib fr userbg"></span>
@@ -337,7 +337,7 @@
         <div class="myFamilyDoctor" onmouseover="this.style.cursor=&#39;pointer&#39;">
             <h2>
                 <a name="myphonedoctor"></a>
-                <div class="dib fl my_userglbg" clicken="3g_health_wdjkgl" onmousedown="clicktest(this);"
+                <div class="dib fl my_userglbg" clicken="3g_health_wdjkgl"
                      clicktype="3g_health">我的体质与饮食
                     <i class="ml10 fn coliyel" id="habitcount">(0)</i></div>
                 <span class="dib fr userbg"></span>
@@ -455,6 +455,9 @@
                 return function () {
                     for (var i = 0; i < length; i++) {
                         if (i === d) {
+                            if (oSpan[d].parentNode.children[1]==undefined){
+                                break;
+                            }
                             if (oSpan[d].parentNode.children[1].style.display == 'block') {
                                 oSpan[d].parentNode.children[1].style.display = 'none';
                                 oSpan[d].className = '';
@@ -464,7 +467,9 @@
                             }
                         } else {
                             oSpan[i].className = '';
-                            oSpan[i].parentNode.children[1].style.display = 'none';
+                            if (oSpan[i].parentNode.children[1]!=undefined){
+                                oSpan[i].parentNode.children[1].style.display = 'none';
+                            }
                         }
                     }
                 }
