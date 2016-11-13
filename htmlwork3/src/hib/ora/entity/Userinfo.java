@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class Userinfo implements java.io.Serializable {
 
 	// Fields
-	private Integer userid;
+	private String userid;
 
 	private String username;
 	private String relationship;
@@ -30,13 +30,13 @@ public class Userinfo implements java.io.Serializable {
 
 	}
 	
-	public Userinfo(Integer userid) {
+	public Userinfo(String userid) {
 		this.userid = userid;
 		this.username = username;
 		this.idno = idno;
 	}
 	
-	public Userinfo(Integer userid, String username, String relationship,
+	public Userinfo(String userid, String username, String relationship,
 			String sex, String idno, String phone, String mail, String zcode,
 			String job, String address, String city, String province) {
 
@@ -57,11 +57,11 @@ public class Userinfo implements java.io.Serializable {
 	// Property
 	@Id
 	@Column(name = "userid")
-	public Integer getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 
-	public void setUserid(Integer userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 

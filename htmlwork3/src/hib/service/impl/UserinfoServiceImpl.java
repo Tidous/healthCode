@@ -151,7 +151,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 		baseDAO.executeSql(Hql, param);	
 	}
 	
-	public Userinfo findUserByKey(Integer id, String username, String idno)  {
+	public Userinfo findUserByKey(String id, String username, String idno)  {
 
 		String Hql = "from Userinfo u where u.userid=? and u.username=? and u.idno=?";
 
@@ -169,7 +169,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 			return null;
 	}
 	
-	public List<Userinfo> findUserById(Integer id)  {
+	public List<Userinfo> findUserById(String id)  {
 
 		String Hql = "from Userinfo u where u.userid=?";
 

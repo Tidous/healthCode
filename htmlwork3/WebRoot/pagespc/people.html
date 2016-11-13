@@ -61,7 +61,7 @@
             var location = document.getElementById("selectpicker").value;
 
             var arg = document.getElementById("day").value.split(" ");
-            var newdate = arg[2]+"-"+DATE_MAP[arg[1]]+"-"+arg[0];
+            var newdate = document.getElementById("day").value;
             var newtime = document.getElementById("time").value;
             
             $.doAjaxPostCall("getPeopleInfo", "birthday=" + newdate + "&time=" + newtime + "&location=" + location, function (responseData) {

@@ -12,7 +12,7 @@ import action.AbstractJsonLogAction;
 
 public class QueryUserFileAction extends AbstractJsonLogAction {
 
-    private Integer userid;
+    private String userid;
 
 	private String name;
 	private String idno;
@@ -88,11 +88,11 @@ public class QueryUserFileAction extends AbstractJsonLogAction {
         return retcode;
     }
 
-	public Integer getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 
-	public void setUserid(Integer userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 

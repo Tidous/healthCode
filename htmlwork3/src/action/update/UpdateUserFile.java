@@ -10,7 +10,7 @@ import action.common.CreateUserFile;
 
 public class UpdateUserFile extends AbstractJsonLogAction {
 	
-	private Integer userid;
+	private String userid;
 	
 	private String name;
 	private String idno;
@@ -234,11 +234,11 @@ public class UpdateUserFile extends AbstractJsonLogAction {
 		this.address = address;
 	}
 
-	public Integer getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 
-	public void setUserid(Integer userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 }
