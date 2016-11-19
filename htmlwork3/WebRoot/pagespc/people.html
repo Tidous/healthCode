@@ -110,14 +110,14 @@
                         alert("新增失败，请先联系管理员！");
                     }
                     else if (obj.result == "1") {
-                        var bufferedCase = obj.bufferedCase;
-                        window.sessionStorage.setItem("bufferedCase",bufferedCase)
                         alert("保存成功！");
                     }
                 }
                 else {
                     alert("系统错误，请先联系管理员！");
                 }
+                var bufferedCase = obj.bufferedCase;
+                window.sessionStorage.setItem("bufferedCase",bufferedCase)
             });
           
             //var myurl="display.html?newdate="+newdate+"&newtime="+newtime+"&location="+location;

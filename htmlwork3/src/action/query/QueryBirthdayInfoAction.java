@@ -30,6 +30,7 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
     private BirthdateService birthdateService;
 
     public String getBirdateInfo() {
+        handleNullField();
         before();
 
         Birthdate birdateInfo = birthdateService.getUserBirthInfo(birthday, time);
@@ -60,6 +61,7 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
     }
 
     public String getSysdateInfo() {
+        handleNullField();
         Birthdate sysdateInfo = birthdateService.getSysdateInfo(sysday, systime);
         if (location.equals("N")) {
             String suman = sysdateInfo.getSuman().toString();
@@ -81,6 +83,32 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
             this.currentCase = sumas + sumbs.toString() + sumcs + sumds + sumes;
         }
         return SUCCESS;
+    }
+
+    private void handleNullField() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Calendar c = Calendar.getInstance();
+
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+        int second = c.get(Calendar.SECOND);
+
+        Date now = new Date();
+        String sysDate = dateFormat.format(now);
+
+        if (null == birthday || birthday.isEmpty()) {
+            birthday = sysDate;
+        }
+        if (null == time || time.isEmpty()) {
+            time = "";
+        } else {
+            time = time + ":00";
+        }
+
+        sysday = sysDate;
+        systime = hour + ":" + minute + ":" + second;
+
     }
 
     @Override
