@@ -7,6 +7,7 @@ import hib.service.ComuserService;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -279,6 +280,24 @@ public class ComuserServiceImpl implements ComuserService {
 			return list.get(0);
 		else
 			return null;
+
+	}
+
+	public void updateBirthday(String user, Date birthday, String hometown, String bufferedCase)  {
+
+		String Hql = "update Comuser c set c.bufferedcase=?,c.column6=?,c.hometown=? where c.username=?";
+
+		List<Object> param = new ArrayList<Object>();
+
+		param.add(bufferedCase);
+
+		param.add(birthday);
+
+		param.add(hometown);
+
+		param.add(user);
+
+		this.update(Hql ,param);
 
 	}
 

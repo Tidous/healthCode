@@ -97,6 +97,28 @@
 
                 $("#displayarea").text(text1 + "\n" + text2 + "\n" + text3 + "\n" + text4);
             });
+
+            //查询用户出生日期匹配的信息
+            $.doAjaxPostCall("queryBirthInfo", "birthday=" + newdate + "&time=" + newtime + "&location=" + location, function (responseData) {
+                var obj = responseData;
+
+                if (obj != null) {
+                    if (obj.result == "3") {
+                        alert("更新失败，请先联系管理员！");
+                    }
+                    else if (obj.result == "0") {
+                        alert("新增失败，请先联系管理员！");
+                    }
+                    else if (obj.result == "1") {
+                        var bufferedCase = obj.bufferedCase;
+                        window.sessionStorage.setItem("bufferedCase",bufferedCase)
+                        alert("保存成功！");
+                    }
+                }
+                else {
+                    alert("系统错误，请先联系管理员！");
+                }
+            });
           
             //var myurl="display.html?newdate="+newdate+"&newtime="+newtime+"&location="+location;
             //window.location.assign(encodeURI(myurl));
@@ -105,6 +127,11 @@
     
     function saveinfo() {
         var userid = window.sessionStorage.getItem("user");
+
+        var location = document.getElementById("selectpicker").value;
+        var newdate = document.getElementById("day").value;
+        var newtime = document.getElementById("time").value;
+
         if (userid == undefined || userid == "" || userid == null) {
             alert("请先登录系统！");
         }
@@ -114,6 +141,29 @@
                 alert("请先完成看人吃饭！");
                 return;
             }
+
+            var bufferCase = window.sessionStorage.getItem("bufferedCase");
+
+            //更新用户出生日期和出生地
+            $.doAjaxPostCall("updateUserBirthday", "username=" + userid + "&column6=" + newdate + "&hometown=" + location + "&bufferedCase=" + bufferCase, function (responseData) {
+                var obj = responseData;
+
+                if (obj != null) {
+                    if (obj.result == "3") {
+                        alert("更新失败，请先联系管理员！");
+                    }
+                    else if (obj.result == "0") {
+                        alert("新增失败，请先联系管理员！");
+                    }
+                    else if (obj.result == "1") {
+                        alert("保存成功！");
+                    }
+                }
+                else {
+                    alert("系统错误，请先联系管理员！");
+                }
+            });
+
             $.doAjaxPostCall("saveUserAdv", "userid=" + userid + "&adv=" + adv, function (responseData) {
                 var obj = responseData;
 

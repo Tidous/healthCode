@@ -52,6 +52,27 @@
 				<param name="callbackParameter">callback</param>
 			</result>
 		</action>
+
+		<action name="updateUserBirthday" class="action.update.UpdateUserBirthday"
+				method="updateBirthday">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+
+		<action name="queryBirthInfo" class="action.query.QueryBirthdayInfoAction"
+				method="getBirdateInfo">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+
+		<action name="queryCurrentInfo" class="action.query.QueryBirthdayInfoAction"
+				method="getSysdateInfo">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
 		
 		<action name="saveUserAdv" class="action.update.SaveUserAdv"
 			method="save">

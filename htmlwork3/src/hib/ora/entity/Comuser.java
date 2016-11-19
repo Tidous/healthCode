@@ -28,6 +28,7 @@ public class Comuser implements java.io.Serializable {
 	private String relateduser;
 	private Integer ismasteruser;
 	private Date column6;
+	private String hometown;
 
 	// Constructors
 
@@ -60,6 +61,7 @@ public class Comuser implements java.io.Serializable {
 		this.relateduser = relateduser;
 		this.ismasteruser = ismasteruser;
 		this.column6 = column6;
+		this.hometown = hometown;
 	}
 	
 	// Property
@@ -179,6 +181,15 @@ public class Comuser implements java.io.Serializable {
 
 	public void setColumn6(Date column6) {
 		this.column6 = column6;
+	}
+
+	@Column(name = "hometown")
+	public String getHometown() {
+		return hometown;
+	}
+
+	public void setHometown(String hometown) {
+		this.hometown = hometown;
 	}
 	
 }

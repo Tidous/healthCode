@@ -2,6 +2,7 @@ package hib.service;
 
 import hib.ora.entity.Comuser;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ComuserService {
@@ -31,6 +32,8 @@ public interface ComuserService {
 	public Comuser userLogin(String user, String password);
 	
 	public Comuser checkuser(String user, String mobile);
+
+	public void updateBirthday(String user, Date birthday, String hometown, String bufferedCase);
 	
 }
 
