@@ -50,75 +50,35 @@
         });
 
         $(function () {
+            var user = window.sessionStorage.getItem("user");
 
-            $.doAjaxPostCall("getPeopleInfo", "birthday=" + newdate + "&time=" + newtime + "&location=" + currentPosition, function (responseData) {
+            $.doAjaxPostCall("getUserBufferedInfo", "username=" + user, function (responseData) {
+                var obj = responseData;
+                var hometown = obj.hometown;
+                if (hometown=="north"){
+                    hometown = "北半球";
+                }else {
+                    hometown = "南半球";
+                }
+                document.getElementById("hometown").innerText = obj.hometown;
+                document.getElementById("birthday").innerText = obj.birthday;
+                var buffer = obj.bufferedCase;
+                
+            });
+
+            $.doAjaxPostCall("getUserAdv", "userid=" + user, function (responseData) {
                 var obj = responseData;
 
-
-            }
-
-            $.doAjaxPostCall("getPeopleInfo", "birthday=" + newdate + "&time=" + newtime + "&location=" + currentPosition, function (responseData) {
-                var obj = responseData;
-
-                if (obj.descriptionFront != null && obj.descriptionFront != "") {
-                    var text1 = "根据您的出生日期，专家给的建议是：" + obj.descriptionFront;
+                if (obj.adv != null && obj.adv != "") {
+                    var text1 = "根据您的出生日期，专家给的建议是：" + obj.adv;
                 }
                 else {
                     var text1 = "根据您的出生日期，专家没有特别的建议";
                 }
 
-                if (obj.dietFront != null && obj.dietFront != "") {
-                    var text2 = "食疗建议是：" + obj.dietFront;
-                }
-                else {
-                    var text2 = "没有特别的食疗建议";
-                }
-
-                if (obj.descriptionBehind != null && obj.descriptionBehind != "") {
-                    var text3 = "根据系统日期，专家给的建议是：" + obj.descriptionBehind;
-                }
-                else {
-                    var text3 = "根据系统日期，专家没有特别的建议";
-                }
-
-                if (obj.dietBehind != null && obj.dietBehind != "") {
-                    var text4 = "食疗建议是：" + obj.dietBehind;
-                }
-                else {
-                    var text4 = "没有特别的食疗建议";
-                }
-
-                $("#displayarea").text(text1 + "\n" + text2 + "\n" + text3 + "\n" + text4);
+                $("#displayarea").text(text1);
             });
         });
-
-        function saveinfo() {
-            var userid = window.sessionStorage.getItem("userid");
-            if (userid == undefined || userid == "" || userid == null) {
-                alert("请先登录系统！");
-            }
-            else {
-                var adv = document.getElementById('displayarea').value;
-                $.doAjaxPostCall("saveUserAdv", "userid=" + userid + "&adv=" + adv, function (responseData) {
-                    var obj = responseData;
-
-                    if (obj != null) {
-                        if (obj.result == "3") {
-                            alert("更新失败，请先联系管理员！");
-                        }
-                        else if (obj.result == "0") {
-                            alert("新增失败，请先联系管理员！");
-                        }
-                        else if (obj.result == "1") {
-                            alert("保存成功！");
-                        }
-                    }
-                    else {
-                        alert("系统错误，请先联系管理员！");
-                    }
-                });
-            }
-        }
     </script>
 </head>
 
@@ -149,7 +109,7 @@
             </div>
             <table>
                 <div>
-                    <label>生日：</label><label>出生地：</label>
+                    <label>生日：<span id="birthday"></span></label><label>出生地：<span id="hometown"></span></label>
                 </div>
                 <br/>
                 <div>

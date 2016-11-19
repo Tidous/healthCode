@@ -45,6 +45,13 @@
 				<param name="callbackParameter">callback</param>
 			</result>
 		</action>
+
+		<action name="getUserBufferedInfo" class="action.query.QueryUserBufferedInfo"
+				method="getUserBufferedInfo">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
 		
 		<action name="updateUserPsd" class="action.update.UpdateUserPsd"
 			method="updatepsd">
