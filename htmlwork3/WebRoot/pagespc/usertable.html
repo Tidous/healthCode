@@ -46,11 +46,16 @@
             var day=now.getDate();
             var hour=now.getHours();
             var minute=now.getMinutes();
-            document.getElementById("daynow").value = year+"-"+month+"-"+day;
+            document.getElementById("nowday").innerText = year+"-"+month+"-"+day;
         });
 
         $(function () {
             var user = window.sessionStorage.getItem("user");
+            var currentLocation = document.getElementById("currentLocation").innerText
+
+            if (currentLocation=="" || currentLocation==null){
+                currentLocation = "N"
+            }
 
             $.doAjaxPostCall("getUserBufferedInfo", "username=" + user, function (responseData) {
                 var obj = responseData;
@@ -60,10 +65,34 @@
                 }else {
                     hometown = "南半球";
                 }
-                document.getElementById("hometown").innerText = obj.hometown;
-                document.getElementById("birthday").innerText = obj.birthday;
+                document.getElementById("hometown").innerText = hometown;
+                document.getElementById("birthday").innerText = obj.birthday.split(" ")[0];
                 var buffer = obj.bufferedCase;
-                
+                document.getElementById("buffer1").innerText = buffer.substring(0,1)+"木"
+                document.getElementById("buffer2").innerText= buffer.substring(1,2)+"火"
+                document.getElementById("buffer3").innerText= buffer.substring(2,3)+"土"
+                document.getElementById("buffer4").innerText= buffer.substring(3,4)+"金"
+                document.getElementById("buffer5").innerText= buffer.substring(4,5)+"水"
+                document.getElementById("bufferedBlood").innerText = obj.bufferBlood;
+            });
+
+            $.doAjaxPostCall("queryCurrentInfo", "location=" + currentLocation, function (responseData) {
+                var obj = responseData;
+                var obj = responseData;
+                var hometown = obj.location;
+                if (hometown=="north"){
+                    hometown = "北半球";
+                }else {
+                    hometown = "南半球";
+                }
+                document.getElementById("currentLocation").innerText = hometown;
+                var buffer = obj.currentCase;
+                document.getElementById("buffer6").innerText = buffer.substring(0,1)+"木"
+                document.getElementById("buffer7").innerText= buffer.substring(1,2)+"火"
+                document.getElementById("buffer8").innerText= buffer.substring(2,3)+"土"
+                document.getElementById("buffer9").innerText= buffer.substring(3,4)+"金"
+                document.getElementById("buffer10").innerText= buffer.substring(4,5)+"水"
+                document.getElementById("currentBlood").innerText = obj.currentBlood;
             });
 
             $.doAjaxPostCall("getUserAdv", "userid=" + user, function (responseData) {
@@ -109,23 +138,23 @@
             </div>
             <table>
                 <div>
-                    <label>生日：<span id="birthday"></span></label><label>出生地：<span id="hometown"></span></label>
+                    <label>生日：<span id="birthday"></span></label><label>  出生地：<span id="hometown"></span></label>
                 </div>
                 <br/>
                 <div>
-                    <label>先天五运六气：</label>
+                    <label>先天五运六气：<span id="buffer1"></span><span id="buffer2"></span><span id="buffer3"></span><span id="buffer4"></span><span id="buffer5"></span></label>
                 </div>
                 <br/>
                 <div>
-                    <label id="daynow">今日：</label><label>所在地：北半球</label>
+                    <label>今日：<span id="nowday"></span></label><label>所在地：<span id="currentLocation"></span></label>
                 </div>
                 <br/>
                 <div>
-                    <label>当前五运六气：</label>
+                    <label>当前五运六气：</label><span id="buffer6"></span><span id="buffer7"></span><span id="buffer8"></span><span id="buffer9"></span><span id="buffer10"></span>
                 </div>
                 <br/>
                 <div>
-                    <label>先天气血：</label><label>结论</label><a href="./display.html"></a>
+                    <label>先天气血：先天血：</label><span id="bufferedBlood"></span><label>后天血：</label><span id="currentBlood"></span><label>结论</label><a href="./display.html"></a>
                 </div>
             </table>
             <div class="page-header" align="left">
