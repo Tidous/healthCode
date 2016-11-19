@@ -26,7 +26,7 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
     private String sysday;
     private String systime;
     private String bufferBlood;
-    private String currentBlood;
+    private String bufferGase;
 
     @Autowired
     private BirthdateService birthdateService;
@@ -34,8 +34,9 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
     public String getBirdateInfo() {
         handleNullField();
         before();
+        Birthdate birdateInfo = new Birthdate();
 
-        Birthdate birdateInfo = birthdateService.getUserBirthInfo(birthday, time);
+        birdateInfo = birthdateService.getUserBirthInfo(birthday, time);
         if (location.equals("N")) {
             String suman = birdateInfo.getSuman().toString();
             Integer sumb1n = birdateInfo.getSumb1n();
@@ -44,9 +45,11 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
             String sumcn = birdateInfo.getSumcn().toString();
             String sumdn = birdateInfo.getSumdn().toString();
             String sumen = birdateInfo.getSumen().toString();
-            Double blood = birdateInfo.getSuman()*0.1+birdateInfo.getSumb1n()*0.9+birdateInfo.getSumb2n()*0.9+birdateInfo.getSumcn()*0.9+birdateInfo.getSumdn()*0.9+birdateInfo.getSumen()*0.1;
+            Double gase = birdateInfo.getSuman()*0.1+birdateInfo.getSumb1n()*0.9+birdateInfo.getSumb2n()*0.9+birdateInfo.getSumcn()*0.9+birdateInfo.getSumdn()*0.9+birdateInfo.getSumen()*0.1;
+            Double blood = birdateInfo.getSuman()*0.9+birdateInfo.getSumb1n()*0.1+birdateInfo.getSumb2n()*0.1+birdateInfo.getSumcn()*0.1+birdateInfo.getSumdn()*0.1+birdateInfo.getSumen()*0.1;
             this.bufferedCase = suman + sumbn.toString() + sumcn + sumdn + sumen;
             this.bufferBlood = blood.toString();
+            this.bufferGase = gase.toString();
         } else {
             String sumas = birdateInfo.getSumas().toString();
             Integer sumb1s = birdateInfo.getSumb1s();
@@ -55,9 +58,11 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
             String sumcs = birdateInfo.getSumcs().toString();
             String sumds = birdateInfo.getSumds().toString();
             String sumes = birdateInfo.getSumes().toString();
-            Double blood = birdateInfo.getSumas()*0.1+birdateInfo.getSumb1s()*0.9+birdateInfo.getSumb2s()*0.9+birdateInfo.getSumcs()*0.9+birdateInfo.getSumds()*0.9+birdateInfo.getSumes()*0.1;
+            Double gase = birdateInfo.getSumas()*0.1+birdateInfo.getSumb1s()*0.9+birdateInfo.getSumb2s()*0.9+birdateInfo.getSumcs()*0.9+birdateInfo.getSumds()*0.9+birdateInfo.getSumes()*0.1;
+            Double blood = birdateInfo.getSumas()*0.9+birdateInfo.getSumb1s()*0.1+birdateInfo.getSumb2s()*0.1+birdateInfo.getSumcs()*0.1+birdateInfo.getSumds()*0.1+birdateInfo.getSumes()*0.1;
             this.bufferedCase = sumas + sumbs.toString() + sumcs + sumds + sumes;
             this.bufferBlood = blood.toString();
+            this.bufferGase = gase.toString();
         }
 
         after();
@@ -68,7 +73,8 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
 
     public String getSysdateInfo() {
         handleNullField();
-        Birthdate sysdateInfo = birthdateService.getSysdateInfo(sysday, systime);
+        Birthdate sysdateInfo = new Birthdate();
+        sysdateInfo = birthdateService.getSysdateInfo(sysday, systime);
         if (location.equals("N")) {
             String suman = sysdateInfo.getSuman().toString();
             Integer sumb1n = sysdateInfo.getSumb1n();
@@ -77,9 +83,11 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
             String sumcn = sysdateInfo.getSumcn().toString();
             String sumdn = sysdateInfo.getSumdn().toString();
             String sumen = sysdateInfo.getSumen().toString();
-            Double blood = sysdateInfo.getSuman()*0.9+sysdateInfo.getSumb1n()*0.1+sysdateInfo.getSumb2n()*0.1+sysdateInfo.getSumcn()*0.1+sysdateInfo.getSumdn()*0.1+sysdateInfo.getSumen()*0.1;
+            Double gase = sysdateInfo.getSumas()*0.1+sysdateInfo.getSumb1s()*0.9+sysdateInfo.getSumb2s()*0.9+sysdateInfo.getSumcs()*0.9+sysdateInfo.getSumds()*0.9+sysdateInfo.getSumes()*0.1;
+            Double blood = sysdateInfo.getSumas()*0.9+sysdateInfo.getSumb1s()*0.1+sysdateInfo.getSumb2s()*0.1+sysdateInfo.getSumcs()*0.1+sysdateInfo.getSumds()*0.1+sysdateInfo.getSumes()*0.1;
             this.currentCase = suman + sumbn.toString() + sumcn + sumdn + sumen;
-            this.currentBlood = blood.toString();
+            this.bufferBlood = blood.toString();
+            this.bufferGase = gase.toString();
         } else {
             String sumas = sysdateInfo.getSumas().toString();
             Integer sumb1s = sysdateInfo.getSumb1s();
@@ -88,9 +96,11 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
             String sumcs = sysdateInfo.getSumcs().toString();
             String sumds = sysdateInfo.getSumds().toString();
             String sumes = sysdateInfo.getSumes().toString();
+            Double gase = sysdateInfo.getSumas()*0.1+sysdateInfo.getSumb1s()*0.9+sysdateInfo.getSumb2s()*0.9+sysdateInfo.getSumcs()*0.9+sysdateInfo.getSumds()*0.9+sysdateInfo.getSumes()*0.1;
             Double blood = sysdateInfo.getSumas()*0.9+sysdateInfo.getSumb1s()*0.1+sysdateInfo.getSumb2s()*0.1+sysdateInfo.getSumcs()*0.1+sysdateInfo.getSumds()*0.1+sysdateInfo.getSumes()*0.1;
             this.currentCase = sumas + sumbs.toString() + sumcs + sumds + sumes;
-            this.currentBlood = blood.toString();
+            this.bufferBlood = blood.toString();
+            this.bufferGase = gase.toString();
         }
         return SUCCESS;
     }
@@ -183,15 +193,7 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
         return bufferBlood;
     }
 
-    public void setBufferBlood(String bufferBlood) {
-        this.bufferBlood = bufferBlood;
-    }
-
-    public String getCurrentBlood() {
-        return currentBlood;
-    }
-
-    public void setCurrentBlood(String currentBlood) {
-        this.currentBlood = currentBlood;
+    public String getBufferGase() {
+        return bufferGase;
     }
 }

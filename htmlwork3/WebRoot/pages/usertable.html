@@ -85,10 +85,10 @@
                 document.getElementById("buffer8").innerText= buffer.substring(2,3)+"土"
                 document.getElementById("buffer9").innerText= buffer.substring(3,4)+"金"
                 document.getElementById("buffer10").innerText= buffer.substring(4,5)+"水"
-                document.getElementById("currentBlood").innerText = obj.currentBlood;
+                document.getElementById("bufferedGase").innerText = obj.bufferGase;
                 document.getElementById("bufferedBlood").innerText = obj.bufferBlood;
-                var a = parseFloat(obj.bufferBlood)
-                var b = parseFloat(obj.currentBlood)
+                var a = parseFloat(obj.bufferGase)
+                var b = parseFloat(obj.bufferBlood)
                 if (a > b){
                     document.getElementById("blood").innerText = "气虚"
                 } else if (a < b){
@@ -113,6 +113,8 @@
         });
     </script>
 </head>
+R5*0.1+R6*0.9+R7*0.9+R8*0.1+R9*0.9+R10*0.1  先天热
+R5*0.9+R6*0.1+R7*0.1+R8*0.1+R9*0.1+R10*0.9  先天冷
 
 <body>
 <div>
@@ -157,7 +159,7 @@
                 </div>
                 <br/>
                 <div>
-                    <label>先天气血：先天血：</label><span id="bufferedBlood"></span><label>后天血：</label><span id="currentBlood"></span>
+                    <label>先天气血：先天气：</label><span id="bufferedGase"></span><label>先天血：</label><span id="bufferedBlood"></span>
                 </div>
                 <br/>
                 <div>
