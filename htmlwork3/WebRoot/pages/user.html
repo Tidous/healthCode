@@ -1,1206 +1,465 @@
-
 <!DOCTYPE html>
 <html>
-    <head> 
-        <meta charset="utf-8"> 
-        <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <title>用户中心_健康计算器</title>
-        <meta name="description" content=""/> 
-        <meta name="keywords" content="有问必答，健康问答"/>
-    <script type="text/javascript" src="../js/t.js"></script>
-    <script type="text/javascript" src="../js/head.js"></script>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>用户中心_健康计算器</title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content="有问必答，健康问答"/>
     <!--[if !IE]>-->
     <link type="text/css" rel="stylesheet" href="../css/m_reset.css">
-    <link rel="stylesheet" href="../css/club_app.css" type="text/css" />
+    <link rel="stylesheet" href="../css/club_app.css" type="text/css"/>
     <link rel="stylesheet" href="../css/user_center.css?v=2016052809">
     <link rel="stylesheet" href="../css/zt-jkgl.css">
-	<link rel="stylesheet" href="../css/my-base.css">
-    <!--<![endif]-->
-        <script type="text/javascript" src="../js/common.js"></script>
-        <script type='text/javascript'>
-    window.onload=function(){
-		if (window.sessionStorage.getItem("user") && window.sessionStorage.getItem("user") != "") {
-	         $("#userInfo").text("欢迎 "+window.sessionStorage.getItem("user")+"先生/女士");
-	         $("#userInfo").show();
-	         $("#loginimpl").hide();
-	         $("#registerimpl").hide();
-	    }
-	    else {
-			alert("请先登录或注册");
-			window.location.href = "./login.html";
-	    }
-	}
-	</script>
-        <script type="text/javascript">
+    <link rel="stylesheet" href="../css/my-base.css">
+    <!--<![endif]--></head>
+<style> .wrap {
+    overflow: hidden;
+}
 
+.comments {
+    width: 100%;
+    overflow: auto;
+    word-break: break-all;
+}
 
-    var HABIT_MAP = {"1":"心慌或烦躁","2":"胃纳不佳","3":"呼吸短气或声音低微","4":"手脚经常冰凉","5":"便秘","6":"失眠或多梦","7":"头晕或胸闷","8":"皮肤干燥","9":"脸色或指甲淡白","10":"面色萎黄或无光泽","11":"胃脘饱胀","12":"忍饥挨饿或总爱吃撑",
-        "13":"熬夜","14":"思虑过度","15":"常吃冷饮或以水果、生蔬菜为主食","16":"常过量饮酒","17":"久坐（每天坐超过4小时）","18":"压力大","19":"经常洗冷水澡或冬泳",
-        "20":"经常使用空调","21":"经常使用电热毯等加热器","22":"每周体育运动时间:1小时以下","23":"每周体育运动时间:1-4小时","24":"每周体育运动时间:4-7小时","25":"每周体育运动时间:7小时以上"};
+.clubmenu {
+    background: url(../images/mebtn.png) no-repeat center 4px;
+    -webkit-background-size: 19px auto;
+    background-size: 19px auto;
+    border: 1px solid #fff;
+    -webkit-border-radius: 0px 3px 3px 0px;
+    border-radius: 0px 3px 3px 0px;
+    width: 48px;
+    height: 29px;
+}
+
+.col04a {
+    color: #04aabd;
+}</style>
+<script type="text/javascript" src="../lib/jquery.min.js"></script>
+<script type="text/javascript" src="js/config.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
+<script type='text/javascript'>
+    window.onload = function () {
+        if (window.sessionStorage.getItem("user") && window.sessionStorage.getItem("user") != "") {
+            $("#userInfo").text("欢迎 " + window.sessionStorage.getItem("user") + "先生/女士");
+            $("#userInfo").show();
+            $("#loginimpl").hide();
+            $("#registerimpl").hide();
+        }
+        else {
+            alert("请先登录或注册");
+            window.location.href = "./login.html";
+        }
+    }
+</script>
+<script type="text/javascript">
+    var HABIT_MAP = {
+        "1": "心慌或烦躁",
+        "2": "胃纳不佳",
+        "3": "呼吸短气或声音低微",
+        "4": "手脚经常冰凉",
+        "5": "便秘",
+        "6": "失眠或多梦",
+        "7": "头晕或胸闷",
+        "8": "皮肤干燥",
+        "9": "脸色或指甲淡白",
+        "10": "面色萎黄或无光泽",
+        "11": "胃脘饱胀",
+        "12": "忍饥挨饿或总爱吃撑",
+        "13": "熬夜",
+        "14": "思虑过度",
+        "15": "常吃冷饮或以水果、生蔬菜为主食",
+        "16": "常过量饮酒",
+        "17": "久坐（每天坐超过4小时）",
+        "18": "压力大",
+        "19": "经常洗冷水澡或冬泳",
+        "20": "经常使用空调",
+        "21": "经常使用电热毯等加热器",
+        "22": "每周体育运动时间:1小时以下",
+        "23": "每周体育运动时间:1-4小时",
+        "24": "每周体育运动时间:4-7小时",
+        "25": "每周体育运动时间:7小时以上"
+    };
     if (!window.sessionStorage) {
-      alert("该游览器不支持某些组件，请使用IE8以上的游览器，谢谢配合");
+        alert("该游览器不支持某些组件，请使用IE8以上的游览器，谢谢配合");
     }
 
-    $(function() {
-      $("#username").text(window.sessionStorage.getItem("user"));
-	  if(window.sessionStorage.getItem("user") && window.sessionStorage.getItem("user") != ""){
-      $.doAjaxPostCall("queryUserList", "userid=" + window.sessionStorage.getItem("userid"),
-      function(responseData) {
-        console.log(responseData);
-        var obj = responseData;
+    $(function () {
+        $("#username").text(window.sessionStorage.getItem("user"));
+        if (window.sessionStorage.getItem("user") && window.sessionStorage.getItem("user") != "") {
+            $.doAjaxPostCall("queryUserList", "userid=" + window.sessionStorage.getItem("user"),
+                    function (responseData) {
+                        console.log(responseData);
+                        var obj = responseData;
 
-        var samebody = "</span></div></td><td align='center' class='GeneralAnswer'><div style='padding: 4px'><span  class='Color1'>";
+                        var samebody = "</span></div></td><td align='center' class='GeneralAnswer'><div style='padding: 4px'><span  class='Color1'>";
 
-        if (obj.retmsg == "success") {
-          $("#familycount").text("(" + obj.list.length + ")");
-          for (var i = 0; obj.list != null && i < obj.list.length; i++) {
+                        if (obj.retmsg == "success") {
+                            $("#familycount").text("(" + obj.list.length + ")");
+                            for (var i = 0; obj.list != null && i < obj.list.length; i++) {
 
-            var fundbody1 = "<tr class='EdgeTableLine' style='cursor:pointer; '><td align='center' class='GeneralAnswer'><div style='padding: 4px'><span class='Color1'>" + obj.list[i].username;
-            var fundbody2 = samebody + obj.list[i].relationship;
-            var fundbody3 = samebody + obj.list[i].phone;
-            var endbody = "</span></div></td><td align='center'><div style='padding:4px'><a title='编辑用户信息' onclick='detail(id)' id='row_" + obj.list[i].username + "_" + obj.list[i].idno + "' class='Detaillink' value='编辑用户信息' onmouseover='this.style.cursor=&#39;pointer&#39;'>编辑用户信息</a></div></td><td align='center'><div style='padding:4px'><a title='删除' onclick='del(id)' id='row_" + obj.list[i].username + "_" + obj.list[i].idno + "' class='Detaillink' value='删除' onmouseover='this.style.cursor=&#39;pointer&#39;'>删除</a></div></td></tr>";
-            listhtml = fundbody1 + fundbody2 + fundbody3 + endbody;
-            $("#peopeltable").append(listhtml);
-          }
-          $("#noneDoctor").hide();
-          $("#familytable").show();
-        } else {
-          $("#noneDoctor").show();
-          $("#familytable").hide();
+                                var fundbody1 = "<tr class='EdgeTableLine' style='cursor:pointer; '><td align='center' class='GeneralAnswer'><div style='padding: 4px'><span class='Color1'>" + obj.list[i].username;
+                                var fundbody2 = samebody + obj.list[i].relationship;
+                                var fundbody3 = samebody + obj.list[i].phone;
+                                var endbody = "</span></div></td><td align='center'><div style='padding:4px'><a title='编辑用户信息' onclick='detail(id)' id='row_" + obj.list[i].username + "_" + obj.list[i].idno + "' class='Detaillink' value='编辑用户信息' onmouseover='this.style.cursor=&#39;pointer&#39;'>编辑用户信息</a></div></td><td align='center'><div style='padding:4px'><a title='删除' onclick='del(id)' id='row_" + obj.list[i].username + "_" + obj.list[i].idno + "' class='Detaillink' value='删除' onmouseover='this.style.cursor=&#39;pointer&#39;'>删除</a></div></td></tr>";
+                                listhtml = fundbody1 + fundbody2 + fundbody3 + endbody;
+                                $("#peopeltable").append(listhtml);
+                            }
+                            $("#noneDoctor").hide();
+                            $("#familytable").show();
+                        } else {
+                            $("#noneDoctor").show();
+                            $("#familytable").hide();
+                        }
+                    });
         }
-      });}
 
-	  if(window.sessionStorage.getItem("user") && window.sessionStorage.getItem("user") != ""){
-      $.doAjaxPostCall("queryHabit", "userid=" + window.sessionStorage.getItem("userid"),
-      function(responseData) {
-        console.log(responseData);
-        var obj = responseData;
+        if (window.sessionStorage.getItem("user") && window.sessionStorage.getItem("user") != "") {
+            $.doAjaxPostCall("queryHabit", "userid=" + window.sessionStorage.getItem("user"),
+                    function (responseData) {
+                        console.log(responseData);
+                        var obj = responseData;
 
-        var habit = responseData.habit;
+                        var habit = responseData.habit;
 
-        if (habit != null) {
-          var arrStr = habit.split(",");
-          $("#habitcount").text("(" + arrStr.length + ")");
-          $("#nonehabit").text("您平时的生活习惯包括：");
-          for (var j = 0; j < arrStr.length; j++) {
-            $("#nonehabit").append(" " + HABIT_MAP[arrStr[j]] + " ");
-          }
+                        if (habit != null) {
+                            var arrStr = habit.split(",");
+                            $("#habitcount").text("(" + arrStr.length + ")");
+                            $("#nonehabit").text("您平时的生活习惯包括：");
+                            for (var j = 0; j < arrStr.length; j++) {
+                                $("#nonehabit").append(" " + HABIT_MAP[arrStr[j]] + " ");
+                            }
+                        }
+                    });
         }
-      });}
     });
 
     function detail(id) {
-      var arrStr = id.split("_");
-      var name = arrStr[1];
-      var idno = arrStr[2];
+        var arrStr = id.split("_");
+        var name = arrStr[1];
+        var idno = arrStr[2];
 
-      var myurl = "userdoc.html?name=" + name + "&idno=" + idno;
-      window.location.assign(encodeURI(myurl));
+        var myurl = "userdoc.html?name=" + name + "&idno=" + idno;
+        window.location.assign(encodeURI(myurl));
     }
 
     function del(id) {
-      var arrStr = id.split("_");
-      var name = arrStr[1];
-      var idno = arrStr[2];
+        var arrStr = id.split("_");
+        var name = arrStr[1];
+        var idno = arrStr[2];
 
-      $.doAjaxPostCall("delUserinfo", "userid=" + window.sessionStorage.getItem("userid") + "&name=" + name + "&idno=" + idno,
-      function(responseData) {
+        $.doAjaxPostCall("delUserinfo", "userid=" + window.sessionStorage.getItem("userid") + "&name=" + name + "&idno=" + idno,
+                function (responseData) {
 
-        console.log(responseData);
-        var obj = responseData;
+                    console.log(responseData);
+                    var obj = responseData;
 
-        if (obj.retmsg == "success") {
-          alert("删除成功！");
-          window.location = "../index.html";
-        } else if (obj.retmsg == "fail") {
-          alert("删除失败，请联系管理员");
-        }
-      });
+                    if (obj.retmsg == "success") {
+                        alert("删除成功！");
+                        window.location = "../index.html";
+                    } else if (obj.retmsg == "fail") {
+                        alert("删除失败，请联系管理员");
+                    }
+                });
     }
 
     function check() {
 
-      if (document.getElementById("orginpsd").value == "") {
-        alert("请输入原密码!");
-        return false;
-      }
+        if (document.getElementById("orginpsd").value == "") {
+            alert("请输入原密码!");
+            return false;
+        }
 
-      if (document.getElementById("newpsd").value == "") {
-        alert("请输入新密码!");
-        return false;
-      }
+        if (document.getElementById("newpsd").value == "") {
+            alert("请输入新密码!");
+            return false;
+        }
 
-      if (document.getElementById("confirmpsd").value == "") {
-        alert("请再次确认密码!");
-        return false;
-      }
+        if (document.getElementById("confirmpsd").value == "") {
+            alert("请再次确认密码!");
+            return false;
+        }
 
-      if (document.getElementById("confirmpsd").value != document.getElementById("newpsd").value) {
-        alert("两次密码输入不一致!");
-        return false;
-      }
+        if (document.getElementById("confirmpsd").value != document.getElementById("newpsd").value) {
+            alert("两次密码输入不一致!");
+            return false;
+        }
 
-      return true;
+        return true;
     }
 
     function update() {
-      if (check()) {
+        if (check()) {
 
-        var oldpsd = document.getElementById("orginpsd").value;
-        var newpsd = document.getElementById("confirmpsd").value;
+            var oldpsd = document.getElementById("orginpsd").value;
+            var newpsd = document.getElementById("confirmpsd").value;
 
-        $.doAjaxPostCall("updateUserPsd", "username=" + window.sessionStorage.getItem("user") + "&newpsd=" + newpsd + "&oldpsd=" + oldpsd,
-        function(responseData) {
+            $.doAjaxPostCall("updateUserPsd", "username=" + window.sessionStorage.getItem("user") + "&newpsd=" + newpsd + "&oldpsd=" + oldpsd,
+                    function (responseData) {
 
-          console.log(responseData);
-          var obj = responseData;
+                        console.log(responseData);
+                        var obj = responseData;
 
-          var res = obj.result;
+                        var res = obj.result;
 
-          if (res == "0") {
-            alert("未找到该用户！请重新验证用户信息");
-            window.location = "getpwd_confirm.html";
-          } else if (res == "3") {
-            alert("密码修改失败！请重新验证用户信息");
-            window.location = "getpwd_confirm.html";
-          } else if (res == "1") {
-            alert("密码修改成功，请重新登录");
-            window.sessionStorage.clear();
-            window.location = "login.html";
-          }
-        });
-      }
+                        if (res == "0") {
+                            alert("未找到该用户！请重新验证用户信息");
+                            window.location = "getpwd_confirm.html";
+                        } else if (res == "3") {
+                            alert("密码修改失败！请重新验证用户信息");
+                            window.location = "getpwd_confirm.html";
+                        } else if (res == "1") {
+                            alert("密码修改成功，请重新登录");
+                            window.sessionStorage.clear();
+                            window.location = "login.html";
+                        }
+                    });
+        }
     }
 
     function logout() {
         var r = confirm("您确认要退出吗？");
-		if (r==false) {
-		    return
-		}
+        if (r == false) {
+            return
+        }
 
-		window.sessionStorage.clear();
-        window.location.href="../index.html";
+        window.sessionStorage.clear();
+        window.location.href = "../index.html";
     }
-  </script>
-</head>
+
+    function addFamily() {
+        var user = window.sessionStorage.getItem("user");
+        window.location.href = "./userdoc.html?name="+user;
+    }
+</script>
+
 <body>
-
-    <div class="w">
-         <script src="../lib/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-    var Zepto = jQuery;
-    var $ = Zepto;
-</script>
-<script src="../js/click.js" type="text/javascript"></script>
-<style>
-.clubmenu{ background:url(../images/mebtn.png) no-repeat center 4px;-webkit-background-size:19px auto; background-size:19px auto; border:1px solid #fff;-webkit-border-radius:0px 3px 3px 0px;border-radius:0px 3px 3px 0px; width:48px; height:29px;}
-.col04a{ color:#04aabd;}
-</style>
-<header id="iheader">
-      <div class="header_new fWei pr">
-         <span class="col04a f16 pl10 " style="line-height:47px;"><a onmousedown="clicktest(this)" clicktype="3g_xywy_user" clicken="3g_i_xywy_com_xywy" href="../indexmobile.html"  class="col04a" >健康计算器</a> · <a onmousedown="clicktest(this)" clicktype="3g_xywy_user" clicken="3g_i_xywy_com_user"  href="./user.html"  class="col04a" >个人中心</a></span>
-        <div class="fr dib headfr">
-        <a href="./user.html" class="dib t9999 clubmenu" style="border-radius:3px;">个人中心</a>
+<div class="w">
+    <header id="iheader">
+        <div class="header_new fWei pr">
+          <span class="col04a f16 pl10 " style="line-height:47px;">
+            <a href="../index.html" class="col04a">健康计算器</a>·
+            <a href="./user.html" class="col04a">个人中心</a></span>
+            <div class="fr dib headfr">
+                <a href="./user.html" class="dib t9999 clubmenu" style="border-radius:3px;">个人中心</a></div>
         </div>
-      </div>
-
-<script type="text/javascript" src="../js/check_app_qing.js"></script>
-</header>  
-        <section class="user_top ml10 mt10 mr10 pl10 f16 btn-a">
-			<span class="user_name_text">Tidous</span>，
-            <a href="/user/logout?t=652592111" class="ml10">退出</a>        </section>
-        <script>
-            $(function(){
-                var tpl = '<section class="updata-psw-tip ml10 mr10 mt10">\
-                    <div class="updata-psw">\
-                        <a class="updata_btn" href="javascript:;">为了更好地保护账户安全，请您定期设置新的登录密码，<em>修改密码&gt;&gt;</em></a>\
-                        <span class="close-updata">×</span>\
-                    </div>\
-                </section>';
-                $.ajax({
-                    dataType:'jsonp',
-                    url:'http://passport.xywy.com/login.php?act=member_login_status',
-                    success:function(data){
-                        if(data.result == 10003){
-                            //长时间没有修改密码
-                            $('.user_top').after(tpl);
-                            $('.updata_btn').click(function(){
-                                var top = $('.passWord').offset().top - 64;
-                                $('h2').removeClass('current');
-                                $('.botom').css('display','none');
-                                $('.passWord').find('h2').addClass('current');
-                                $('.passWord').find('.botom').css('display','block');
-                                $('html,body').animate({scrollTop: top}, 300);
-                            });
-                            $('.close-updata').click(function(){
-                                $('.updata-psw-tip').hide();
-                            });                          
-                        };
-
-                    }
-                });
-            });
-        </script>   
-
-        <section class="user_con mt10 ml10 mr10 fWei" id="userlist" >
-
-            <!-- 本次添加地方start-->
-
-			<div class="myFamilyDoctor">
-                <h2  >
-                    <a name="myphonedoctor"></a>
-                    <div class="dib fl my_userglbg" clicken="3g_health_wdjkgl" onmousedown="clicktest(this);
-                            __sendClickOdm('3g_ucenter', this, 'shouye:3g_health_wdjkgl+')" clicktype="3g_health">
-                        我的家人管理<i class="ml10 fn coliyel">(0)</i>
-                    </div>
-                    <span class="dib fr userbg">
-                    </span>
-                </h2>
-
-                <div class="myphonedoctor" style="display:none;">
-                    <div  id="datalist_myhealthmanager">
-
-                            <div class="familyDoctor nonefamilyDoctor " >
-                                <div>
-                                    <div class="F-cont noneDoctorCont">
-                                        <div class="noneDoctor">
-                                            <p class="f14">暂无相关家人资料</p>
-                                            <p><a href="./userdoc.html" >去关联家人</a></p>
-                                        </div>
-                                    </div>
+        <script type="text/javascript" src="../js/check_app_qing.js"></script>
+    </header>
+    <section class="user_top ml10 mt10 mr10 pl10 f16 btn-a">
+        <span class="user_name_text" id="username"></span>
+        <a href="#" class="ml10" onclick="logout()">退出</a></section>
+    <section class="user_con mt10 ml10 mr10 fWei" id="userlist">
+        <!-- 我的家人管理-->
+        <div class="myFamilyDoctor" onmouseover="this.style.cursor=&#39;pointer&#39;">
+            <h2>
+                <a name="myphonedoctor"></a>
+                <div class="dib fl my_userjrglbg" clicken="3g_health_wdjkgl"
+                     clicktype="3g_health">我的家人管理
+                    <i class="ml10 fn coliyel" id="familycount">(0)</i></div>
+                <span class="dib fr userbg"></span>
+            </h2>
+            <div class="myphonedoctor" style="display:none;">
+                <div id="datalist_myhealthmanager">
+                    <div class="familyDoctor nonefamilyDoctor ">
+                        <div>
+                            <div class="F-cont noneDoctorCont">
+                                <div class="noneDoctor">
+                                    <p class="f14" id="noneDoctor">暂无相关家人资料</p>
+                                    <p>
+                                        <a href="javascript:void(0);" onclick="addFamily()">去关联家人</a></p>
+                                </div>
+                                <div id="familytable">
+                                    <table summary="Record" cellpadding="0" cellspacing="0" style="width: 100%;"
+                                           title="Record" border="1">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col" abbr="2"
+                                                class="GeneralQuestion  tetris_tableHeader GeneralQuestionBorder"
+                                                align="center">
+                                                <div style="padding: 4px">成员名字
+                                                    <span></span></div>
+                                            </th>
+                                            <th scope="col" abbr="3"
+                                                class="GeneralQuestion  tetris_tableHeader GeneralQuestionBorder"
+                                                align="center">
+                                                <div style="padding: 4px">家庭关系
+                                                    <span></span></div>
+                                            </th>
+                                            <th scope="col" abbr="7"
+                                                class="GeneralQuestion  tetris_tableHeader GeneralQuestionBorder"
+                                                align="center">
+                                                <div style="padding: 4px">手机号
+                                                    <span></span></div>
+                                            </th>
+                                            <th scope="col" abbr="8"
+                                                class="GeneralQuestion  tetris_tableHeader GeneralQuestionBorder"
+                                                align="center">
+                                                <div style="padding: 4px">操作
+                                                    <span></span></div>
+                                            </th>
+                                            <th scope="col" abbr="9"
+                                                class="GeneralQuestion  tetris_tableHeader GeneralQuestionBorder"
+                                                align="center">
+                                                <div style="padding: 4px">操作
+                                                    <span></span></div>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="peopeltable"></tbody>
+                                    </table>
                                 </div>
                             </div>
-                                            </div>
-                                    </div>
-            </div>
-
-            <div>
-                <h2>
-                    <div class="dib fl hk-center">我的习惯变化与总结<i class="ml10 fn coliyel count_doc " count_doc="0">(0)</i></div>
-                    <span class="dib fr userbg"></span>
-                </h2>
-                <div class="botom none" >
-                    <div id="datalist_myattendoc">
-                        <div class="tc f14 pt20 pb20">暂无关注的医生</div>
-
+                        </div>
                     </div>
-
                 </div>
-
             </div>
-
-            <!--健康管理 2015-02-02 start-->				
-            <div class="myFamilyDoctor">
-                <h2  >
-                    <a name="myphonedoctor"></a>
-                    <div class="dib fl my_userglbg" clicken="3g_health_wdjkgl" onmousedown="clicktest(this);
-                            __sendClickOdm('3g_ucenter', this, 'shouye:3g_health_wdjkgl+')" clicktype="3g_health">
-                        我的体质与饮食<i class="ml10 fn coliyel">(0)</i>
-                    </div>
-                    <span class="dib fr userbg">
-                    </span>
-                </h2>
-
-                <div class="myphonedoctor" style="display:none;">
-                    <div  id="datalist_myhealthmanager">
-
-                            <div class="familyDoctor nonefamilyDoctor " >
-                                <div>
-                                    <div class="F-cont noneDoctorCont">
-                                        <div class="noneDoctor">
-                                            <p class="f14">暂无相关健康管理服务订单</p>
-                                            <p><a href="./symptoms.html" >进入健康管理</a></p>
-                                        </div>
-                                    </div>
+        </div>
+        <!--我的体质与饮食-->
+        <div onmouseover="this.style.cursor=&#39;pointer&#39;">
+            <h2>
+                <div>我的体质与饮食</div>
+                <span class="dib fr userbg"></span>
+            </h2>
+            <div class="botom none">
+                <div id="datalist_myattendoc">
+                    <div class="tc f14 pt20 pb20"><a href="./usertable.html">查看我的体质与饮食</a></div>
+                </div>
+            </div>
+        </div>
+        <!--习惯变化与总结-->
+        <div class="myFamilyDoctor" onmouseover="this.style.cursor=&#39;pointer&#39;">
+            <h2>
+                <a name="myphonedoctor"></a>
+                <div class="dib fl my_userglbg" clicken="3g_health_wdjkgl"
+                     clicktype="3g_health">习惯变化与总结
+                    <i class="ml10 fn coliyel" id="habitcount">(0)</i></div>
+                <span class="dib fr userbg"></span>
+            </h2>
+            <div class="myphonedoctor" style="display:none;">
+                <div id="datalist_myhealthmanager">
+                    <div class="familyDoctor nonefamilyDoctor ">
+                        <div>
+                            <div class="F-cont noneDoctorCont">
+                                <div class="noneDoctor">
+                                    <p class="f14" id="nonehabit">暂无相关健康管理服务订单</p>
+                                    <p>
+                                        <a href="symptoms.html">进入健康调查</a>
+                                        <!-- <a href="http://3g.club.xywy.com/familyDoctor/health/">进入健康管理</a>--></p>
                                 </div>
                             </div>
-
-
-                                            </div>
-                                    </div>
-            </div>
-
-            <div class="passWord">
-                <h2>
-                    <a name="updpwd"></a>
-                    <div class="dib fl userbg user06" onclick="window.scrollTo(0, 400);">修改密码</div>
-                    <span class="dib fr userbg"></span>
-                </h2>
-                <div class="pl10 pr10 botom pb15 none">
-                    <form name="frmpasswd" method="post" action="" onsubmit="return false;">
-                        <div class="PasTs pt10 red none"></div>
-                        <div class="Pass f14 mt10">
-                            <div class="w IputDiv">
-                                <span class="dib mr10 ml10 fl">当 前 密 码</span>
-                                <input name="oldpasswd" id="oldpasswd" type="password" onKeyUp="$(this).parent().removeClass('bgf4')" 
-                                       class="iputClass dib fl" value="" onfocus="this.style.color = '#666';" 
-                                       onblur="if (this.value.isEmpty()) {
-                                                   this.value = this.defaultValue;
-                                                   this.style.color = '#999';
-                                               }" />
-                            </div>
-                            <div class="w IputDiv"><span class="dib mr10 ml10 fl">新&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码</span><input id="passwd" name="passwd" class="iputClass dib fl" type="password" value="" onKeyUp="$(this).parent().removeClass('bgf4')"  onfocus="this.style.color = '#666';" onblur="if (this.value.isEmpty()) {
-                                        this.value = this.defaultValue;
-                                        this.style.color = '#999';
-                                    }" /></div>
-                            <div class="w IputDiv" style="border-bottom:0px;"><span class="dib mr10 ml10 fl">确认新密码</span><input name="confirmpasswd"  id="confirmpasswd" class="iputClass dib fl" type="password" onKeyUp="$(this).parent().removeClass('bgf4')"  value="" onfocus="this.style.color = '#666';" onblur="if (this.value.isEmpty()) {
-                                        this.value = this.defaultValue;
-                                        this.style.color = '#999';
-                                    }" /></div>
                         </div>
-                        <div class="clearfix">
-                            <div class="f14 col99 lh200"><span>密码由6-16位字母、数字及下划线组成</span><span class="PaBtn fr" onClick="PassTxt('frmpasswd')"></span></div>
-                        </div>
-                        <button onClick="changepwd('frmpasswd')" class="PassBtn f14 w db mt5">确定</button>
-                    </form>
+                    </div>
                 </div>
             </div>
-
-            <div>
-                <h2   >
-                    <a name="bindphone"></a>
-                    <div class="dib fl userbg user07">绑定手机</div><span class="dib fr userbg"></span></h2>
-                <div class="pl10 pr10 topom pb20 none">
-                                                    <div class="TelTs pt10 red none"></div>
-                        <div class="Pass f14 mt10">
-                                                            <div class="w IputDiv"><span class="dib mr10 ml10 fl">新手机号</span><input type="number" name="phonenum" class="iputClass dib fl"  id="phonenum" value="" onKeyUp="$(this).parent().removeClass('bgf4');" /></div>
-                            <div class="w IputDiv" style="border-bottom:0px;">
-                                <span class="dib mr10 ml10 fl">验&nbsp;&nbsp;证&nbsp;&nbsp;码</span><input type="number" name="code" id="code" value="" style="width:39%;"  onKeyUp="$(this).parent().removeClass('bgf4');"  onfocus="this.style.color = '#666';" onblur="if (this.value.isEmpty()) {
-                                            this.value = this.defaultValue;
-                                            this.style.color = '#999';
-                                        }"  class="iputClass fl dib"><span class="YanBtn db fr f14 btn-a tc" onClick="getcode(this, 'bind')" >获取验证码</span>
-                            </div>
+        </div>
+        <!--修改密码-->
+        <div class="passWord" onmouseover="this.style.cursor=&#39;pointer&#39;">
+            <h2>
+                <a name="updpwd"></a>
+                <div class="dib fl userbg user06 my_userxgmmbg" onclick="window.scrollTo(0, 400);">修改密码</div>
+                <span class="dib fr userbg"></span>
+            </h2>
+            <div class="pl10 pr10 botom pb15 none">
+                <form name="frmpasswd" method="post" action="" onsubmit="return false;">
+                    <div class="PasTs pt10 red none"></div>
+                    <div class="Pass f14 mt10">
+                        <div class="w IputDiv">
+                            <span class="dib mr10 ml10 fl">当 前 密 码</span>
+                            <input name="orginpsd" id="orginpsd" type="password"
+                                   onKeyUp="$(this).parent().removeClass('bgf4')" class="iputClass dib fl" value=""
+                                   onfocus="this.style.color = '#666';"/></div>
+                        <div class="w IputDiv">
+                            <span class="dib mr10 ml10 fl">新&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+                            <input id="newpsd" name="newpsd" class="iputClass dib fl" type="password" value=""
+                                   onKeyUp="$(this).parent().removeClass('bgf4')" onfocus="this.style.color = '#666';"/>
                         </div>
-                        <div onClick="bind('bind');" class="PassBtn f14 w db mt15"> 确定绑定</a></div>
-                        <input type="hidden" value="" name="safecode" id="safecode">
-                    </form>  
-                </div>
+                        <div class="w IputDiv" style="border-bottom:0px;">
+                            <span class="dib mr10 ml10 fl">确认新密码</span>
+                            <input name="confirmpsd" id="confirmpsd" class="iputClass dib fl" type="password"
+                                   onKeyUp="$(this).parent().removeClass('bgf4')" value=""
+                                   onfocus="this.style.color = '#666';"/></div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="f14 col99 lh200">
+                            <span>密码由6-16位字母、数字及下划线组成</span>
+                            <span class="PaBtn fr" onClick="PassTxt('frmpasswd')"></span>
+                        </div>
+                    </div>
+                    <button onClick="update()" class="PassBtn f14 w db mt5">确定</button>
+                </form>
             </div>
-
-            <div class="advance">
-                <h2>
-                    <a name="advance"></a>
-                    <div class="dib fl userbg user06" onclick="window.scrollTo(0, 400);">高级选项</div>
-                    <span class="dib fr userbg"></span>
-                </h2>
-            </div>
-        </section>
-        <span class="none" id="page_myattendoc">2</span>
-        <span class="none" id="page_myquestion">2</span>
-        <span class="none" id="page_myask">2</span>
-        <span class="none" id="page_myappointment">2</span>
-        <span class="none" id="page_myfocus">2</span>
-        <span class="none" id="page_myfamilydoctor">2</span>
-        <span class="none" id="page_myhealthmanager">2</span>
-        <span class="none" id="page_myphonedoctor">2</span>
-		
-<footer id="footers">
-    <div class="line"></div>
-    <p>
-        <script type="text/javascript">
-              if(islogin === true)  {
-                  document.writeln('<a href="http://3g.i.xywy.com/user/index">我的咨询</a><span>|</span><a href="http://3g.i.xywy.com/user/index">我的预约</a>') ;
-             } else {
-                  document.writeln('<a href="./login.html">登录</a><span>|</span><a href="./register.html">注册</a>') ;
-              }
-       </script> 
-    </p>
-	
-    <p><a href="javascript:;">触屏版</a><span>|</span><a class="col" href="http://www.xywy.com?vt=1">电脑版</a><span>|</span>
-        
-    <p>参考信息不作为诊断医疗数据</p>		
-    <p>版权所有:健康计算器(2002-2016)</p>	
-</footer>
-
-
-<script type="text/javascript"> 
-
-    if(/alipay/i.test(navigator.userAgent)){
-        //$("#iheader").css({"visibility":"hidden"});
-        //$("#ifooter").css({"visibility":"hidden"});
-        document.getElementById("iheader").style.display="none"; 
-        document.getElementById("ifooter").style.display="none"; 
-    } 
-
-</script>
-<script type="text/javascript" src="../js/odm.js"></script>
-    </div>
-    <script>
-        //console.log($( '[data-toggle="true"]' ) );
-
-        function viewAllDay(id) {
-            $('#weekdays_' + id).toggle();
-        }
-        /*
-         $( '[data-toggle="true"]' ).bind( 'click' ,function(){
-         $( this ).next().toggle();
-         } )
-         */
-
-    </script>
-<script type="text/javascript" src="../js/a.js"></script>
-<script type="text/javascript" src="../js/click.js"></script>
-<script type="text/javascript" src="../js/head.js"></script>
-
-	<!--<div style="display:none;">
-	    <script src='http://w.cnzz.com/c.php?id=1252962823&l=3' language='JavaScript'></script>
-	</div>-->
+        </div>
+        <!--高级选项-->
+        <div  onmouseover="this.style.cursor=&#39;pointer&#39;">
+            <h2>
+                <div><a href="./useradvance.html">查看高级选项</a></div>
+                <span class="dib fr userbg"></span>
+            </h2>
+        </div>
+    </section>
+    <span class="none" id="page_myattendoc">2</span>
+    <span class="none" id="page_myquestion">2</span>
+    <span class="none" id="page_myask">2</span>
+    <span class="none" id="page_myappointment">2</span>
+    <span class="none" id="page_myfocus">2</span>
+    <span class="none" id="page_myfamilydoctor">2</span>
+    <span class="none" id="page_myhealthmanager">2</span>
+    <span class="none" id="page_myphonedoctor">2</span>
+</div>
 </body>
+
 </html>
- <script>
-//优惠码
-$(function(){
-	$('.dis-box > li').click(function(){
-		var panel = $('.yhq-box'),
-			index = $(this).attr('data-index');
-
-		$(this).addClass('cur').siblings().removeClass('cur');
-		panel.eq(index).removeClass('none').siblings().addClass('none');
-	});
-	$('.rule').click(function(e){
-		$('#yhq-intro').show();
-		$('.w').hide();
-		e.stopPro
-	});
-	$('.close-rule').click(function(){
-		$('#yhq-intro').hide();
-		$('.w').show();
-		$('.botom').eq(0).show().prev().addClass('current');
-	});
-	$('.yhq-poster a').click(function(){
-		$(this).parent().hide();
-	});
-
-	//展开更多的优惠券
-	var cardMore = $('.yhq-more'),
-		cardA = $('#cardA'),
-		cardU = $('#cardU'),
-		page ={
-			page1: 1,
-			page2: 1
-		},
-		pageNow = 0,
-		tplA = '<div class="clearfix pt10 pb10 yhq-list">\
-					<div class="fl mt5 ml10 mr10 pr yhq-ico tc">\
-						<span class="db pt5 price">{price}</span>\
-						<span class="db">优惠券</span>\
-						<span class="pa money-ico">￥</span>\
-					</div>\
-					<dl class="pr">\
-						<dt>评价返优惠券，签约家庭医生专用</dt>\
-						<dd class="f12 gray">优惠码：{code}</dd>\
-						<dd class="f12 gray">有效期至：{endtime}</dd>\
-					</dl>\
-				</div>',
-		tplU = '<div class="clearfix pt10 pb10 yhq-list">\
-					<div class="fl mt5 ml10 mr10 pr yhq-ico yhq-ico-nouse tc">\
-						<span class="db pt5 price">{price}</span>\
-						<span class="db">优惠券</span>\
-						<span class="pa money-ico">￥</span>\
-					</div>\
-					<dl class="pr">\
-						<dt>评价返优惠券，签约家庭医生专用</dt>\
-						<dd class="f12 gray">优惠码：{code}</dd>\
-						<dd class="f12 gray">有效期至：{endtime}</dd>\
-						<dd class="pa f12 tc status">{orderid}</dd>\
-					</dl>\
-				</div>';
-	cardMore.click(function(){
-		var self = $(this),
-			types = self.attr('type');   
-		switch(types){
-			case '2':
-				page.page2++;
-				pageNow = page.page2;
-				break;
-			case '1':
-				page.page1++;
-				pageNow = page.page1;
-				break;
-		}                   
-		$.ajax({
-			url: 'http://3g.i.xywy.com/user/getMyCouponsListMordData',
-			type: 'get',
-			data: {
-				page: pageNow,
-				types: types
-			},
-			dataType: 'jsonp',
-			success: function(data){
-				var temp = '';
-				if(data.result == '10000'){
-					$.each(data.content, function(i,v){
-						$.each(v, function(k,val){                                                              
-							if(types === '1'){
-								if(k === 'code'){
-									temp += tplA.replace(/{code}/, val);
-								}else if(k === 'price'){
-									temp = temp.replace(/{price}/, val);
-								}else if(k === 'endtime'){
-									temp = temp.replace(/{endtime}/, formatDate(val));
-								}
-							}
-							if(types === '2'){
-								if(k === 'code'){
-									temp += tplU.replace(/{code}/, val);
-								}else if(k === 'price'){
-									temp = temp.replace(/{price}/, val);
-								}else if(k === 'endtime'){
-									temp = temp.replace(/{endtime}/, formatDate(val));
-								}else if(k === 'orderid'){
-									if(!val){
-										temp = temp.replace(/{orderid}/, '已使用');
-									}else{
-										temp = temp.replace(/{orderid}/, '已过期');
-									}                                                    
-								}
-							}
-						});
-					});
-					if(types === '1'){
-						cardA.find('.yhq-list-box').append(temp);
-                        var lenA = cardA.find('.yhq-list').length;
-                        if(lenA >= coupons_count){
-                            cardA.find('.yhq-more').hide();
-                        }
-					}else{
-						cardU.find('.yhq-list-box').append(temp);
-                        var lenU = cardU.find('.yhq-list').length;
-                        if(lenU >= history_count){
-                            cardU.find('.yhq-more').hide();
-                        }
-					}
-				}else{
-					self.html('无更多数据');
-				}
-			}
-
-		});
-	});
-    //判断显示的个数
-
-
-	//时间戳转换成日期
-	var formatDate = function(nS){
-		var time = new Date(parseInt(nS) * 1000).toLocaleString().replace(/\/\d+/g, function(match){
-			var temp = parseInt(match.slice(1));
-			if(temp < 10){
-				return '-0' + temp;
-			}else{
-				return '-' + temp;
-			}
-		});                          
-		var date = time.substr(0,10);
-		return date;
-	}
-});
-</script>
 <script type="text/javascript">
-    __sendVisitOdm('3g_ucenter', 'shouye:3g_health_wdjkgl+@3g_wdyy_ckxq+');
-    //我的问题
-    function myquestion(obj, type, result) {
-        if (result && result != '[]') {
-            var dataObj = eval("(" + result + ")");//转换为json对象 
-            $.each(dataObj, function(imdex, item) {
-                var status;
-                if (item.status == 0) {
-                    status = '未回复';
-                } else if (item.status == 1) {
-                    status = '已回复';
-                } else if (item.status == 3) {
-                    status = '已解决';
-                } else {
-                    status = '已过期';
-                }
-                var child = '<li><a href="http://3g.club.xywy.com' + item.qdir + '' + item.id + '.htm?fromurl=user&time=' + new Date().getTime() + '">' + item.title + '</a><span class="fr">' + status + '</span></li>';
-                $('#datalist_' + type).append(child);
-
-                $(obj).removeClass('loading');
-            });
-            if (dataObj.length < 5) {
-                $(obj).html('已加载全部');
-            }
+    //显示密码
+    function PassTxt(objfrm) {
+        var frm = document.forms[objfrm];
+        var orginpsd = frm.orginpsd;
+        var newpsd = frm.newpsd;
+        var confirmpsd = frm.confirmpsd;
+        if (orginpsd.type != "text") {
+            orginpsd.type = "text";
+            newpsd.type = "text";
+            confirmpsd.type = "text";
         } else {
-            $(obj).html('已加载全部');
-            $(obj).removeClass('loading');
+            orginpsd.type = "password";
+            newpsd.type = "password";
+            confirmpsd.type = "password";
         }
     }
-
-    //我的预约
-    function myappointment(obj, type, result) {
-       
-		if (result && result != '[]' && result!='') {
-            var dataObj = eval("(" + result + ")");//转换为json对象 
-            $.each(dataObj, function(imdex, item) {
-                var child = '<div class="YuList btn-a f14 pt5 pb5" >';
-				if((item.type == '1' && item.order_type =='1') || item.type == '3' ){
-				
-					child += '<p>预约医生：' + item.expert_name + '医生（' + item.depart + '）<span class="fr">' + item.state + '</span></p>';
-					if(item.type == '3')
-					{
-						child += '<p>预约医院：' + item.hospital + item.depart +'</p>';
-					}
-					child += '<p>就诊时间：' + item.todate + ' (' + item.weekday + ')</p>';
-					child += '<p class="pb5"><span class="col99">预约订单：' + item.plus_id + '</span>';
-					if(item.type == '1')
-					{
-						child += '<a href="/expert/appointment/' + item.plus_id + '?type='+item.type+'" class="fr dib f12 tc">查看详情</a></p>';
-					}
-				}else if(item.type == '2' || (item.type == '1' && item.order_type =='2')){
-					if(item.order_type){
-						var detail_type = 1;
-						var orderid = item.plus_id;
-					}else{
-						var detail_type = 2;
-						var orderid = item.nplus_id;
-					}
-					child += '<p>就诊人：'+item.uname+'<span class="fr">'+item.state_name+'</span></p><p>就诊时间：'+item.visit_time+'</p><p class="pb5"><span class="col99">预约订单：'+orderid+'</span><a href="/expert/appointment/' + orderid + '?type='+detail_type+'" class="fr dib f12 tc" >查看详情</a></p>';
-				}
-                child += '</div>';
-                $('#datalist_' + type).append(child);
-                $(obj).removeClass('loading');
-            });
-			if (dataObj.length < 5) {
-                $(obj).html('已加载全部');
-            }
-        } else {
-            $(obj).html('已加载全部');
-            $(obj).removeClass('loading');
-        }
-    }
-
-    //我的专家咨询
-    function myask(obj, type, result) {
-        if (result && result != '[]') {
-            var dataObj = eval("(" + result + ")");//转换为json对象 
-            $.each(dataObj, function(imdex, item) {
-                var child = '<li><a href="' + item.url + '">' + item.title + '</a><span class="fr">' + item.state + '</span></li>';
-                $('#datalist_' + type).append(child);
-                $(obj).removeClass('loading');
-            });
-        } else {
-            $(obj).html('已加载全部');
-            $(obj).removeClass('loading');
-        }
-    }
-
-    //我的关注
-    function myfocus(obj, type, result) {
-        if (result && result != '[]') {
-            var dataObj = eval("(" + result + ")");//转换为json对象 
-            $.each(dataObj, function(imdex, item) {
-                var links;
-                if (item.count > 0) {
-                    links = 'http://3g.club.xywy.com/health/tag/' + item.tagid + '.html';
-                } else {
-                    links = 'http://3g.club.xywy.com/tag/' + item.tagid + '.htm';
-                }
-                var child = '<li class="fl w" id=\'li_' + item.id + '\'><span class="fr dib oh GuDel mt5 mr5 userbg" onClick="delfocus(' + item.id + ')"></span><div class="fl">您关注的话题：<a href="' + links + '">' + item.name + '</a></div></li>';
-                $('#datalist_' + type).append(child);
-                $(obj).removeClass('loading');
-            });
-        } else {
-            $(obj).html('已加载全部');
-            $(obj).removeClass('loading');
-        }
-    }
-
-
-    //我的家庭医生
-    function myfamilydoctor(obj, type, result) {
-        if (result != "") {
-            $('#datalist_' + type).append(result);
-            $(obj).removeClass('loading');
-        } else {
-            $(obj).html('已加载全部');
-            $(obj).removeClass('loading');
-        }
-    }
-    //我的健康档案
-    function myhealthmanager(obj, type, result) {
-        if (result != "") {
-            $('#datalist_' + type).append(result);
-            $(obj).removeClass('loading');
-        } else {
-            $(obj).html('已加载全部');
-            $(obj).removeClass('loading');
-        }
-    }
-
-    //我的电话医生
-    function myphonedoctor(obj, type, result) {
-        if (result != "") {
-            $('#datalist_' + type).append(result);
-            $(obj).removeClass('loading');
-        } else {
-            $(obj).html('已加载全部');
-            $(obj).removeClass('loading');
-        }
-    }
-	
-	
-	//我关注的医生
-	function myattendoc(obj, type, result){
-	  if (result && result != '[]') {
-            var dataObj = eval("(" + result + ")");//转换为json对象 
-            $.each(dataObj, function(imdex, item) {
-                var child = ' <p class="pl10 pr10 botom hk-gz" onclick="javascript:window.location.href=\''+item.url+'\'"  ><span class="hk-name"><img class="mr10" src="'+item.photo+'">'+item.realname+'</span><span class="hk-js ml5">'+item.job+'</span></p> ';			
-				
-                $('#datalist_' + type).append(child);
-				
-                $(obj).removeClass('loading');
-            });
-		  var  count_doc = $('.count_doc' ).attr('count_doc');
-		  var  mod_count = parseInt(count_doc) %  parseInt(5);
-		  var  count_page = parseInt(count_doc) /  parseInt(5);
-		  
-		  var  page = $('#page_myattendoc' ).html();
-		   if (dataObj.length < 5 || (mod_count==0 && count_page+1==page) ) {
-                $(obj).html('已加载全部');
-            }
-        } else {
-            $(obj).html('已加载全部');
-            $(obj).removeClass('loading');
-        }
-	}
-	
-	
-    function loadnew(obj, type, callback) {
-        var page = $('#page_' + type).html();
-        var options = {};
-        if (type == 'myquestion') {
-            options = {'type': 'myquestion', 'page': page};
-        } else if (type == 'myask') {
-            options = {'type': 'myask', 'page': page};
-        } else if (type == 'myappointment') {
-            options = {'type': 'myappointment', 'page': page};
-        } else if (type == 'myfocus') {
-            options = {'type': 'myfocus', 'page': page};
-        } else if (type == 'myfamilydoctor') {
-            options = {'type': 'myfamilydoctor', 'page': page};
-        } else if (type == 'myhealthmanager') {
-            options = {'type': 'myhealthmanager', 'page': page};
-        } else if (type == 'myphonedoctor') {
-            options = {'type': 'myphonedoctor', 'page': page};
-        }else if (type == 'myattendoc') {
-            options = {'type': 'myattendoc', 'page': page};
-        }
-
-        $(obj).addClass('loading');
-        $.ajax({
-            type: "GET",
-            url: '/user/ajaxDataMore',
-            data: options,
-            datatype: 'json',
-            cache: false,
-            async: true,
-            success: function(result) {
-                callback(obj, type, result);
-            }
-        });
-        var newpage = parseInt(page) + 1;
-        $('#page_' + type).html(newpage);
-    }
-
-
-    function toggle(id, spid)
-    {
-        $('#' + id).toggle();
-        if ($('#' + id).css('display') == 'block') {
-            $('#' + spid).addClass("uUp");
-            $('#' + spid).parent('div').css('border-bottom', '1px solid #DDDDDD');
-        } else {
-            $('#' + spid).removeClass("uUp");
-            $('#' + spid).parent('div').css('border-bottom', '0px');
-        }
-    }
-
-</script>
-
-<script type="text/javascript" >
-    (function() {
+    (function () {
         var container = document.getElementById('userlist'),
                 oChild = container.children,
                 length = oChild.length,
                 oSpan = container.getElementsByTagName('h2');
         for (var i = 0; i < length; i++) {
-            oSpan[i].onclick = function(d) {
-                return function() {
+            oSpan[i].onclick = function (d) {
+                return function () {
                     for (var i = 0; i < length; i++) {
                         if (i === d) {
+                            if (oSpan[d].parentNode.children[1]==undefined){
+                                break;
+                            }
                             if (oSpan[d].parentNode.children[1].style.display == 'block') {
                                 oSpan[d].parentNode.children[1].style.display = 'none';
                                 oSpan[d].className = '';
-                            }
-                            else {
+                            } else {
                                 oSpan[d].className = 'current';
                                 oSpan[d].parentNode.children[1].style.display = 'block';
                             }
-                        }
-                        else {
+                        } else {
                             oSpan[i].className = '';
-                            oSpan[i].parentNode.children[1].style.display = 'none';
+                            if (oSpan[i].parentNode.children[1]!=undefined){
+                                oSpan[i].parentNode.children[1].style.display = 'none';
+                            }
                         }
                     }
                 }
             }(i);
         }
     })();
-    //显示密码
-    function PassTxt(objfrm) {
-        var frm = document.forms[objfrm];
-        var oldpasswd = frm.oldpasswd;
-        var passwd = frm.passwd;
-        var confirmpasswd = frm.confirmpasswd;
-        if (oldpasswd.type != "text") {
-            oldpasswd.type = "text";
-            passwd.type = "text";
-            confirmpasswd.type = "text";
-        } else {
-            oldpasswd.type = "password";
-            passwd.type = "password";
-            confirmpasswd.type = "password";
-        }
-    }
-
-    function changepwd(objfrm)
-    {
-        var frm = document.forms[objfrm];
-        var oldpasswd = frm.oldpasswd;
-        var passwd = frm.passwd;
-        var confirmpasswd = frm.confirmpasswd;
-
-        if (oldpasswd.value.isEmpty())
-        {
-            $('.PasTs').show();
-            $('.PasTs').html('请输入原始密码');
-            $('input[name="oldpasswd"]').parent().addClass('bgf4');
-            oldpasswd.focus();
-            return;
-        }
-        if (passwd.value.isEmpty())
-        {
-            $('.PasTs').show();
-            $('.PasTs').html('请输入新密码');
-            $('input[name="passwd"]').parent().addClass('bgf4');
-            passwd.focus();
-            return;
-        }
-        if (!passwd.value.trim().lengthRange(6, 16)) {
-            $('.PasTs').show();
-            $('.PasTs').html('密码由6-16个字符组成');
-            $('input[name="passwd"]').parent().addClass('bgf4');
-            passwd.focus();
-            return;
-        }
-        if (!passwd.value.validatePassword(6, 16)) {
-            ;
-            $('.PasTs').show();
-            $('.PasTs').html('密码只支持数字、字母及下划线，区分大小写');
-            $('input[name="passwd"]').parent().addClass('bgf4');
-            passwd.focus();
-            return;
-        }
-        if (passwd.value == oldpasswd.value) 
-        {
-            $('.PasTs').show();
-            $('.PasTs').html('新旧密码输入一致');
-            $('input[name="passwd"]').parent().addClass('bgf4');
-            passwd.focus();
-            return;
-        }
-        if (passwd.value != confirmpasswd.value)
-        {
-            $('.PasTs').show();
-            $('.PasTs').html('两次输入的密码不一致');
-            $('input[name="confirmpasswd"]').parent().addClass('bgf4');
-            confirmpasswd.focus();
-            return;
-        }
-        $('.PasTs').hide();
-        $.post('/user/changepwd', {oldpasswd: oldpasswd.value, passwd: passwd.value}, function(data) {
-			
-            if (data.length > 0)
-            {
-                var result = data.split('#');
-                $('.PasTs').show();
-                $('.PasTs').html(result[1]);
-                if (result[0] > 0)
-                {
-                    $('#divpasswd').hide();
-                    oldpasswd.value = "";
-                    passwd.value = "";
-                    confirmpasswd.value = "";
-                    $('.PasTs').html("");
-                    $('.updata-psw-tip').hide();
-                    alert("修改密码成功");
-                } else {
-                    if (result[0] == '-4') {
-                        $('input[name="oldpasswd"]').parent().addClass('bgf4');
-                        oldpasswd.focus();
-                    }
-                }
-            }
-            else
-            {
-                $('#divpasswd').hide();
-            }
-        });
-    }
-    //取消标签关注
-    function delfocus(id)
-    {
-        if (isNaN(id))
-        {
-            alert("参数出错！");
-            return false;
-        }
-        if (window.confirm('确定要删除吗？'))
-        {
-            $.post('/user/focus', {'id': id, 'type': 'del'}, function(data) {
-                var resutl = data.split('#');
-                if (resutl[0] == 1)
-                {
-                    $('#li_' + id).remove();
-                }
-                alert(resutl[1]);
-            })
-        }
-    }
-    //如果已经绑定过手机
-	function addError(obj,str){
-		obj.focus();
-		obj.parent().addClass('bgf4');
-		$('.TelTs').html(str).show();
-	}
-
-    //绑定手机相关操作
-    var getcodebtn;
-    var time = 60;
-    var tt = '';
-    var istimeout = true;
-
-    //获取验证码
-    function getcode(obj, type) {
-        if (typeof compareOldphone == 'function') {
-            if (!compareOldphone()) {
-                return false;
-            }
-        }
-        getcodebtn = obj;
-        var phonenum;
-        if (!istimeout)
-            return false;
-        if (type == 'unbind')
-        {
-            phonenum = $.trim($('#bindphone').val());
-        }
-        else if (type == 'bind')
-        {
-            phonenum = $.trim($('#phonenum').val());
-        }
-
-		if(phonenum == ''){
-			addError($('#phonenum'),'请输入新手机号');
-			return false;
-		}else if (!phonenum.validateMobile()){
-			addError($('#phonenum'),'请输入正确的手机号');
-			return false;
-		}
-        //如果已经绑定过手机
-        if ($.trim($('#oldphonenum').val()) && ($.trim($('#oldphonenum').val()) == phonenum)) {
-			addError($('#phonenum'),'新手机号与原手机号相同');
-            return false;
-        }
-		sendMsg(phonenum);//发送短信
-       
-        
-	
-    }
-
-    function stopgetcode() {
-        if (time <= 1)
-        {
-            clearInterval(tt);
-            getcodebtn.innerHTML = '重新获取';
-            time = 60;
-            istimeout = true;
-        }
-        else
-        {
-            time--;
-            istimeout = false;
-            getcodebtn.innerHTML = time + '秒后获取';
-
-        }
-    }
-
-    //绑定或解疑手机
-
-    function bind(type)
-    {
-        if (typeof compareOldphone == 'function') {
-            if (!compareOldphone()) {
-                return false;
-            }
-        }
-        var code = $('#code').val();
-        var safecode = $('#safecode').val();
-
-        if (type == 'bind')
-        {
-            var phonenum = $('#phonenum').val();
-			if(phonenum == ''){
-				addError($('#phonenum'),'请输入新手机号');
-                return false;
-			}else if (!phonenum.validateMobile()){
-				addError($('#phonenum'),'请输入正确的手机号');
-                return false;
-            }
-            //如果已经绑定过手机
-			if ($('#oldphonenum').val() && ($('#oldphonenum').val() == phonenum)) {
-				addError($('#phonenum'),'新手机号与原手机号相同');
-				return false;
-			}
-
-        }
-
-        if (code.isEmpty() || !code.match(/^\d{6}$/))
-        {
-            $('#code').focus();
-            $('#code').parent().addClass('bgf4');
-            $('.TelTs').show();
-            $('.TelTs').html('请输入正确的验证码');
-            return false;
-        }
-        $('.TelTs').hide();
-        phonenum = phonenum.replace(/^\+?86/, '');
-
-        $.post('/user/phone', {'type': type, 'phone': phonenum, 'code': code, 'safecode': safecode}, function(data) {
-            var result = data.split('#');
-            $('.TelTs').show();
-            $('.TelTs').html(result[1]);
-            if (result[0] == 1)
-            {
-                alert(result[1]);
-                $('#oldphonenum').val("");
-                $('#phonenum').val("");
-                $('#code').val("");
-                $('.TelTs').html("");
-                window.location.reload();
-            }
-
-        })
-    }
-</script>
-
-<script type="text/javascript">
-    window.onload = function() {
-        setTimeout(function() {
-            window.scrollTo(0, 1)
-        }, 0);
-    };
-    $(document).ready(function() {
-        ClearText('oldpasswd');
-        ClearText('confirmpasswd');
-        ClearText('passwd');
-        ClearText('oldphonenum');
-        ClearText('phonenum');
-    })
-
-
-    //提示框
-    function  showErrorMessage(a,w) {
-		var c, b, w;
-        if (!arguments[1]) {
-            w = 200;
-        }
-        c = 2000;
-        b = 100;
-        console.log(c);
-        $('body').append('<section id="showMessage" style="display:;position: fixed;z-index: 99;top:' + b + 'px;left: 50%;background: rgba( 0 , 0 , 0 ,.8);color: #fff;margin: -15px 0 0 -100px;width: '+ w +'px;height: 30px;line-height: 30px;border-radius: 5px;box-shadow: 0 1px 0 1px rgba(0,0,0,.2);text-align: center;">' + a + '</section>');
-        setTimeout(function() {
-            $('#showMessage').remove();
-        }, c);
-    }
-    //拨打家庭医生电话
-    function telMeoo(usermobile, docmobile) {
-        if (!usermobile || !docmobile) {
-            return false;
-        }
-        return false;
-        $.getJSON("http://3g.club.xywy.com/api/common/ajaxTellme?usermobile=" + usermobile + "&docmobile=" + docmobile + "&callback=?");
-    }
-    //提示框长版
-    function  showErrorMessageL(a, b, c) {
-
-        if (!arguments[1]) {
-            b = 300;
-        }
-        if (!arguments[2]) {
-            c = 2000;
-        }
-        $('body').append('<section id="showMessage" style="display:none;position: fixed;z-index: 9999;top:' + b + 'px;left: 50%;background: rgba( 0 , 0 , 0 ,.8);color: #fff;margin: -15px 0 0 -100px;width: 220px;height: 75px;line-height: 30px;border-radius: 5px;box-shadow: 0 1px 0 1px rgba(0,0,0,.2);text-align: center; font-size:14px;">' + a + '</section>');
-        $('#showMessage').show();
-        setTimeout(function() {
-            $('#showMessage').hide();
-            $('#showMessage').remove();
-        }, 2000);
-    }
-
-
-
-//发送验证码
-    function sendMsg(phone) {
-
-        $.ajax({
-            url: '/user/authUser',
-            data: '&phone=' + phone + '&act=userSMS_iflimit&project=3G_DEFAULT&ajax=isajax&time=' + new Date().getTime(),
-            success: function(msg) {
-                console.log(msg);
-                dataArr = msg.split('#');
-                if (dataArr[0] == '10000') {//未达到发送短信条数上限，可以继续发送短信
-                    //发送动态验证码  ????????????    2014-12-05
-                    $.ajax({
-                        url: '/user/authUser',
-                        data: 'phone=' + phone + '&act=userSMS_send&project=3G_DEFAULT&ajax=isajax&time=' + new Date().getTime(),
-                        success: function(data) {
-                            dataArr2 = data.split('#');
-                            if (dataArr2[0] == '10000') {//短信发送成功
-                                showErrorMessage(dataArr2[1]);
-                                tt = setInterval("stopgetcode()", 1000);
-								$('.TelTs').hide();
-                                return false;
-                            } else {//短信发送失败
-                                if (dataArr2[1] == '') {
-                                    dataArr2[1] = '短信发送失败';
-                                }
-                                //alert(result[1]);
-                                getcodebtn.innerHTML = '重新获取';
-                                showErrorMessage(dataArr2[1]);
-								$('.TelTs').hide();
-                                return false;
-                            }
-                        }
-                    });
-
-                }else if(dataArr[0] == '-8001'){
-					/*showErrorMessage(dataArr[1]);
-					getcodebtn.innerHTML = '获取验证码';
-					istimeout = true;*/
-					addError($('#phonenum'),dataArr[1]);
-					getcodebtn.innerHTML = '获取验证码';
-					istimeout = true;
-                    return false;
-                }else{
-					istimeout = false;
-					getcodebtn.innerHTML = '正在获取...';
-					$('.TelTs').hide();
-					return false;
-				}
-            }
-        });
-    }
 </script>
