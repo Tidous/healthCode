@@ -25,6 +25,8 @@ public class GetAnnualCaseTable extends AbstractJsonLogAction {
     private String sysday;
     private String systime;
     private String caseSumList;
+    private String startDateList;
+    private String endDateList;
 
     @Autowired
     private BirthdateService birthdateService;
@@ -46,6 +48,8 @@ public class GetAnnualCaseTable extends AbstractJsonLogAction {
 
         for (int i=0;i<sysdateInfo.size();i++){
             this.caseSumList = caseSumList+";"+queryBehind(birthday, location, i);
+            this.startDateList = startDateList+";"+sysdateInfo.get(i).getStartdate().toString();
+            this.endDateList = endDateList+";"+sysdateInfo.get(i).getEnddate().toString();
         }
 
         after();
@@ -129,4 +133,11 @@ public class GetAnnualCaseTable extends AbstractJsonLogAction {
         return caseSumList;
     }
 
+    public String getStartDateList() {
+        return startDateList;
+    }
+
+    public String getEndDateList() {
+        return endDateList;
+    }
 }
