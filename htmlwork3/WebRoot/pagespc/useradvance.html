@@ -116,6 +116,16 @@
             document.getElementById("bufferHot").innerText = obj.bufferHot.substr(0,3);
         });
 
+        function submit() {
+            var position = document.getElementById("selectpicker").value;
+            var newdate = window.sessionStorage.getItem("birthday");
+            var newtime = document.getElementById("timenow").value;
+
+            $.doAjaxPostCall("getYearInfo", "birthday=" + newdate + "&time=" + newtime + "&location=" + position, function (responseData) {
+                var obj = responseData;
+            });
+        }
+
         //var myurl="display.html?newdate="+newdate+"&newtime="+newtime+"&location="+location;
         //window.location.assign(encodeURI(myurl));
     </script>

@@ -11,6 +11,8 @@ public interface BirthdateService {
 	public Birthdate getUserBirthInfo(String date, String time);
 	
 	public Birthdate getSysdateInfo(String date, String time);
+
+	public List<Birthdate> getYearInfo(String date, String time);
 	
 }
 

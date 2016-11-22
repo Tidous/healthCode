@@ -23,4 +23,6 @@ public interface CasetableService {
 	public List<Casetable> findAllCase();
 	
 	public List<Casetable> findCaseWithFilter(String m, String s);
+
+	public String dealWithCaseSum(String date, String hemisphere, Birthdate birdateInfo, Birthdate sysdateInfo);
 }

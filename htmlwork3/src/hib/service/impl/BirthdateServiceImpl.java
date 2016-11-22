@@ -142,7 +142,7 @@ public class BirthdateServiceImpl implements BirthdateService {
 			sumcsBehind = list.get(0).getSumcs();
 			sumdsBehind = list.get(0).getSumds();
 			sumesBehind = list.get(0).getSumes();
-			
+
 			sumBnBehind = sumb1nBehind+sumb2nBehind;
 			sumBsBehind = sumb1sBehind+sumb2sBehind;
 
@@ -151,5 +151,56 @@ public class BirthdateServiceImpl implements BirthdateService {
 		else {
 			return null;
 		}
-	}	
+	}
+
+	public List<Birthdate> getYearInfo(String date, String time) {
+
+		String Sql = "from Birthdate where year = ? order by category";
+
+		List<Object> param = new ArrayList<Object>();
+
+		String datetime = null;
+
+		if (time.equalsIgnoreCase("")) {
+			datetime = date + " 00:00:00";
+		}
+		else {
+			datetime = date + " " +time;
+		}
+
+		datetime = datetime.substring(0,4);
+
+		param.add(datetime);
+
+		List<Birthdate> list = this.find(Sql ,param);
+
+		if(list.size()>0 && list.get(0) != null) {
+
+				for (int i=0;i<list.size();i++) {
+
+					categoryBehind = list.get(i).getCategory();
+					sumanBehind = list.get(i).getSuman();
+					sumb1nBehind = list.get(i).getSumb1n();
+					sumb2nBehind = list.get(i).getSumb2n();
+					sumcnBehind = list.get(i).getSumcn();
+					sumdnBehind = list.get(i).getSumdn();
+					sumenBehind = list.get(i).getSumen();
+					sumasBehind = list.get(i).getSumas();
+					sumb1sBehind = list.get(i).getSumb1s();
+					sumb2sBehind = list.get(i).getSumb2s();
+					sumcsBehind = list.get(i).getSumcs();
+					sumdsBehind = list.get(i).getSumds();
+					sumesBehind = list.get(i).getSumes();
+
+					sumBnBehind = sumb1nBehind + sumb2nBehind;
+					sumBsBehind = sumb1sBehind + sumb2sBehind;
+
+				}
+
+			return list;
+		}
+		else {
+			return null;
+		}
+	}
 }

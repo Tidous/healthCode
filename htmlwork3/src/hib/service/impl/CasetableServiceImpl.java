@@ -391,4 +391,32 @@ public class CasetableServiceImpl implements CasetableService{
 		return list;
 	}
 
+	public String dealWithCaseSum(String date, String hemisphere, Birthdate birdateInfo, Birthdate sysdateInfo) {
+
+		String A = "";
+		String B = "";
+		String C = "";
+		String D = "";
+		String E = "";
+		String F = "";
+
+		if (hemisphere.equalsIgnoreCase("N")) {
+			A = String.valueOf(birdateInfo.getSuman() + sysdateInfo.getSuman());
+			B = String.valueOf(birdateInfo.getSumb1n() + sysdateInfo.getSumb1n());
+			C = String.valueOf(birdateInfo.getSumb2n() + sysdateInfo.getSumb2n());
+			D = String.valueOf(birdateInfo.getSumcn() + sysdateInfo.getSumcn());
+			E = String.valueOf(birdateInfo.getSumdn() + sysdateInfo.getSumdn());
+			F = String.valueOf(birdateInfo.getSumen() + sysdateInfo.getSumen());
+		} else {
+			A = String.valueOf(birdateInfo.getSumas() + sysdateInfo.getSumas());
+			B = String.valueOf(birdateInfo.getSumb1s() + sysdateInfo.getSumb1s());
+			C = String.valueOf(birdateInfo.getSumb2s() + sysdateInfo.getSumb2s());
+			D = String.valueOf(birdateInfo.getSumcn() + sysdateInfo.getSumcn());
+			E = String.valueOf(birdateInfo.getSumdn() + sysdateInfo.getSumdn());
+			F = String.valueOf(birdateInfo.getSumen() + sysdateInfo.getSumen());
+		}
+		String caseInfo = A+B+C+D+E+F;
+		return caseInfo;
+	}
+
 }
