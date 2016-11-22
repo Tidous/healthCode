@@ -27,6 +27,8 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
     private String systime;
     private String bufferBlood;
     private String bufferGase;
+    private String bufferHot;
+    private String bufferCold;
 
     @Autowired
     private BirthdateService birthdateService;
@@ -47,9 +49,13 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
             String sumen = birdateInfo.getSumen().toString();
             Double gase = birdateInfo.getSuman()*0.1+birdateInfo.getSumb1n()*0.9+birdateInfo.getSumb2n()*0.9+birdateInfo.getSumcn()*0.9+birdateInfo.getSumdn()*0.9+birdateInfo.getSumen()*0.1;
             Double blood = birdateInfo.getSuman()*0.9+birdateInfo.getSumb1n()*0.1+birdateInfo.getSumb2n()*0.1+birdateInfo.getSumcn()*0.1+birdateInfo.getSumdn()*0.1+birdateInfo.getSumen()*0.1;
+            Double hot = birdateInfo.getSuman()*0.1+birdateInfo.getSumb1n()*0.9+birdateInfo.getSumb2n()*0.9+birdateInfo.getSumcn()*0.1+birdateInfo.getSumdn()*0.9+birdateInfo.getSumen()*0.1;
+            Double cold = birdateInfo.getSuman()*0.9+birdateInfo.getSumb1n()*0.1+birdateInfo.getSumb2n()*0.1+birdateInfo.getSumcn()*0.1+birdateInfo.getSumdn()*0.1+birdateInfo.getSumen()*0.9;
             this.bufferedCase = suman + sumbn.toString() + sumcn + sumdn + sumen;
             this.bufferBlood = blood.toString();
             this.bufferGase = gase.toString();
+            this.bufferHot = hot.toString();
+            this.bufferCold = cold.toString();
         } else {
             String sumas = birdateInfo.getSumas().toString();
             Integer sumb1s = birdateInfo.getSumb1s();
@@ -60,9 +66,13 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
             String sumes = birdateInfo.getSumes().toString();
             Double gase = birdateInfo.getSumas()*0.1+birdateInfo.getSumb1s()*0.9+birdateInfo.getSumb2s()*0.9+birdateInfo.getSumcs()*0.9+birdateInfo.getSumds()*0.9+birdateInfo.getSumes()*0.1;
             Double blood = birdateInfo.getSumas()*0.9+birdateInfo.getSumb1s()*0.1+birdateInfo.getSumb2s()*0.1+birdateInfo.getSumcs()*0.1+birdateInfo.getSumds()*0.1+birdateInfo.getSumes()*0.1;
+            Double hot = birdateInfo.getSumas()*0.1+birdateInfo.getSumb1s()*0.9+birdateInfo.getSumb2s()*0.9+birdateInfo.getSumcs()*0.1+birdateInfo.getSumds()*0.9+birdateInfo.getSumes()*0.1;
+            Double cold = birdateInfo.getSumas()*0.9+birdateInfo.getSumb1s()*0.1+birdateInfo.getSumb2s()*0.1+birdateInfo.getSumcs()*0.1+birdateInfo.getSumds()*0.1+birdateInfo.getSumes()*0.9;
             this.bufferedCase = sumas + sumbs.toString() + sumcs + sumds + sumes;
             this.bufferBlood = blood.toString();
             this.bufferGase = gase.toString();
+            this.bufferHot = hot.toString();
+            this.bufferCold = cold.toString();
         }
 
         after();
@@ -88,6 +98,8 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
             this.currentCase = suman + sumbn.toString() + sumcn + sumdn + sumen;
             this.bufferBlood = blood.toString();
             this.bufferGase = gase.toString();
+            this.bufferHot = "";
+            this.bufferCold = "";
         } else {
             String sumas = sysdateInfo.getSumas().toString();
             Integer sumb1s = sysdateInfo.getSumb1s();
@@ -98,9 +110,11 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
             String sumes = sysdateInfo.getSumes().toString();
             Double gase = sysdateInfo.getSumas()*0.1+sysdateInfo.getSumb1s()*0.9+sysdateInfo.getSumb2s()*0.9+sysdateInfo.getSumcs()*0.9+sysdateInfo.getSumds()*0.9+sysdateInfo.getSumes()*0.1;
             Double blood = sysdateInfo.getSumas()*0.9+sysdateInfo.getSumb1s()*0.1+sysdateInfo.getSumb2s()*0.1+sysdateInfo.getSumcs()*0.1+sysdateInfo.getSumds()*0.1+sysdateInfo.getSumes()*0.1;
-            this.currentCase = sumas + sumbs.toString() + sumcs + sumds + sumes;
+            this.bufferedCase = sumas + sumbs.toString() + sumcs + sumds + sumes;
             this.bufferBlood = blood.toString();
             this.bufferGase = gase.toString();
+            this.bufferHot = "";
+            this.bufferCold = "";
         }
         return SUCCESS;
     }
@@ -195,5 +209,13 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
 
     public String getBufferGase() {
         return bufferGase;
+    }
+
+    public String getBufferHot() {
+        return bufferHot;
+    }
+
+    public String getBufferCold() {
+        return bufferCold;
     }
 }

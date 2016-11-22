@@ -112,7 +112,8 @@
             } else {
                 document.getElementById("blood").innerText = "气血双虚"
             }
-            window.sessionStorage.setItem("bufferedCase", bufferedCase)
+            document.getElementById("bufferCold").innerText = obj.bufferCold.substr(0,3);
+            document.getElementById("bufferHot").innerText = obj.bufferHot.substr(0,3);
         });
 
         //var myurl="display.html?newdate="+newdate+"&newtime="+newtime+"&location="+location;
@@ -162,8 +163,8 @@
                 </div>
                 <br/>
                 <div>
-                    <label>先天冷：</label><span id="bufferedGase"></span><label>，先天热：</label><span
-                        id="bufferedBlood"></span>
+                    <label>先天冷：</label><span id="bufferCold"></span><label>，先天热：</label><span
+                        id="bufferHot"></span>
                 </div>
                 <br/>
                 <div>
