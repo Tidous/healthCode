@@ -1,0 +1,278 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="yes" name="apple-touch-fullscreen"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <title>提问页_有问必答_健康计算器</title>
+    <meta name="description" content="手机健康计算器3g版 - xywy.com"/>
+    <meta name="keywords" content="手机健康计算器,健康计算器首页,手机健康计算器3g版"/>
+    <script type="text/javascript" src="../js/t.js"></script>
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/m_reset.css" rel="stylesheet"/>
+    <link href="../css/ques.css" rel="stylesheet"/>
+    <link href="../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <style>
+        .wrap {
+            overflow: hidden;
+        }
+
+        .one {
+            width: 600px;
+            height: 100px;
+            margin: 0 auto;
+        }
+
+        .comments {
+            width: 100%;
+            overflow: auto;
+            word-break: break-all;
+        }
+    </style>
+    <script src="../js/a.js" type="text/javascript"></script>
+    <script src="../js/odm.js" type="text/javascript"></script>
+    <script src="../lib/jquery.min.js" type="text/javascript"></script>
+    <script src="../js/iscroll.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="js/config.js"></script>
+    <script type="text/javascript" src="js/global.js"></script>
+    <script type="text/javascript">
+        var DATE_MAP = {
+            "一月": "01",
+            "二月": "02",
+            "三月": "03",
+            "四月": "04",
+            "五月": "05",
+            "六月": "06",
+            "七月": "07",
+            "八月": "08",
+            "九月": "09",
+            "十月": "10",
+            "十一月": "11",
+            "十二月": "12"
+        };
+
+        $(function () {
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = now.getMonth() + 1;
+            var day = now.getDate();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            document.getElementById("daynow").value = year + "-" + month + "-" + day;
+            document.getElementById("timenow").value = hour + ":" + minute;
+        });
+
+        var user = window.sessionStorage.getItem("user");
+        var newdate = null;
+        var newtime = null;
+
+        $.doAjaxPostCall("getUserBufferedInfo", "username=" + user, function (responseData) {
+            var obj1 = responseData;
+            var hometown = obj1.location;
+            var birthday = obj1.birthday;
+            window.sessionStorage.setItem("birthday",birthday)
+            window.sessionStorage.setItem("location",location)
+        });
+
+        var hometown = window.sessionStorage.getItem("location")
+        var birthday = window.sessionStorage.getItem("birthday")
+
+        $.doAjaxPostCall("queryBirthInfo", "birthday=" + this.birthday + "&time=" + newtime + "&location=" + this.hometown, function (responseData1) {
+
+            var obj = responseData1;
+            if (obj != null) {
+                if (obj.result == "3") {
+                    alert("更新失败，请先联系管理员！");
+                }
+                else if (obj.result == "0") {
+                    alert("新增失败，请先联系管理员！");
+                }
+                else if (obj.result == "1") {
+                    alert("保存成功！");
+                }
+            }
+            else {
+                alert("系统错误，请先联系管理员！");
+            }
+            document.getElementById("bufferedGase").innerText = obj.bufferGase.substr(0,3);
+            document.getElementById("bufferedBlood").innerText = obj.bufferBlood.substr(0,3);
+            var a = parseFloat(obj.bufferGase)
+            var b = parseFloat(obj.bufferBlood)
+            if (a > b) {
+                document.getElementById("blood").innerText = "气虚"
+            } else if (a < b) {
+                document.getElementById("blood").innerText = "血虚"
+            } else {
+                document.getElementById("blood").innerText = "气血双虚"
+            }
+            window.sessionStorage.setItem("bufferedCase", bufferedCase)
+        });
+
+        //var myurl="display.html?newdate="+newdate+"&newtime="+newtime+"&location="+location;
+        //window.location.assign(encodeURI(myurl));
+    </script>
+</head>
+<body>
+<div class="one">
+    <div class="wrap wrapBg">
+        <header class="header header-link" style="">
+            <div class="header-wrap">
+                <a href="../index.html">返回首页</a>
+            </div>
+        </header>
+
+        <!-- <div class="banner">
+        <div class="ban-wrap flex w">
+        <div class="ban-photoDiv"><img src="../images/photo_kk.png" class="ban-photo" alt=""/></div>
+        <div class="ban-para flexRate">
+        <div class="ban-title"><span class="ban-name f12">邈邈</span><span class="ban-job">专家助理</span></div>
+          <p class="ban-des">您好，您想咨询什么问题呢？我们有百万医生将为您解答。</p>
+        </div>
+        </div>
+        </div> -->
+        <div class="container" style="margin-top:12px;margin-bottom:12px;">
+            <div class="col-md-2"
+                 style="width:24%;border-style:solid;border-width:2px;border-color:#fdbc4d;margin-right:20px;">
+                <label for="dtp_input2" class="col-md-12 control-label"
+                       style="margin-top:8px;padding-left:3px;">高级选项</label>
+                <br/>
+                <br/>
+                <div>
+                    <label>先天气血：</label>
+                </div>
+                <br/>
+                <div>
+                    <label>先天气：</label><span id="bufferedGase"></span><label>，先天血：</label><span
+                        id="bufferedBlood"></span>
+                </div>
+                <br/>
+                <div>
+                    <label>结论：</label><span id="blood"></span>
+                </div>
+                <br/>
+                <div>
+                    <label>先天冷热：</label>
+                </div>
+                <br/>
+                <div>
+                    <label>先天冷：</label><span id="bufferedGase"></span><label>，先天热：</label><span
+                        id="bufferedBlood"></span>
+                </div>
+                <br/>
+                <div>
+                    <label>当前冷热：</label>
+                </div>
+                <br/>
+                <div style="margin-bottom: 33px">
+                    <label>当前冷：</label><span id="bufferedGase"></span><label>，当前热：</label><span
+                        id="bufferedBlood"></span>
+                </div>
+            </div>
+            <div class="col-md-2" style="width:24%;border-style:solid;border-width:2px;border-color:#fdbc4d;">
+                <label for="dtp_input2" class="col-md-12 control-label"
+                       style="margin-top:8px;padding-left:3px;">当前信息</label>
+
+                <label for="dtp_input2" class="col-md-12 control-label"
+                       style="margin-top:12px;padding-left:3px;">日期选择</label>
+                <div class="form-group">
+                    <div class="input-group date form_date col-md-12" data-date="" data-date-format="yyyy-mm-dd"
+                         data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" value="" id="daynow" disabled="disabled">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    <input type="hidden" id="dtp_input2" value=""/><br/>
+                </div>
+
+                <label for="dtp_input2" class="col-md-12 control-label" style="padding-left:3px;">时间选择</label>
+                <div class="form-group">
+                    <div class="input-group date form_time col-md-12" data-date="" data-date-format="hh:ii"
+                         data-link-field="dtp_input3" data-link-format="hh:ii">
+                        <input class="form-control" size="16" type="text" value="" id="timenow" disabled="disabled">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                    </div>
+                    <input type="hidden" id="dtp_input3" value=""/><br/>
+                </div>
+
+                <label for="dtp_input2" class="col-md-12 control-label" style="padding-left:3px;">常驻地</label>
+                <div class="dropdown" style="margin-bottom:12px;">
+                    <div class="sec-title flex w">
+                        <select id="selectpicker" class="form-control selectpicker col-md-12">
+                            <option value="north">北半球</option>
+                            <option value="south">南半球</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="sec-items">
+                    <div class="sec-btn">
+                        <input onclick="submit()" type="button" class="sec-submit" value="看人吃饭"
+                               style="float:right;margin-left:4px;margin-right:10px;margin-bottom: 10px"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="../bootstrap/js/locales/bootstrap-datetimepicker.zh-CN.js"
+                charset="UTF-8"></script>
+        <script type="text/javascript">
+            $('.form_datetime').datetimepicker({
+                language: 'zh-CN',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                forceParse: 0,
+                showMeridian: 1
+            });
+            $('.form_date').datetimepicker({
+                language: 'zh-CN',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            });
+            $('.form_time').datetimepicker({
+                language: 'zh-CN',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 1,
+                minView: 0,
+                maxView: 1,
+                forceParse: 0
+            });
+        </script>
+        <script type="text/javascript">
+            function displayUI() {
+                var displayfurther = document.getElementById("furtherdate");
+                displayfurther.style.display = "";
+                var pickdate = document.getElementById("pickdate");
+                pickdate.style.display = "";
+                var picktime = document.getElementById("picktime");
+                picktime.style.display = "";
+                var displayui = document.getElementById("displayUI");
+                displayui.style.display = "none"
+            }
+        </script>
+    </div>
+
+    <div style="display:none;">
+    </div>
+</div>
+</body>
+</html>
