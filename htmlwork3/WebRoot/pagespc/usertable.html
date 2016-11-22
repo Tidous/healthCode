@@ -37,11 +37,12 @@
     <script type="text/javascript">
         var newdate = null;
         var newtime = null;
-        var currentPosition = null;
 
         $(function () {
 
-            $.doAjaxPostCall("queryUserBufferedInfo", "location=" + currentLocation, function (responseData) {
+            var user = window.sessionStorage.getItem("user")
+
+            $.doAjaxPostCall("getUserBufferedInfo", "username=" + user, function (responseData) {
                 var obj = responseData;
                 var hometown = obj.location;
                 if (hometown=="north"){
@@ -50,13 +51,15 @@
                     hometown = "南半球";
                 }
                 document.getElementById("currentLocation").innerText = hometown;
-                var buffer = obj.currentCase;
-                document.getElementById("buffer6").innerText = buffer.substring(0,1)+"木"
-                document.getElementById("buffer7").innerText= buffer.substring(1,2)+"火"
-                document.getElementById("buffer8").innerText= buffer.substring(2,3)+"土"
-                document.getElementById("buffer9").innerText= buffer.substring(3,4)+"金"
-                document.getElementById("buffer10").innerText= buffer.substring(4,5)+"水"
+//                var buffer = obj.currentCase;
+//                document.getElementById("buffer6").innerText = buffer.substring(0,1)+"木"
+//                document.getElementById("buffer7").innerText= buffer.substring(1,2)+"火"
+//                document.getElementById("buffer8").innerText= buffer.substring(2,3)+"土"
+//                document.getElementById("buffer9").innerText= buffer.substring(3,4)+"金"
+//                document.getElementById("buffer10").innerText= buffer.substring(4,5)+"水"
             });
+
+            var currentLocation = document.getElementById("currentLocation").innerText
 
             $.doAjaxPostCall("queryCurrentInfo", "location=" + currentLocation, function (responseData) {
                 var obj = responseData;
@@ -75,15 +78,6 @@
                 document.getElementById("buffer10").innerText= buffer.substring(4,5)+"水"
                 document.getElementById("bufferedGase").innerText = obj.bufferGase;
                 document.getElementById("bufferedBlood").innerText = obj.bufferBlood;
-                var a = parseFloat(obj.bufferGase)
-                var b = parseFloat(obj.bufferBlood)
-                if (a > b){
-                    document.getElementById("blood").innerText = "气虚"
-                } else if (a < b){
-                    document.getElementById("blood").innerText = "血虚"
-                } else {
-                    document.getElementById("blood").innerText = "气血双虚"
-                }
             });
 
             $(function () {
@@ -97,7 +91,6 @@
             });
 
             var user = window.sessionStorage.getItem("user");
-            var currentLocation = document.getElementById("currentLocation").innerText
             var birthday = window.sessionStorage.getItem("birthday")
             if (currentLocation=="" || currentLocation==null){
                 currentLocation = "N"
@@ -119,10 +112,10 @@
                 document.getElementById("buffer3").innerText= buffer.substring(2,3)+"土"
                 document.getElementById("buffer4").innerText= buffer.substring(3,4)+"金"
                 document.getElementById("buffer5").innerText= buffer.substring(4,5)+"水"
-                document.getElementById("bufferedGase").innerText = obj.bufferGase;
-                document.getElementById("bufferedBlood").innerText = obj.bufferBlood;
-                var a = parseFloat(obj.bufferGase)
-                var b = parseFloat(obj.bufferBlood)
+                document.getElementById("bufferedGase").innerText = obj1.bufferGase;
+                document.getElementById("bufferedBlood").innerText = obj1.bufferBlood;
+                var a = parseFloat(obj1.bufferGase)
+                var b = parseFloat(obj1.bufferBlood)
                 if (a > b){
                     document.getElementById("blood").innerText = "气虚"
                 } else if (a < b){
