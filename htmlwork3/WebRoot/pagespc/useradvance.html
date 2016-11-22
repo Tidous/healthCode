@@ -16,6 +16,7 @@
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/m_reset.css" rel="stylesheet"/>
     <link href="../css/ques.css" rel="stylesheet"/>
+    <link href="../css/circletable.css" rel="stylesheet"/>
     <link href="../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet">
     <link href="../bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <style>
@@ -77,8 +78,8 @@
             var obj1 = responseData;
             var hometown = obj1.location;
             var birthday = obj1.birthday;
-            window.sessionStorage.setItem("birthday",birthday)
-            window.sessionStorage.setItem("location",location)
+            window.sessionStorage.setItem("birthday", birthday)
+            window.sessionStorage.setItem("location", location)
         });
 
         var hometown = window.sessionStorage.getItem("location")
@@ -101,8 +102,8 @@
             else {
                 alert("系统错误，请先联系管理员！");
             }
-            document.getElementById("bufferedGase").innerText = obj.bufferGase.substr(0,3);
-            document.getElementById("bufferedBlood").innerText = obj.bufferBlood.substr(0,3);
+            document.getElementById("bufferedGase").innerText = obj.bufferGase.substr(0, 3);
+            document.getElementById("bufferedBlood").innerText = obj.bufferBlood.substr(0, 3);
             var a = parseFloat(obj.bufferGase)
             var b = parseFloat(obj.bufferBlood)
             if (a > b) {
@@ -112,8 +113,8 @@
             } else {
                 document.getElementById("blood").innerText = "气血双虚"
             }
-            document.getElementById("bufferCold").innerText = obj.bufferCold.substr(0,3);
-            document.getElementById("bufferHot").innerText = obj.bufferHot.substr(0,3);
+            document.getElementById("bufferCold").innerText = obj.bufferCold.substr(0, 3);
+            document.getElementById("bufferHot").innerText = obj.bufferHot.substr(0, 3);
         });
 
         function submit() {
@@ -123,6 +124,21 @@
 
             $.doAjaxPostCall("getYearInfo", "birthday=" + newdate + "&time=" + newtime + "&location=" + position, function (responseData) {
                 var obj = responseData;
+                var startDateList = obj.startDateList.split(";");
+                var caseSumList = obj.caseSumList.split(";");
+//                var caseSum1 = caseSumList[1].split("");
+//                var caseSum2 = caseSumList[2].split("");
+//                var caseSum3 = caseSumList[3].split("");
+//                var caseSum4 = caseSumList[4].split("");
+//                var caseSum5 = caseSumList[5].split("");
+//                var caseSum6 = caseSumList[6].split("");
+                for (var k = 1; k < startDateList.length; k++) {
+                    for (var j = 1; j < caseSumList.length-1; j++) {
+                        document.getElementById("th" + k).innerText = startDateList[k];
+                        document.getElementById("tr" + j).children[k].innerText = caseSumList[j].split("")[j - 1];
+                    }
+                }
+                document.getElementById("caseSumTable").style.display = "";
             });
         }
 
@@ -182,8 +198,8 @@
                 </div>
                 <br/>
                 <div style="margin-bottom: 33px">
-                    <label>当前冷：</label><span id="bufferedGase"></span><label>，当前热：</label><span
-                        id="bufferedBlood"></span>
+                    <label>当前冷：</label><span id="currentCold"></span><label>，当前热：</label><span
+                        id="currentHot"></span>
                 </div>
             </div>
             <div class="col-md-2" style="width:24%;border-style:solid;border-width:2px;border-color:#fdbc4d;">
@@ -229,6 +245,62 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div>
+            <table id="caseSumTable" class="bordered" style="display: none;">
+                <th></th>
+                <th id="th1">一期</th>
+                <th id="th2">二期</th>
+                <th id="th3">三期</th>
+                <th id="th4">四期</th>
+                <th id="th5">五期</th>
+                <th id="th6">六期</th>
+                <tr id="tr1">
+                    <td>木</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr id="tr2">
+                    <td>火</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr id="tr3">
+                    <td>土</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr id="tr4">
+                    <td>金</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr id="tr5">
+                    <td>水</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+            </table>
         </div>
 
         <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
