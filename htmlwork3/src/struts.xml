@@ -179,6 +179,13 @@
 			</result>
 		</action>
 
+		<action name="getNextYearInfo" class="action.GetNextYearCaseTable"
+				method="execute">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+
 	</package>
 
 </struts>   

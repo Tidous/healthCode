@@ -120,12 +120,6 @@
                 var obj = responseData;
                 var startDateList = obj.startDateList.split(";");
                 var caseSumList = obj.caseSumList.split(";");
-//                var caseSum1 = caseSumList[1].split("");
-//                var caseSum2 = caseSumList[2].split("");
-//                var caseSum3 = caseSumList[3].split("");
-//                var caseSum4 = caseSumList[4].split("");
-//                var caseSum5 = caseSumList[5].split("");
-//                var caseSum6 = caseSumList[6].split("");
                 document.getElementById("caseSumTable").style.display = "";
                 for (var k = 1; k < startDateList.length; k++) {
                     for (var j = 1; j < caseSumList.length-1; j++) {
@@ -134,10 +128,20 @@
                     }
                 }
             });
-        }
 
-        //var myurl="display.html?newdate="+newdate+"&newtime="+newtime+"&location="+location;
-        //window.location.assign(encodeURI(myurl));
+            $.doAjaxPostCall("getNextYearInfo", "birthday=" + newdate + "&time=" + newtime + "&location=" + position, function (responseData) {
+                var obj = responseData;
+                var startDateList = obj.startDateList.split(";");
+                var caseSumList = obj.caseSumList.split(";");
+                document.getElementById("caseSumTable2").style.display = "";
+                for (var k = 1; k < startDateList.length; k++) {
+                    for (var j = 1; j < caseSumList.length-1; j++) {
+                        document.getElementById("thn" + k).innerText = startDateList[k];
+                        document.getElementById("trn" + j).children[k].innerText = caseSumList[k].split("")[j - 1];
+                    }
+                }
+            });
+        }
     </script>
 </head>
 <body>
@@ -149,15 +153,6 @@
             </div>
         </header>
 
-        <!-- <div class="banner">
-        <div class="ban-wrap flex w">
-        <div class="ban-photoDiv"><img src="../images/photo_kk.png" class="ban-photo" alt=""/></div>
-        <div class="ban-para flexRate">
-        <div class="ban-title"><span class="ban-name f12">邈邈</span><span class="ban-job">专家助理</span></div>
-          <p class="ban-des">您好，您想咨询什么问题呢？我们有百万医生将为您解答。</p>
-        </div>
-        </div>
-        </div> -->
         <div class="container" style="margin-top:12px;margin-bottom:12px;">
             <div class="col-md-2"
                  style="width:24%;border-style:solid;border-width:2px;border-color:#fdbc4d;margin-right:20px;">
@@ -286,6 +281,63 @@
                     <td>1</td>
                 </tr>
                 <tr id="tr5">
+                    <td>水</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            <table id="caseSumTable2" class="bordered" style="display: none;">
+                <th></th>
+                <th id="thn1">一期</th>
+                <th id="thn2">二期</th>
+                <th id="thn3">三期</th>
+                <th id="thn4">四期</th>
+                <th id="thn5">五期</th>
+                <th id="thn6">六期</th>
+                <tr id="trn1">
+                    <td>木</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr id="trn2">
+                    <td>火</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr id="trn3">
+                    <td>土</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr id="trn4">
+                    <td>金</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr id="trn5">
                     <td>水</td>
                     <td>1</td>
                     <td>1</td>
