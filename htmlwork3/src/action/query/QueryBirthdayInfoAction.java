@@ -29,6 +29,8 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
     private String bufferGase;
     private String bufferHot;
     private String bufferCold;
+    private String currentHot;
+    private String currentCold;
 
     @Autowired
     private BirthdateService birthdateService;
@@ -54,8 +56,6 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
             this.bufferedCase = suman + sumbn.toString() + sumcn + sumdn + sumen;
             this.bufferBlood = blood.toString();
             this.bufferGase = gase.toString();
-            this.bufferHot = hot.toString();
-            this.bufferCold = cold.toString();
         } else {
             String sumas = birdateInfo.getSumas().toString();
             Integer sumb1s = birdateInfo.getSumb1s();
@@ -93,13 +93,17 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
             String sumcn = sysdateInfo.getSumcn().toString();
             String sumdn = sysdateInfo.getSumdn().toString();
             String sumen = sysdateInfo.getSumen().toString();
-            Double gase = sysdateInfo.getSumas()*0.1+sysdateInfo.getSumb1s()*0.9+sysdateInfo.getSumb2s()*0.9+sysdateInfo.getSumcs()*0.9+sysdateInfo.getSumds()*0.9+sysdateInfo.getSumes()*0.1;
-            Double blood = sysdateInfo.getSumas()*0.9+sysdateInfo.getSumb1s()*0.1+sysdateInfo.getSumb2s()*0.1+sysdateInfo.getSumcs()*0.1+sysdateInfo.getSumds()*0.1+sysdateInfo.getSumes()*0.1;
+            Double gase = sysdateInfo.getSuman()*0.1+sysdateInfo.getSumb1n()*0.9+sysdateInfo.getSumb2n()*0.9+sysdateInfo.getSumcn()*0.9+sysdateInfo.getSumdn()*0.9+sysdateInfo.getSumen()*0.1;
+            Double blood = sysdateInfo.getSuman()*0.9+sysdateInfo.getSumb1n()*0.1+sysdateInfo.getSumb2n()*0.1+sysdateInfo.getSumcn()*0.1+sysdateInfo.getSumdn()*0.1+sysdateInfo.getSumen()*0.1;
+            Double cHot = sysdateInfo.getSuman()*0.1+sysdateInfo.getSumb1n()*0.9+sysdateInfo.getSumb2n()*0.9+sysdateInfo.getSumcn()*0.1+sysdateInfo.getSumdn()*0.9+sysdateInfo.getSumen()*0.1;
+            Double cCold = sysdateInfo.getSuman()*0.9+sysdateInfo.getSumb1n()*0.1+sysdateInfo.getSumb2n()*0.1+sysdateInfo.getSumcn()*0.1+sysdateInfo.getSumdn()*0.1+sysdateInfo.getSumen()*0.9;
             this.currentCase = suman + sumbn.toString() + sumcn + sumdn + sumen;
             this.bufferBlood = blood.toString();
             this.bufferGase = gase.toString();
             this.bufferHot = "";
             this.bufferCold = "";
+            this.currentHot = cHot.toString();
+            this.currentCold = cCold.toString();
         } else {
             String sumas = sysdateInfo.getSumas().toString();
             Integer sumb1s = sysdateInfo.getSumb1s();
@@ -110,11 +114,15 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
             String sumes = sysdateInfo.getSumes().toString();
             Double gase = sysdateInfo.getSumas()*0.1+sysdateInfo.getSumb1s()*0.9+sysdateInfo.getSumb2s()*0.9+sysdateInfo.getSumcs()*0.9+sysdateInfo.getSumds()*0.9+sysdateInfo.getSumes()*0.1;
             Double blood = sysdateInfo.getSumas()*0.9+sysdateInfo.getSumb1s()*0.1+sysdateInfo.getSumb2s()*0.1+sysdateInfo.getSumcs()*0.1+sysdateInfo.getSumds()*0.1+sysdateInfo.getSumes()*0.1;
+            Double cHot = sysdateInfo.getSumas()*0.1+sysdateInfo.getSumb1s()*0.9+sysdateInfo.getSumb2s()*0.9+sysdateInfo.getSumcs()*0.1+sysdateInfo.getSumds()*0.9+sysdateInfo.getSumes()*0.1;
+            Double cCold = sysdateInfo.getSumas()*0.9+sysdateInfo.getSumb1s()*0.1+sysdateInfo.getSumb2s()*0.1+sysdateInfo.getSumcs()*0.1+sysdateInfo.getSumds()*0.1+sysdateInfo.getSumes()*0.9;
             this.currentCase = sumas + sumbs.toString() + sumcs + sumds + sumes;
             this.bufferBlood = blood.toString();
             this.bufferGase = gase.toString();
             this.bufferHot = "";
             this.bufferCold = "";
+            this.currentHot = cHot.toString();
+            this.currentCold = cCold.toString();
         }
         return SUCCESS;
     }
@@ -217,5 +225,13 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
 
     public String getBufferCold() {
         return bufferCold;
+    }
+
+    public String getCurrentHot() {
+        return currentHot;
+    }
+
+    public String getCurrentCold() {
+        return currentCold;
     }
 }

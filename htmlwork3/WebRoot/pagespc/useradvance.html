@@ -85,6 +85,12 @@
         var hometown = window.sessionStorage.getItem("location")
         var birthday = window.sessionStorage.getItem("birthday")
 
+        $.doAjaxPostCall("queryCurrentInfo", "location=" + this.hometown, function (responseData) {
+            var obj = responseData;
+            document.getElementById("currentHot").innerText = obj.currentHot.substr(0, 3);
+            document.getElementById("currentCold").innerText = obj.currentCold.substr(0, 3);
+        });
+
         $.doAjaxPostCall("queryBirthInfo", "birthday=" + this.birthday + "&time=" + newtime + "&location=" + this.hometown, function (responseData1) {
 
             var obj = responseData1;
