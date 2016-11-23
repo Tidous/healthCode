@@ -110,7 +110,7 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
             String sumes = sysdateInfo.getSumes().toString();
             Double gase = sysdateInfo.getSumas()*0.1+sysdateInfo.getSumb1s()*0.9+sysdateInfo.getSumb2s()*0.9+sysdateInfo.getSumcs()*0.9+sysdateInfo.getSumds()*0.9+sysdateInfo.getSumes()*0.1;
             Double blood = sysdateInfo.getSumas()*0.9+sysdateInfo.getSumb1s()*0.1+sysdateInfo.getSumb2s()*0.1+sysdateInfo.getSumcs()*0.1+sysdateInfo.getSumds()*0.1+sysdateInfo.getSumes()*0.1;
-            this.bufferedCase = sumas + sumbs.toString() + sumcs + sumds + sumes;
+            this.currentCase = sumas + sumbs.toString() + sumcs + sumds + sumes;
             this.bufferBlood = blood.toString();
             this.bufferGase = gase.toString();
             this.bufferHot = "";
