@@ -399,7 +399,7 @@ public class CasetableServiceImpl implements CasetableService{
 		String D = "";
 		String E = "";
 
-		if (hemisphere.equalsIgnoreCase("N")) {
+		if (hemisphere.equalsIgnoreCase("north")) {
 			A = String.valueOf(birdateInfo.getSuman() + sysdateInfo.getSuman());
 			B = String.valueOf(birdateInfo.getSumb1n() + sysdateInfo.getSumb1n() + birdateInfo.getSumb2n() + sysdateInfo.getSumb2n());
 			C = String.valueOf(birdateInfo.getSumcn() + sysdateInfo.getSumcn());
@@ -408,9 +408,9 @@ public class CasetableServiceImpl implements CasetableService{
 		} else {
 			A = String.valueOf(birdateInfo.getSumas() + sysdateInfo.getSumas());
 			B = String.valueOf(birdateInfo.getSumb1s() + sysdateInfo.getSumb1s()+birdateInfo.getSumb2s() + sysdateInfo.getSumb2s());
-			C = String.valueOf(birdateInfo.getSumcn() + sysdateInfo.getSumcn());
-			D = String.valueOf(birdateInfo.getSumdn() + sysdateInfo.getSumdn());
-			E = String.valueOf(birdateInfo.getSumen() + sysdateInfo.getSumen());
+			C = String.valueOf(birdateInfo.getSumcs() + sysdateInfo.getSumcs());
+			D = String.valueOf(birdateInfo.getSumds() + sysdateInfo.getSumds());
+			E = String.valueOf(birdateInfo.getSumes() + sysdateInfo.getSumes());
 		}
 		String caseInfo = A+B+C+D+E;
 		return caseInfo;
