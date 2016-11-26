@@ -41,7 +41,7 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
         Birthdate birdateInfo = new Birthdate();
 
         birdateInfo = birthdateService.getUserBirthInfo(birthday, time);
-        if (location.equals("N")) {
+        if (location.equals("N") || location.equals("north") || location.equals("")) {
             String suman = birdateInfo.getSuman().toString();
             Integer sumb1n = birdateInfo.getSumb1n();
             Integer sumb2n = birdateInfo.getSumb2n();
@@ -56,6 +56,8 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
             this.bufferedCase = suman + sumbn.toString() + sumcn + sumdn + sumen;
             this.bufferBlood = blood.toString();
             this.bufferGase = gase.toString();
+            this.bufferHot = hot.toString();
+            this.bufferCold = cold.toString();
         } else {
             String sumas = birdateInfo.getSumas().toString();
             Integer sumb1s = birdateInfo.getSumb1s();
@@ -85,7 +87,7 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
         handleNullField();
         Birthdate sysdateInfo = new Birthdate();
         sysdateInfo = birthdateService.getSysdateInfo(sysday, systime);
-        if (location.equals("N")) {
+        if (location.equals("N") || location.equals("north") || location.equals("")) {
             String suman = sysdateInfo.getSuman().toString();
             Integer sumb1n = sysdateInfo.getSumb1n();
             Integer sumb2n = sysdateInfo.getSumb2n();
@@ -100,8 +102,6 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
             this.currentCase = suman + sumbn.toString() + sumcn + sumdn + sumen;
             this.bufferBlood = blood.toString();
             this.bufferGase = gase.toString();
-            this.bufferHot = "";
-            this.bufferCold = "";
             this.currentHot = cHot.toString();
             this.currentCold = cCold.toString();
         } else {
@@ -119,8 +119,6 @@ public class QueryBirthdayInfoAction extends AbstractJsonLogAction {
             this.currentCase = sumas + sumbs.toString() + sumcs + sumds + sumes;
             this.bufferBlood = blood.toString();
             this.bufferGase = gase.toString();
-            this.bufferHot = "";
-            this.bufferCold = "";
             this.currentHot = cHot.toString();
             this.currentCold = cCold.toString();
         }
