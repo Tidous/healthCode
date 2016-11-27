@@ -3,7 +3,7 @@
         if (actionName == null || actionName.trim() == '' || actionName.toLowerCase() == 'undefined') {
             actionName = '';
         }
-        return "http://localhost:8080/QiJian/" + actionName;
+        return "../QiJian/" + actionName;
     }
 
 });
