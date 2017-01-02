@@ -51,12 +51,6 @@
                     hometown = "南半球";
                 }
                 document.getElementById("currentLocation").innerText = hometown;
-//                var buffer = obj.currentCase;
-//                document.getElementById("buffer6").innerText = buffer.substring(0,1)+"木"
-//                document.getElementById("buffer7").innerText= buffer.substring(1,2)+"火"
-//                document.getElementById("buffer8").innerText= buffer.substring(2,3)+"土"
-//                document.getElementById("buffer9").innerText= buffer.substring(3,4)+"金"
-//                document.getElementById("buffer10").innerText= buffer.substring(4,5)+"水"
             });
 
             var currentLocation = document.getElementById("currentLocation").innerText
@@ -96,7 +90,7 @@
                 currentLocation = "N"
             }
 
-            $.doAjaxPostCall("queryBirthInfo", "birtyday=" + birthday + "&location=" + currentLocation, function (responseData) {
+            $.doAjaxPostCall("queryBirthInfo", "birthday=" + birthday + "&time=" + "" + "&location=" + currentLocation, function (responseData) {
                 var obj1 = responseData;
                 var hometown = obj1.hometown;
                 if (hometown=="north"){
@@ -105,7 +99,7 @@
                     hometown = "南半球";
                 }
                 document.getElementById("hometown").innerText = hometown;
-                document.getElementById("birthday").innerText = obj1.birthday.split(" ")[0];
+                document.getElementById("birthday").innerText = birthday.split(" ")[0];
                 var buffer = obj1.bufferedCase;
                 document.getElementById("buffer1").innerText = buffer.substring(0,1)+"木"
                 document.getElementById("buffer2").innerText= buffer.substring(1,2)+"火"
