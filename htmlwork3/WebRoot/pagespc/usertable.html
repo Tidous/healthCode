@@ -113,10 +113,10 @@
                 document.getElementById("buffer3").innerText= buffer.substring(2,3)+"土"
                 document.getElementById("buffer4").innerText= buffer.substring(3,4)+"金"
                 document.getElementById("buffer5").innerText= buffer.substring(4,5)+"水"
-                document.getElementById("bufferedGase").innerText = obj1.bufferGase;
-                document.getElementById("bufferedBlood").innerText = obj1.bufferBlood;
-                var a = parseFloat(obj1.bufferGase)
-                var b = parseFloat(obj1.bufferBlood)
+                document.getElementById("bufferedGase").innerText = obj1.bufferGase.substring(0,3);
+                document.getElementById("bufferedBlood").innerText = obj1.bufferBlood.substring(0,3);
+                var a = parseFloat(obj1.bufferGase.substring(0,3))
+                var b = parseFloat(obj1.bufferBlood.substring(0,3))
                 if (a > b){
                     document.getElementById("blood").innerText = "气虚"
                 } else if (a < b){
