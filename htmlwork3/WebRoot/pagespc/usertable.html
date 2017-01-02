@@ -40,6 +40,11 @@
 
         $(function () {
 
+            $.ajaxSetup({
+                type: "post",
+                async:false
+            })
+
             var user = window.sessionStorage.getItem("user")
 
             $.doAjaxPostCall("getUserBufferedInfo", "username=" + user, function (responseData) {
@@ -50,6 +55,8 @@
                 }else {
                     hometown = "南半球";
                 }
+                var birthday = obj.birthday;
+                window.sessionStorage.setItem("birthday", birthday)
                 document.getElementById("currentLocation").innerText = hometown;
             });
 

@@ -35,6 +35,11 @@
 
         $(function () {
 
+            $.ajaxSetup({
+                type: "post",
+                async:false
+            })
+
             var user = window.sessionStorage.getItem("user")
 
             $.doAjaxPostCall("getUserBufferedInfo", "username=" + user, function (responseData) {
@@ -45,13 +50,9 @@
                 }else {
                     hometown = "南半球";
                 }
+                var birthday = obj.birthday;
+                window.sessionStorage.setItem("birthday", birthday)
                 document.getElementById("currentLocation").innerText = hometown;
-//                var buffer = obj.currentCase;
-//                document.getElementById("buffer6").innerText = buffer.substring(0,1)+"木"
-//                document.getElementById("buffer7").innerText= buffer.substring(1,2)+"火"
-//                document.getElementById("buffer8").innerText= buffer.substring(2,3)+"土"
-//                document.getElementById("buffer9").innerText= buffer.substring(3,4)+"金"
-//                document.getElementById("buffer10").innerText= buffer.substring(4,5)+"水"
             });
 
             var currentLocation = document.getElementById("currentLocation").innerText
