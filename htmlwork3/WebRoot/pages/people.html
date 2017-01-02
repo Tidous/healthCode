@@ -62,6 +62,27 @@
                 var arg = document.getElementById("day").value.split(" ");
                 var newdate = document.getElementById("day").value;
                 var newtime = document.getElementById("time").value;
+                var needTime = false;
+
+                $.ajaxSetup({
+                    type: "post",
+                    async:false
+                })
+
+                $.doAjaxPostCall("getIsNeedDateTime", "date=" + newdate, function (responseData) {
+                    var obj = responseData;
+                    var isNeedTime = obj.isNeedDateTime;
+                    if (isNeedTime == false){
+                        document.getElementById("timeGroup").style.display="none";
+                        document.getElementById("timeGroupLabel").style.display="none";
+                    } else if (newtime==""){
+                        document.getElementById("timeGroup").style.display="";
+                        document.getElementById("timeGroupLabel").style.display="";
+                        window.alert("请选择出生时间");
+                        document.getElementById("displayarea").innerText="";
+                        needTime = true;
+                    }
+                });
 
                 $.doAjaxPostCall("getPeopleInfo", "birthday=" + newdate + "&time=" + newtime + "&location=" + location, function (responseData) {
                     var obj = responseData;

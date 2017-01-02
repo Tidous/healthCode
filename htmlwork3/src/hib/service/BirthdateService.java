@@ -13,6 +13,8 @@ public interface BirthdateService {
 	public Birthdate getSysdateInfo(String date, String time);
 
 	public List<Birthdate> getYearInfo(String date, String time);
-	
+
+	public Boolean isNeedDateTime(String date);
+
 }
 

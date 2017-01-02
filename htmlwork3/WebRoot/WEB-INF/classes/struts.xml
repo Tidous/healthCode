@@ -186,6 +186,13 @@
 			</result>
 		</action>
 
+		<action name="getIsNeedDateTime" class="action.GetBirthdayCorrectInfoAction"
+				method="isNeedDateTime">
+			<result name="success" type="json">
+				<param name="callbackParameter">callback</param>
+			</result>
+		</action>
+
 	</package>
 
 </struts>   
