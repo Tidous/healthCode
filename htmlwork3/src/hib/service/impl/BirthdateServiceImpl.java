@@ -204,7 +204,7 @@ public class BirthdateServiceImpl implements BirthdateService {
 
         Boolean isNeedDate = false;
 
-        String Sql = "select * from Birthdate where startdate like '" + date + "%' or enddate like '" + date + "%';";
+        String Sql = "select * from birthdate where startdate like '" + date + "%' or enddate like '" + date + "%';";
 
         List<Birthdate> list = this.findSql(Sql);
 
