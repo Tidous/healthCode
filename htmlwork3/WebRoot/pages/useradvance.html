@@ -79,6 +79,12 @@
         var hometown = window.sessionStorage.getItem("location")
         var birthday = window.sessionStorage.getItem("birthday")
 
+        $.doAjaxPostCall("queryCurrentInfo", "location=" + this.hometown, function (responseData) {
+            var obj = responseData;
+            document.getElementById("currentHot").innerText = obj.currentHot.substr(0, 3);
+            document.getElementById("currentCold").innerText = obj.currentCold.substr(0, 3);
+        });
+
         $.doAjaxPostCall("queryBirthInfo", "birthday=" + this.birthday + "&time=" + newtime + "&location=" + this.hometown, function (responseData1) {
 
             var obj = responseData1;
@@ -155,7 +161,7 @@
 
         <div class="container" style="margin-top:12px;margin-bottom:12px;">
             <div class="col-md-2"
-                 style="width:24%;border-style:solid;border-width:2px;border-color:#fdbc4d;margin-right:20px;">
+                 style="width:60%;border-style:solid;border-width:2px;border-color:#fdbc4d;margin-right:20px;">
                 <label for="dtp_input2" class="col-md-12 control-label"
                        style="margin-top:8px;padding-left:3px;">高级选项</label>
                 <br/>
@@ -191,9 +197,10 @@
                         id="currentHot"></span>
                 </div>
             </div>
-            <div class="col-md-2" style="width:24%;border-style:solid;border-width:2px;border-color:#fdbc4d;">
+            <div class="col-md-2" style="width:60%;border-style:solid;border-width:2px;border-color:#fdbc4d;">
                 <label for="dtp_input2" class="col-md-12 control-label"
                        style="margin-top:8px;padding-left:3px;">当前信息</label>
+                <br/>
 
                 <label for="dtp_input2" class="col-md-12 control-label"
                        style="margin-top:12px;padding-left:3px;">日期选择</label>
@@ -227,6 +234,8 @@
                         </select>
                     </div>
                 </div>
+                <br/>
+                <br/>
                 <div class="sec-items">
                     <div class="sec-btn">
                         <input onclick="submit()" type="button" class="sec-submit" value="看人吃饭"

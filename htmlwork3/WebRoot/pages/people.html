@@ -84,6 +84,10 @@
                     }
                 });
 
+                if(needTime==true){
+                    return;
+                }
+
                 $.doAjaxPostCall("getPeopleInfo", "birthday=" + newdate + "&time=" + newtime + "&location=" + location, function (responseData) {
                     var obj = responseData;
 
@@ -225,9 +229,9 @@
         </div>
         </div> -->
         <div class="container" style="margin-top:12px;margin-bottom:12px;">
-            <div class="col-md-2" style="width:24%;border-style:solid;border-width:2px;border-color:#fdbc4d;margin-right:20px;">
+            <div class="col-md-2" style="width:100%;border-style:solid;border-width:2px;border-color:#fdbc4d;margin-right:20px;">
                 <label for="dtp_input2" class="col-md-12 control-label" style="margin-top:8px;padding-left:3px;">出生信息</label>
-
+                <br/>
                 <label for="dtp_input2" class="col-md-12 control-label" style="margin-top:12px;padding-left:3px;">日期选择</label>
                 <div class="form-group">
                     <div class="input-group date form_date col-md-12" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
@@ -238,8 +242,8 @@
                     <input type="hidden" id="dtp_input2" value="" /><br/>
                 </div>
 
-                <label for="dtp_input2" class="col-md-12 control-label" style="padding-left:3px;">时间选择</label>
-                <div class="form-group">
+                <label for="dtp_input2" id="timeGroupLabel" class="col-md-12 control-label" style="padding-left:3px;display: none">时间选择</label>
+                <div class="form-group" id="timeGroup" style="display: none">
                     <div class="input-group date form_time col-md-12" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
                         <input class="form-control" size="16" type="text" value="" id="time" disabled="disabled">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
@@ -258,7 +262,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2" style="width:24%;border-style:solid;border-width:2px;border-color:#fdbc4d;">
+            <div class="col-md-2" style="width:24%;border-style:solid;border-width:2px;border-color:#fdbc4d;display:none">
                 <label for="dtp_input2" class="col-md-12 control-label" style="margin-top:8px;padding-left:3px;">当前信息</label>
 
                 <label for="dtp_input2" class="col-md-12 control-label" style="margin-top:12px;padding-left:3px;">日期选择</label>
@@ -346,8 +350,8 @@
 
 
             <div class="sec-btn">
-                <input onclick="submit()" type="button" class="sec-submit" value="看人吃饭" style="width:48%;margin-left:4px;margin-right:10px;"/>
-                <input onclick="saveinfo()" type="button" class="sec-submit" value="保存信息" style="width:48%"/>
+                <input onclick="submit()" type="button" class="sec-submit" value="看人吃饭" style="width:30%;margin-left:4px;margin-right:10px;"/>
+                <input onclick="saveinfo()" type="button" class="sec-submit" value="保存信息" style="width:30%"/>
             </div>
 
             <div>
