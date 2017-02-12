@@ -200,7 +200,7 @@ public class CasetableServiceImpl implements CasetableService {
         int D = 0;
         int E = 0;
 
-        if (hemisphere.equalsIgnoreCase("N")) {
+        if (hemisphere.equalsIgnoreCase("N") || hemisphere.equalsIgnoreCase("north")) {
             A = birdateInfo.getSuman() + sysdateInfo.getSuman();
             B = birdateInfo.getSumb1n() + birdateInfo.getSumb2n() + sysdateInfo.getSumb1n() + sysdateInfo.getSumb2n();
             C = birdateInfo.getSumcn() + sysdateInfo.getSumcn();
@@ -209,9 +209,9 @@ public class CasetableServiceImpl implements CasetableService {
         } else {
             A = birdateInfo.getSumas() + sysdateInfo.getSumas();
             B = birdateInfo.getSumb1s() + birdateInfo.getSumb2s() + sysdateInfo.getSumb1s() + sysdateInfo.getSumb2s();
-            C = birdateInfo.getSumcn() + sysdateInfo.getSumcn();
-            D = birdateInfo.getSumdn() + sysdateInfo.getSumdn();
-            E = birdateInfo.getSumen() + sysdateInfo.getSumen();
+            C = birdateInfo.getSumcs() + sysdateInfo.getSumcs();
+            D = birdateInfo.getSumds() + sysdateInfo.getSumds();
+            E = birdateInfo.getSumes() + sysdateInfo.getSumes();
         }
 
         String Hql = "";

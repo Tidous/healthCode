@@ -60,7 +60,7 @@
             $.doAjaxPostCall("queryCurrentInfo", "location=" + currentLocation, function (responseData) {
                 var obj = responseData;
                 var hometown = obj.location;
-                if (hometown=="north"){
+                if (hometown=="north" || hometown=="N"){
                     hometown = "北半球";
                 }else {
                     hometown = "南半球";
