@@ -45,7 +45,7 @@
             $.doAjaxPostCall("getUserBufferedInfo", "username=" + user, function (responseData) {
                 var obj = responseData;
                 var hometown = obj.location;
-                if (hometown=="north"){
+                if (hometown=="north" || hometown=="北半球"){
                     hometown = "北半球";
                 }else {
                     hometown = "南半球";
@@ -60,7 +60,7 @@
             $.doAjaxPostCall("queryCurrentInfo", "location=" + currentLocation, function (responseData) {
                 var obj = responseData;
                 var hometown = obj.location;
-                if (hometown=="north" || hometown=="N"){
+                if (hometown=="north" || hometown=="北半球"){
                     hometown = "北半球";
                 }else {
                     hometown = "南半球";
@@ -94,8 +94,8 @@
 
             $.doAjaxPostCall("queryBirthInfo", "birthday=" + birthday + "&time=" + "" + "&location=" + currentLocation, function (responseData) {
                 var obj1 = responseData;
-                var hometown = obj1.hometown;
-                if (hometown=="north"){
+                var hometown = obj1.location;
+                if (hometown=="north" || hometown=="北半球"){
                     hometown = "北半球";
                 }else {
                     hometown = "南半球";
