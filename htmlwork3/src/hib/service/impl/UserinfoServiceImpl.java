@@ -58,7 +58,8 @@ public class UserinfoServiceImpl implements UserinfoService{
 				"mail," +
 				"zcode," +
 				"job," +
-				"address" +") values(" +
+				"address" +
+				"comuser," +") values(" +
 				"?," +
 				"?," +
 				"?," +
@@ -68,7 +69,8 @@ public class UserinfoServiceImpl implements UserinfoService{
 				"?," +
 				"?," +
 				"?," +
-				"?" + ")";
+				"?" +
+				"?," +")";
 		
 		Object[] param = new Object[10];
 
@@ -131,6 +133,12 @@ public class UserinfoServiceImpl implements UserinfoService{
 			param[9]=userinfo.getAddress();
 			
 		}else{ param[9]=""; }
+
+		if(userinfo.getComuser()!=null){
+
+			param[10]=userinfo.getComuser();
+
+		}else{ param[10]=""; }
 		
 		baseDAO.executeSql(Hql, param);	
 	}
@@ -153,7 +161,7 @@ public class UserinfoServiceImpl implements UserinfoService{
 	
 	public List<Userinfo> findUserById(String id)  {
 
-		String Hql = "from Userinfo u where u.userid=?";
+		String Hql = "from Userinfo u where u.comuser=?";
 
 		List<Object> param = new ArrayList<Object>();
 

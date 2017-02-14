@@ -11,6 +11,7 @@ public class Userinfo implements java.io.Serializable {
 
 	// Fields
 	private String userid;
+	private String comuser;
 
 	private String username;
 	private String relationship;
@@ -38,7 +39,7 @@ public class Userinfo implements java.io.Serializable {
 	
 	public Userinfo(String userid, String username, String relationship,
 			String sex, String idno, String phone, String mail, String zcode,
-			String job, String address, String city, String province) {
+			String job, String address, String city, String province, String comuser) {
 
 		this.userid = userid;
 		this.username = username;
@@ -52,6 +53,7 @@ public class Userinfo implements java.io.Serializable {
 		this.address = address;
 		this.city = city;
 		this.province = province;
+		this.comuser = comuser;
 	}
 
 	// Property
@@ -165,6 +167,13 @@ public class Userinfo implements java.io.Serializable {
 	public void setProvince(String province) {
 		this.province = province;
 	}
-	
-	
+
+	@Column(name = "comuser")
+	public String getComuser() {
+		return comuser;
+	}
+
+	public void setComuser(String comuser) {
+		this.comuser = comuser;
+	}
 }

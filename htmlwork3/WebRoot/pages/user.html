@@ -106,7 +106,7 @@
                                 var fundbody1 = "<tr class='EdgeTableLine' style='cursor:pointer; '><td align='center' class='GeneralAnswer'><div style='padding: 4px'><span class='Color1'>" + obj.list[i].username;
                                 var fundbody2 = samebody + obj.list[i].relationship;
                                 var fundbody3 = samebody + obj.list[i].phone;
-                                var endbody = "</span></div></td><td align='center'><div style='padding:4px'><a title='编辑用户信息' onclick='detail(id)' id='row_" + obj.list[i].username + "_" + obj.list[i].idno + "' class='Detaillink' value='编辑用户信息' onmouseover='this.style.cursor=&#39;pointer&#39;'>编辑用户信息</a></div></td><td align='center'><div style='padding:4px'><a title='删除' onclick='del(id)' id='row_" + obj.list[i].username + "_" + obj.list[i].idno + "' class='Detaillink' value='删除' onmouseover='this.style.cursor=&#39;pointer&#39;'>删除</a></div></td></tr>";
+                                var endbody = "</span></div></td><td align='center'><div style='padding:4px'><a title='编辑用户信息' onclick='detail(id)' id='row_" + obj.list[i].username + "_" + obj.list[i].idno + "' class='Detaillink' value='编辑用户信息' onmouseover='this.style.cursor=&#39;pointer&#39;'>编辑用户信息</a></div></td></tr>";
                                 listhtml = fundbody1 + fundbody2 + fundbody3 + endbody;
                                 $("#peopeltable").append(listhtml);
                             }
@@ -153,7 +153,7 @@
         var name = arrStr[1];
         var idno = arrStr[2];
 
-        $.doAjaxPostCall("delUserinfo", "userid=" + window.sessionStorage.getItem("userid") + "&name=" + name + "&idno=" + idno,
+        $.doAjaxPostCall("delUserinfo", "userid=" + window.sessionStorage.getItem("user") + "&name=" + name + "&idno=" + idno,
                 function (responseData) {
 
                     console.log(responseData);
@@ -297,12 +297,6 @@
                                                     <span></span></div>
                                             </th>
                                             <th scope="col" abbr="8"
-                                                class="GeneralQuestion  tetris_tableHeader GeneralQuestionBorder"
-                                                align="center">
-                                                <div style="padding: 4px">操作
-                                                    <span></span></div>
-                                            </th>
-                                            <th scope="col" abbr="9"
                                                 class="GeneralQuestion  tetris_tableHeader GeneralQuestionBorder"
                                                 align="center">
                                                 <div style="padding: 4px">操作
