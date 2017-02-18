@@ -58,7 +58,7 @@ public class CasetableServiceImpl implements CasetableService {
         int D = 0;
         int E = 0;
 
-        if (hemisphere.equalsIgnoreCase("N")) {
+        if (hemisphere.equalsIgnoreCase("N") || hemisphere.equals("north")) {
             A = birdateInfo.getSuman();
             B = birdateInfo.getSumb1n() + birdateInfo.getSumb2n();
             C = birdateInfo.getSumcn();
@@ -67,9 +67,9 @@ public class CasetableServiceImpl implements CasetableService {
         } else {
             A = birdateInfo.getSumas();
             B = birdateInfo.getSumb1s() + birdateInfo.getSumb2s();
-            C = birdateInfo.getSumcn();
-            D = birdateInfo.getSumdn();
-            E = birdateInfo.getSumen();
+            C = birdateInfo.getSumcs();
+            D = birdateInfo.getSumds();
+            E = birdateInfo.getSumes();
         }
 
         String Hql = "";
@@ -305,13 +305,13 @@ public class CasetableServiceImpl implements CasetableService {
             }
         } else if (maxValue1 == 3) {
             if (maxValue2 == 3 && maxValue3 < 3) {
-                Hql = "from Casetable where maincase = 'B4' and subcase like ?";
+                Hql = "from Casetable where maincase = 'I4' and subcase like ?";
                 param.add("3" + maxStr1 + "3" + maxStr2);
             } else if (maxValue2 == 3 && maxValue3 == 3) {
-                Hql = "from Casetable where maincase = 'C4' and subcase like ?";
+                Hql = "from Casetable where maincase = 'J4' and subcase like ?";
                 param.add("3" + maxStr1 + "3" + maxStr2 + "3" + maxStr3);
             } else if (maxValue2 == 2) {
-                Hql = "from Casetable where maincase = 'A4' and subcase = ?";
+                Hql = "from Casetable where maincase = 'K4' and subcase = 'K4'";
                 param.add("3" + maxStr1);
             }
         } else {
