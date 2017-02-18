@@ -117,7 +117,7 @@
 	    
 	    function submit() {
 	        if (check()) {
-				var curname = window.sessionStorage.getItem("user");
+				var comuser = window.sessionStorage.getItem("user");
 	           var name = document.getElementById("name").value;
 	           var idno = document.getElementById("idno").value;
 	           var relationship = document.getElementById("relationship").value;
@@ -128,7 +128,7 @@
 	           var job = document.getElementById("job").value;
 	           var address = document.getElementById("address").value;
 	  
-	           $.doAjaxPostCall("updUserFile", "userid="+window.sessionStorage.getItem("user")+"&name="+name+"&idno="+idno+"&relationship="+relationship+"&sex="+sex+"&phone="+phone+"&mail="+mail+"&zcode="+zcode+"&job="+job+"&address="+address, function(responseData){
+	           $.doAjaxPostCall("updUserFile", "userid="+window.sessionStorage.getItem("user")+"&name="+name+"&idno="+idno+"&relationship="+relationship+"&sex="+sex+"&phone="+phone+"&mail="+mail+"&zcode="+zcode+"&job="+job+"&address="+address+"&comuser="+comuser, function(responseData){
 	  
 	               console.log(responseData);
 	               var obj =responseData;

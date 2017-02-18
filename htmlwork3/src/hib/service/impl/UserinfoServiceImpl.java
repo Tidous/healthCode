@@ -58,8 +58,8 @@ public class UserinfoServiceImpl implements UserinfoService{
 				"mail," +
 				"zcode," +
 				"job," +
-				"address" +
-				"comuser," +") values(" +
+				"address," +
+				"comuser" +") values(" +
 				"?," +
 				"?," +
 				"?," +
@@ -69,10 +69,10 @@ public class UserinfoServiceImpl implements UserinfoService{
 				"?," +
 				"?," +
 				"?," +
-				"?" +
-				"?," +")";
+				"?," +
+				"?" +")";
 		
-		Object[] param = new Object[10];
+		Object[] param = new Object[11];
 
 		if(userinfo.getUsername()!=null){
 

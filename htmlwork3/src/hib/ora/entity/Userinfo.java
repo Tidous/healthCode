@@ -11,7 +11,6 @@ public class Userinfo implements java.io.Serializable {
 
 	// Fields
 	private String userid;
-	private String comuser;
 
 	private String username;
 	private String relationship;
@@ -24,6 +23,7 @@ public class Userinfo implements java.io.Serializable {
 	private String address;
 	private String city;
 	private String province;
+	private String comuser;
 
 	// Constructors
 	/** default constructor */

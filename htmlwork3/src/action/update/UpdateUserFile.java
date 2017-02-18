@@ -20,6 +20,7 @@ public class UpdateUserFile extends AbstractJsonLogAction {
 	private String zcode;
 	private String job;
 	private String address;
+	private String comuser;
 	
 	@Autowired
 	private UserinfoService userinfoService;
@@ -139,6 +140,7 @@ public class UpdateUserFile extends AbstractJsonLogAction {
 	
 	private void setUserInfo(Userinfo userinfo) {
 
+		userinfo.setUserid(userid);
 		userinfo.setUsername(name);
 		userinfo.setRelationship(relationship);
 		userinfo.setSex(sex);
@@ -148,6 +150,7 @@ public class UpdateUserFile extends AbstractJsonLogAction {
 		userinfo.setZcode(zcode);
 		userinfo.setJob(job);
 		userinfo.setAddress(address);
+		userinfo.setComuser(comuser);
 	}
 
 	@Override
@@ -230,6 +233,14 @@ public class UpdateUserFile extends AbstractJsonLogAction {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getComuser() {
+		return comuser;
+	}
+
+	public void setComuser(String comuser) {
+		this.comuser = comuser;
 	}
 
 	public String getUserid() {
