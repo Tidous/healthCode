@@ -80,14 +80,7 @@
 				alert("请选择性别");
 				return false;
 			}
-			if (document.getElementById("idno").value == "") {
-				alert("请输入身份证号");
-				return false;
-			}
-			else if (document.getElementById("idno").value.length != 18) {
-				alert("请输入正确的18位身份证号");
-				return false;
-			}
+
 			//手机号码判断
 			var sReg = /^((13[0-9]{1})|147|150|151|152|153|155|156|157|158|159|173|176|177|178|180|181|182|183|184|185|186|187|188|189)[\d]{8}$/;
 			if(document.getElementById("phone").value==""){
@@ -95,19 +88,6 @@
 				return false;
 			} else if (!sReg.test(document.getElementById("phone").value)) {
 				alert("手机号码有误，请核对");
-				return false;
-			}
-			//邮箱判断
-			var emailReg=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-			if(document.getElementById("mail").value == ""){
-				alert("请输入您的邮箱地址");
-				return false;
-			} else if (!emailReg.test(document.getElementById("mail").value)) {
-				alert("邮箱地址有误，请核对");
-				return false;
-			}
-			if (document.getElementById("address").value == "") {
-				alert("请输入地址");
 				return false;
 			}
 
@@ -118,14 +98,14 @@
 			if (check()) {
 				var comuser = window.sessionStorage.getItem("user");
 				var name = document.getElementById("name").value;
-				var idno = document.getElementById("idno").value;
+				var idno = "test";
 				var relationship = document.getElementById("relationship").value;
 				var sex = document.getElementById("sex").value;
 				var phone = document.getElementById("phone").value;
-				var mail = document.getElementById("mail").value;
-				var zcode = document.getElementById("zcode").value;
-				var job = document.getElementById("job").value;
-				var address = document.getElementById("address").value;
+				var mail = "test";
+				var zcode = "test";
+				var job = "test";
+				var address = "test";
 
 				$.doAjaxPostCall("updUserFile", "userid="+window.sessionStorage.getItem("user")+"&name="+name+"&idno="+idno+"&relationship="+relationship+"&sex="+sex+"&phone="+phone+"&mail="+mail+"&zcode="+zcode+"&job="+job+"&address="+address+"&comuser="+comuser, function(responseData){
 
@@ -183,50 +163,9 @@
 
 			<div class="my-wb my_bor mb15 bcfff dis-box">
 				<div class="box-flex-1 pl10">
-					<input type="text" class="m_username f15" id="idno" placeholder="请输入身份证号">
-				</div>
-			</div>
-
-			<div class="my-wb my_bor mb15 bcfff dis-box">
-				<div class="box-flex-1 pl10">
 					<input type="text" class="m_username f15" id="phone" placeholder="请输入手机号">
 				</div>
 			</div>
-
-			<div class="my-wb my_bor mb15 bcfff dis-box">
-				<div class="box-flex-1 pl10">
-					<input type="text" class="m_username f15" id="mail" placeholder="请输入邮箱">
-				</div>
-			</div>
-
-			<div class="my-wb my_bor mb15 bcfff dis-box">
-				<div class="box-flex-1 pl10">
-					<input type="text" class="m_username f15" id="zcode" placeholder="请输入邮编">
-				</div>
-			</div>
-
-			<div class="my-wb my_bor mb15 bcfff dis-box">
-				<div class="box-flex-1 pl10">
-					<input type="text" class="m_username f15" id="job" placeholder="请输入职业">
-				</div>
-			</div>
-
-			<div class="my-wb my_bor mb15 bcfff dis-box">
-				<div class="box-flex-1 pl10">
-					<input type="text" class="m_username f15" id="address" placeholder="请输入地址">
-				</div>
-			</div>
-
-			<!--  <div class="mb15 zt-yam">
-                <form action="" class="zt-yzm-form" name="">
-                    <div class="zt-forminput my_bor pl10">
-                        <input type="text" class="m_yzm f15" placeholder="激活码">
-                    </div>
-                    <div class="formSub">
-                                <a href="javascript:void(0);" clicken="3g_register_fsyzm" onmousedown="clicktest(this);__sendClickOdm('3g_ucenter', this, 'zhuce:3g_register_fsyzm+')" clicktype="3g_ucenter_click"><input data="m_pvHaveYzm" class="m_yzm_btn" type="button" value="免费发送激活码" /></a>
-                    </div>
-                </form>
-            </div> -->
 
 			<div class="sign mt15 mb30">
 				<button type="button" data-login="loginUp" class="bc39" onclick="submit()">保存</button>
